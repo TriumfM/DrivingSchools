@@ -10,24 +10,7 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {
-      '/api': {
-        target: 'http://127.0.0.1:8000/api',
-        secure: false,
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': ''
-        }
-      },
-      '/': {
-        target: 'http://127.0.0.1:8000',
-        secure: false,
-        changeOrigin: true,
-        pathRewrite: {
-          '^/': ''
-        }
-      }
-    },
+    proxyTable: {},
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -55,10 +38,10 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../../../resources/views/index.blade.php'),
+    index: path.resolve(__dirname, '../dist/index.html'),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../../../public'),
+    assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
 

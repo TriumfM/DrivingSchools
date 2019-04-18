@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
-import AppView from '@/main/AppView'
-
+import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 
@@ -10,8 +8,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'app',
-      component: AppView
+      name: 'HelloWorld',
+      component: HelloWorld
     }
   ]
 })
