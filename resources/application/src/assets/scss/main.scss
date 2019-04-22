@@ -1,1 +1,30 @@
+// FONTS
+@import "fonts";
+
+// COMPONENTS
 @import 'components/variables';
+@import 'components/header';
+
+// PAGES
+@import 'pages/user/login';
+@import 'pages/main/mainView';
+@import 'pages/main/test/test';
+@import 'pages/main/test/details';
+
+body {
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  height: 100vh;
+  float: left;
+  font-family: OpenSansRegular;
+  color: $alphabet;
+}
+
+#app {
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  float: left;
+}

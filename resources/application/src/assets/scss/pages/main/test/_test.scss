@@ -1,0 +1,119 @@
+.test__body {
+  padding: 100px 0px;
+  width: 100%;
+  float: left;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  .test__box {
+    width: 240px;
+    height: 240px;
+    float: left;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: $test-box-shadow;
+    position: relative;
+    margin: 0px 30px 30px 0px;
+
+    .test__info {
+      float: left;
+      width: calc(100% - 30px);
+      text-align: center;
+      padding: 30px 0px 10px;
+      margin: 0px 15px;
+      border-bottom: 1px solid $border-text-box;
+
+      svg {
+        height: 30px;
+
+        .cls-1 {
+          fill: #97999b;
+        }
+        .cls-2 {
+          fill: #1673db;
+        }
+      }
+
+      label {
+        font-size: 80px;
+        width: 100%;
+        text-align: center;
+        float: left;
+        color: $main-blue;
+        font-family: OpenSansSemibold;
+      }
+    }
+
+    .text__button {
+      float: left;
+      width: 100%;
+      text-align: center;
+
+      .button__test {
+        border-radius: 25px;
+        font-size: 18px;
+        padding: 8px 20px;
+        color: $main-blue;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        background: transparent;
+        text-decoration: none;
+        display: inline-block;
+
+        svg {
+          height: 12px;
+          padding-left: 3px;
+
+          .cls-1 {
+            fill: none;
+            stroke: #1673db;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 3px;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      background-color: $main-blue;
+
+      .test__info {
+        color: #fff;
+        border-color: $main-blue;
+
+        svg {
+          .cls-1 {
+            fill: #fff;
+          }
+          .cls-2 {
+            fill: #fff;
+          }
+        }
+
+        label {
+          color: #fff;
+        }
+      }
+
+      .text__button {
+        .button__test {
+          color: #fff;
+          border: 1px solid #fff;
+
+          svg {
+            height: 12px;
+            padding-left: 3px;
+
+            .cls-1 {
+              stroke: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
