@@ -49,7 +49,7 @@
           <label>{{(n < 10)? '0'+n: n}}</label>
         </div>
         <div class="text__button">
-          <router-link class="button__test" :to="{name: 'test-details'}">Testohu
+          <router-link class="button__style button--test" :to="{name: 'test-details'}">Testohu
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.54 13.26">
               <line class="cls-1" x1="1.5" y1="6.63" x2="15.68" y2="6.63" />
               <polyline class="cls-1" points="10.91 1.5 16.04 6.63 10.91 11.76" />

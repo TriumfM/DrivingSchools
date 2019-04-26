@@ -67,17 +67,8 @@ $input-color: #949ba7;
       }
     }
 
-    .login__button {
-      text-align: center;
-      border-radius: 25px;
-      font-size: 20px;
-      padding: 12px 35px;
+    .login--button {
       margin-top: 50px;
-      background-color: $main-blue;
-      color: #fff;
-      border: none;
-      outline: none;
-      cursor: pointer;
 
       img {
         height: 15px;

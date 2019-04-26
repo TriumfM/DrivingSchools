@@ -1,5 +1,5 @@
 .test__body {
-  padding: 100px 0px;
+  padding: 80px 0px;
   width: 100%;
   float: left;
   justify-content: center;
@@ -51,14 +51,10 @@
       width: 100%;
       text-align: center;
 
-      .button__test {
-        border-radius: 25px;
+      .button--test {
         font-size: 18px;
         padding: 8px 20px;
         color: $main-blue;
-        border: none;
-        outline: none;
-        cursor: pointer;
         background: transparent;
         text-decoration: none;
         display: inline-block;
@@ -100,7 +96,7 @@
       }
 
       .text__button {
-        .button__test {
+        .button--test {
           color: #fff;
           border: 1px solid #fff;
 

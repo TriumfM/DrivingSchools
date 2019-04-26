@@ -12,7 +12,7 @@
         <input type="password" class="input__value"/>
         <img class="input__icon" src="@/assets/img/password_input.svg"/>
       </div>
-      <button class="login__button">Kyquni<img src="@/assets/img/arrow_right.svg"></button>
+      <button class="button__style login--button">Kyquni<img src="@/assets/img/arrow_right.svg"></button>
     </div>
   </div>
 </template>

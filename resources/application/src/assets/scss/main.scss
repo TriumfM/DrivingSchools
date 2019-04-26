@@ -4,12 +4,15 @@
 // COMPONENTS
 @import 'components/variables';
 @import 'components/header';
+@import 'components/button';
+@import 'components/scrollbar';
 
 // PAGES
 @import 'pages/user/login';
 @import 'pages/main/mainView';
 @import 'pages/main/test/test';
 @import 'pages/main/test/details';
+@import 'pages/main/test/results';
 
 body {
   padding: 0px;
@@ -19,6 +22,7 @@ body {
   float: left;
   font-family: OpenSansRegular;
   color: $alphabet;
+  background-color: $body;
 }
 
 #app {
