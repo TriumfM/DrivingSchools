@@ -24,16 +24,12 @@ class UserSaveRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'username' => 'required|unique:users',
+            'full_name' => 'required',
+            'number' => 'required|unique:users,number',
+            'role' =>'in:admin,student|required',
             'email' => 'required|email|unique:users',
             'password' => 'required',
             'retype_password' => 'required|same:password',
-            'active' => 'required',
-            'role_id' => 'required',
-            'client_id' => 'exists:clients,id',
-            'brands' => 'array',
         ];
     }
 }
