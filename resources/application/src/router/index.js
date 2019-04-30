@@ -6,6 +6,8 @@ import HomeComponent from '@/main/home/HomeComponent'
 import TestComponent from '@/main/test/TestComponent'
 import TestDetailsComponent from '@/main/test/TestDetailsComponent'
 import TestResultsComponent from '@/main/test/TestResultsComponent'
+import VideoComponent from '@/main/video/VideoComponent'
+import LiteratureComponent from '@/main/literature/LiteratureComponent'
 import LoginComponent from '@/user/LoginComponent'
 
 Vue.use(Router)
@@ -36,6 +38,16 @@ export default new Router({
           path: '/test/1/results',
           name: 'test-results',
           component: TestResultsComponent,
+        },
+        {
+          path: '/video',
+          name: 'video',
+          component: VideoComponent,
+        },
+        {
+          path: '/literature',
+          name: 'literature',
+          component: LiteratureComponent,
         },
       ]
     },
