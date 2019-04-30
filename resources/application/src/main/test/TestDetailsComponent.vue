@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="question__content">
-          <div class="question__photo">
+          <div class="question__photo height--100">
             <img src="@/assets/img/test1_foto1.svg" class="photo__classic" v-if="showImg == 1"/>
             <img src="@/assets/img/shenja1.svg" class="photo__signs" v-if="showImg == 2"/>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 227.21 47.74" v-if="(showImg != 1 && showImg != 2)">
