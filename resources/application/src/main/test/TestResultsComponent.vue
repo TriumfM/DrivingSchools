@@ -3,7 +3,7 @@
     <div class="results__body">
       <span :class="{'results__point': true, 'success': true, 'error': false}">86 Pikë, Urime keni kaluar</span>
       <div class="results__answers">
-        <div :class="{'result__box': true, 'success': (n < 22), 'error': (n >= 22) }" v-for="n in 30">
+        <div :class="{'result__box': true, 'success': (n < 22), 'error': (n >= 22) }" v-for="n in 30" @click="showModal()">
           <span class="question__order">{{(n < 10)? '0'+n: n}}</span>
           <sapn class="question__result">{{(n > 21)? 'Gabim': 'Saktë'}}</sapn>
         </div>
@@ -16,7 +16,7 @@
         </svg>
       </button>
     </div>
-    <modal-component :show="true" position="center">
+    <modal-component :show="show" position="center">
       <div class="test__details no--padding">
         <div class="test__question">
           <div class="question__header">
@@ -97,15 +97,8 @@
           <div class="question__footer">
             <span class="point">4 Pikë</span>
             <div class="control__buttons">
-              <button class="button__style button_next-preview">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.98 14.28">
-                  <line class="cls-1" x1="17.48" y1="7.14" x2="1.89" y2="7.14" />
-                  <polyline class="cls-1" points="7.14 12.78 1.5 7.14 7.14 1.5" />
-                </svg>
-                <span>Prapa</span>
-              </button>
-              <button class="button__style button_next-preview">
-                <span>Pyetja e rradhës</span>
+              <button class="button__style button_next-preview" @click="showModal()">
+                <span>Në rregull</span>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.54 13.26">
                   <line class="cls-1" x1="1.5" y1="6.63" x2="15.68" y2="6.63" />
                   <polyline class="cls-1" points="10.91 1.5 16.04 6.63 10.91 11.76" />
@@ -129,11 +122,14 @@
     },
     data () {
       return {
-        showImg: 1
+        showImg: 1,
+        show:false
       }
     },
     methods: {
-
+      showModal: function () {
+        this.show = !this.show
+      }
     }
   }
 </script>
