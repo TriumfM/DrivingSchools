@@ -1,0 +1,43 @@
+.header {
+  float: left;
+  width: calc(100% - 200px);
+  background-color: $header;
+  position: relative;
+  height: 70px;
+  padding: 0px 100px;
+  box-shadow: $header-box-shadow;
+
+  .logo {
+    float: left;
+    height: 50px;
+    margin: 10px 0px;
+  }
+
+  .menu__items {
+    float: right;
+
+    .menu__item {
+      float: left;
+      font-size: 19px;
+      padding: 22px 30px;
+      text-decoration: none;
+      color: $alphabet;
+
+      &.item-settings {
+        padding: 22px 20px;
+        img {
+          height: 26px;
+        }
+      }
+
+      &:focus{
+        color: $active-link;
+        font-family: OpenSansSemibold;
+      }
+
+      &:hover {
+        color: $active-link;
+      }
+    }
+  }
+}

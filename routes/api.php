@@ -13,58 +13,124 @@
 */
 Route::post('/auth/login', 'AuthController@login');
 
-// Super Admin only routes
-Route::group(['middleware' => ['auth:api', 'role:super admin']], function() {
-    Route::get('/clients', 'ClientController@index');
-    Route::get('/clients/{id}', 'ClientController@show');
-    Route::post('/clients', 'ClientController@store');
-    Route::put('/clients/{id}', 'ClientController@update');
-    Route::delete('/clients/{id}', 'ClientController@destroy');
-});
 
-Route::group(['middleware' => ['auth:api', 'role:client admin']], function() {
+Route::group(['middleware' => 'auth:api'], function() {
+
     Route::get('/users', 'UserController@index');
     Route::get('/users/{id}', 'UserController@show');
     Route::post('/users', 'UserController@store');
     Route::put('/users/{id}', 'UserController@update');
     Route::delete('/users/{id}', 'UserController@destroy');
 
-    Route::post('/users/brands/{userId}/{brandId}/{flag}', 'UserController@addUserBrand');
-
-    Route::get('/requests', 'VerifiedRequestController@index');
-    Route::get('/requests/{id}', 'VerifiedRequestController@show');
-    Route::delete('/requests/{id}', 'VerifiedRequestController@destroy');
-
-    Route::post('request/approve', 'VerifiedRequestController@directApprove');
-    Route::get('/requests/approve/{id}', 'VerifiedRequestController@approve');
-});
-
-Route::group(['middleware' => ['auth:api', 'role:client user']], function() {
-
-    Route::post('/brands', 'BrandController@store');
-    Route::put('/brands/{id}', 'BrandController@update');
-    Route::delete('/brands/{id}', 'BrandController@destroy');
-
-    Route::post('/campaigns', 'CampaignController@store');
-    Route::put('/campaigns/{id}', 'CampaignController@update');
-    Route::delete('/campaigns/{id}', 'CampaignController@destroy');
-});
-
-Route::group(['middleware' => 'auth:api'], function() {
-    Route::get('/brands/clients/{client_id}', 'BrandController@getByClientId');
-    Route::get('/campaigns/brands/{brand_id}', 'CampaignController@getByBrandId');
-    Route::get('/campaigns/clients/{clientId}', 'CampaignController@getByClientId');
-
     Route::get('/auth/details', 'AuthController@details');
-    Route::get('/auth/clients', 'AuthController@clients');
-    Route::get('/auth/clientadmin', 'AuthController@clientAdmin');
     Route::get('/auth/logout', 'AuthController@logout');
 
-    Route::post('/requests', 'VerifiedRequestController@store');
 
-    Route::get('/brands', 'BrandController@index');
-    Route::get('/brands/{id}', 'BrandController@show');
+    /**
+     *  Video Routes
+     */
+    Route::group(['middleware' => 'permission:admin'],function () {
 
-    Route::get('/campaigns', 'CampaignController@index');
-    Route::get('/campaigns/{id}', 'CampaignController@show');
+        Route::get('/videos', 'VideoController@index');
+        Route::get('/videos/{id}', 'VideoController@show');
+        Route::post('/videos','VideoController@store');
+        Route::put('/videos/{id}', 'VideoController@update');
+        Route::delete('/videos/{id}','VideoController@destroy');
+
+
+    });
+    /**
+     * Test Routes
+     */
+
+    Route::get('/trainings/tests', [
+        'middleware' => 'permission:student',
+        'uses' => 'TrainingTestController@index',
+    ]);
+
+    Route::get('/trainings/tests/{id}', [
+        'middleware' => 'permission:admin',
+        'uses' => 'TrainingTestController@show',
+    ]);
+    Route::post('/trainings/tests', [
+        'middleware' => 'permission:admin',
+        'uses' => 'TrainingTestController@store',
+    ]);
+    Route::put('/trainings/tests/{id}', [
+        'middleware' => 'permission:admin',
+        'uses' => 'TrainingTestController@update',
+    ]);
+    Route::delete('/trainings/tests/{id}', [
+        'middleware' => 'permission:admin',
+        'uses' => 'TrainingTestController@destroy',
+    ]);
+
+    /**
+     *  Tranings Results Tests
+     */
+
+    Route::post('/trainings/results/tests/{id}', [
+        'middleware' => 'permission:student',
+        'uses' => 'TrainingTestController@results',
+    ]);
+
+    /**
+     * Question Routes
+     */
+
+    Route::get('/trainings/questions', [
+        'middleware' => 'permission:admin',
+        'uses' => 'TrainingQuestionController@index',
+    ]);
+
+    Route::get('/trainings/questions/{id}', [
+        'middleware' => 'permission:student',
+        'uses' => 'TrainingQuestionController@show',
+    ]);
+
+    Route::post('/trainings/questions/{testId}', [
+        'middleware' => 'permission:admin',
+        'uses' => 'TrainingQuestionController@store',
+    ]);
+
+    Route::post('/trainings/questions/{id}/{photoUpdate}', [
+        'middleware' => 'permission:admin',
+        'uses' => 'TrainingQuestionController@update',
+    ]);
+
+    Route::delete('/trainings/questions/{id}', [
+        'middleware' => 'permission:admin',
+        'uses' => 'TrainingQuestionController@destroy',
+    ]);
+
+
+    /**
+     * Answer Routes
+     */
+
+    Route::get('/trainings/answers', [
+        'middleware' => 'permission:admin',
+        'uses' => 'TrainingAnswerController@index',
+    ]);
+
+    Route::get('/trainings/answers/{id}', [
+        'middleware' => 'permission:admin',
+        'uses' => 'TrainingAnswerController@show',
+    ]);
+
+    Route::post('/trainings/answers/{questionId}',[
+        'middleware' => 'permission:admin',
+        'uses' => 'TrainingAnswerController@store',
+    ]);
+
+    Route::put('/trainings/answers/{id}', [
+        'middleware' => 'permission:admin',
+        'uses' => 'TrainingAnswerController@update',
+    ]);
+
+    Route::delete('/trainings/answers/{id}', [
+        'middleware' => 'permission:admin',
+        'uses' => 'TrainingAnswerController@destroy',
+    ]);
+
 });

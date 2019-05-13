@@ -19,15 +19,9 @@ class AuthController extends Controller
 
         if ($user != null && \Auth::attempt($credentials))
         {
-            if ($user->active == false) {
-                return response()->json([
-                    'message' => 'No access.',
-                    'errors' => [ 'email' => [ 'User is not active.' ] ]
-                ], 403);
-            }
             $user = $request->user();
 
-            $tokenResult = $user->createToken('Client Assets Token');
+            $tokenResult = $user->createToken('Driving School Token');
 
             return response()->json([
 
@@ -57,20 +51,5 @@ class AuthController extends Controller
     {
         $user = Auth::user()->load('role');
         return $user;
-    }
-
-    public function clients()
-    {
-        $user = Auth::user();
-        if($user->client_id != null)
-            return [ Client::find($user->client_id) ];
-        elseif($user->role_id == 1)
-            return Client::get();
-        return null;
-    }
-
-    public function clientAdmin()
-    {
-        return ['status' => Auth::user()->role_id == 2];
     }
 }

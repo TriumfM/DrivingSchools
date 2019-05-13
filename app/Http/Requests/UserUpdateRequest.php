@@ -24,15 +24,12 @@ class UserUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'username' => 'required|unique:users,username,' . $this->id,
+            'full_name' => 'required',
+            'number' => 'required|unique:users,number',
+            'role' =>'in:admin,student|required',
             'email' => 'required|email|unique:users,email,'. $this->id,
-            'active' => 'required',
             'password' => 'sometimes|required',
             'retype_password' => 'required_with:password|same:password',
-            'role_id' => 'required',
-            'client_id' => 'exists:clients,id',
         ];
     }
 }

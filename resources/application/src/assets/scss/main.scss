@@ -1,1 +1,40 @@
+// FONTS
+@import "fonts";
+
+// COMPONENTS
 @import 'components/variables';
+@import 'components/header';
+@import 'components/button';
+@import 'components/scrollbar';
+@import 'components/modal';
+
+// PAGES
+@import 'pages/user/login';
+@import 'pages/main/mainView';
+@import 'pages/main/test/test';
+@import 'pages/main/test/details';
+@import 'pages/main/test/results';
+@import 'pages/main/video/video';
+@import 'pages/main/literature/literature';
+
+body {
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  height: 100vh;
+  float: left;
+  font-family: OpenSansRegular;
+  color: $alphabet;
+  background-color: $body;
+}
+
+#app {
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  float: left;
+}
+.no--padding {
+  padding: 0px !important;
+}
