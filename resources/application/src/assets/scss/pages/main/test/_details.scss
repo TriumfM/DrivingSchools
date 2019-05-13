@@ -57,7 +57,7 @@
       overflow: hidden;
 
       .question__photo {
-        width: calc(50% - 40px);
+        width: 500px;
         float: left;
         margin-right: 40px;
         background-color: $grey;
@@ -87,7 +87,7 @@
       }
       
       .question__answers {
-        width: 50%;
+        width: calc(100% - 540px);
         float: left;
         height: 100%;
 
