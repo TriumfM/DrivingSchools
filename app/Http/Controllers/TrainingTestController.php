@@ -113,9 +113,6 @@ class TrainingTestController extends Controller
         $test = TrainingTest::with('questions.stdAnswers')->findOrfail($testId);
 
         return $test;
-
-
-        
     }
 
     /**

@@ -41,7 +41,7 @@ class TrainingQuestionController extends Controller
      * Store Question
      *
      * @param Request $request
-     * @return Question
+     * @return TrainingQuestion
      */
     public function store($testId, Request $request)
     {
