@@ -1,0 +1,41 @@
+.admin {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  background: white;
+
+  .admin__container {
+    float: left;
+    height: 100%;
+    margin: 0;
+    width: calc(100% - 300px);
+    position: relative;
+  }
+
+  .admin__content {
+    height: 100%;
+    box-sizing: border-box;
+    padding: 20px !important;
+    overflow-x: auto;
+
+    .admin__header {
+      float: left;
+      width: calc(100% - 20px);
+      margin: 0 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(0,0,0,.12);;
+
+      .title_side {
+        float: left;
+        margin: 0;
+        padding-left: 10px;
+      }
+
+      .add_new-button {
+        float: right;
+        width: auto;
+      }
+    }
+  }
+
+}

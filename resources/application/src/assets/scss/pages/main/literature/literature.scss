@@ -5,7 +5,7 @@
   .literature {
     float: left;
     width: 100%;
-    padding-bottom: 50px;
+    padding: 41px 0px;
 
     .literature__box {
       height: 215px;
@@ -28,13 +28,16 @@
           float: left;
           border-radius: 100px;
           background: #F7F7F7;
-          width: 30px;
-          height: 30px;
-          padding: 20px;
-          margin-left: calc(50% - 35px);
+          padding: 26px;
+          margin-left: calc(50% - 26px);
+          position: relative;
 
           svg {
-            height: 30px;
+            height: 28px;
+            width: 28px;
+            position: absolute;
+            top: 12px;
+            left: 12px;
 
             .cls-1 {
               fill: #97999b;
@@ -85,6 +88,44 @@
 
           &:hover {
             color: #0881C4;
+          }
+        }
+      }
+
+      &:hover {
+        background-color: $main-blue;
+
+        .literature__info {
+          color: #fff;
+          border-color: $main-blue;
+
+          svg {
+            .cls-1 {
+              fill: $main-blue;
+            }
+            .cls-2 {
+              fill: $main-blue;
+            }
+          }
+
+          label {
+            color: #fff;
+          }
+        }
+
+        .literature__button {
+          .button--show_literature {
+            color: #fff;
+            border: 1px solid #fff;
+
+            svg {
+              height: 12px;
+              padding-left: 3px;
+
+              .cls-1 {
+                stroke: #fff;
+              }
+            }
           }
         }
       }

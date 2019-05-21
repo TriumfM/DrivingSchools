@@ -60,15 +60,40 @@ $input-color: #949ba7;
 
       .input__icon {
         position: absolute;
-        height: 20px;
         top: 94px;
         right: 0px;
         width: 30px;
+        svg {
+          height: 20px;
+          padding: 0px 5px;
+          fill: #1673db;
+        }
+
+        &.input_pass {
+          svg {
+            padding-left: 8px;
+          }
+        }
+
+        &.error__case {
+          svg {
+            fill: #f00 !important;
+          }
+        }
       }
     }
 
     .login--button {
       margin-top: 50px;
+      padding: 9px 35px 12px !important;
+
+      &:hover {
+        outline: none;
+        opacity: 0.8;
+      }
+      &:focus {
+        outline: none;
+      }
 
       img {
         height: 15px;
