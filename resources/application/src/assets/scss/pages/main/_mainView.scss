@@ -6,11 +6,10 @@
 
   .main__body {
     float: left;
-    width: calc(100% - 200px);
+    width: calc(100% - 0px);
     padding: 0px 100px;
     height: calc(100% - 90px);
     margin: 20px 0px;
-    background-color: $body;
     overflow-x: auto;
   }
 }

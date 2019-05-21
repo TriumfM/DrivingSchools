@@ -5,11 +5,47 @@
       <router-link class="menu__item" :to="{name: 'test'}">Testohu</router-link>
       <router-link class="menu__item" :to="{name: 'video'}">Video</router-link>
       <router-link class="menu__item" :to="{name: 'literature'}">Literatura</router-link>
-      <router-link class="menu__item" :to="{name: 'login'}">Log Out</router-link>
+      <button class="menu__item" :to="{name: 'login'}" @click="logout()">Log Out</button>
     </div>
   </div>
 </template>
 
 <script>
+  import {Http} from '@/helpers/http-helper'
+
+  export default {
+    props: [],
+    data () {
+      return {
+        routes: [],
+        user: {}
+      }
+    },
+    filters: {
+      firstLetter: function (value) {
+        if (!value) return ''
+        value = value.toString()
+        return value.charAt(0)
+      }
+    },
+    watch: {
+    },
+    mounted: function () {
+      this.getUser()
+    },
+    methods: {
+      logout: function () {
+        localStorage.setItem('vuex', '')
+        this.$router.push({name: 'login'})
+        Http.get(`/auth/logout`)
+      },
+      getUser: function () {
+        Http.get(`auth/details`)
+          .then(response => {
+            this.user = response.data
+          })
+      }
+    }
+  }
 
 </script>
