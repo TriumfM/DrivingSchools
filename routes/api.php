@@ -13,35 +13,38 @@
 */
 Route::post('/auth/login', 'AuthController@login');
 
-
+// New Driving School Routes
 Route::group(['middleware' => 'auth:api'], function() {
 
-    Route::get('/users', 'UserController@index');
-    Route::get('/users/{id}', 'UserController@show');
-    Route::post('/users', 'UserController@store');
-    Route::put('/users/{id}', 'UserController@update');
-    Route::delete('/users/{id}', 'UserController@destroy');
 
     Route::get('/auth/details', 'AuthController@details');
     Route::get('/auth/logout', 'AuthController@logout');
 
 
-    /**
-     *  Video Routes
-     */
+
+
+
+     //  Video Routes
+    Route::get('/videos', 'VideoController@index');
+    Route::get('/videos/{id}', 'VideoController@show');
+
     Route::group(['middleware' => 'permission:admin'],function () {
 
-        Route::get('/videos', 'VideoController@index');
-        Route::get('/videos/{id}', 'VideoController@show');
+        Route::get('/users', 'UserController@index');
+        Route::get('/users/{id}', 'UserController@show');
+        Route::post('/users', 'UserController@store');
+        Route::put('/users/{id}', 'UserController@update');
+        Route::delete('/users/{id}', 'UserController@destroy');
+
         Route::post('/videos','VideoController@store');
         Route::put('/videos/{id}', 'VideoController@update');
         Route::delete('/videos/{id}','VideoController@destroy');
 
 
     });
-    /**
-     * Test Routes
-     */
+
+     // Test Routes
+
 
     Route::get('/trainings/tests', [
         'middleware' => 'permission:student',
@@ -65,18 +68,18 @@ Route::group(['middleware' => 'auth:api'], function() {
         'uses' => 'TrainingTestController@destroy',
     ]);
 
-    /**
-     *  Tranings Results Tests
-     */
+
+     // Tranings Results Tests
+
 
     Route::post('/trainings/results/tests/{id}', [
         'middleware' => 'permission:student',
         'uses' => 'TrainingTestController@results',
     ]);
 
-    /**
-     * Question Routes
-     */
+
+    //  Question Routes
+
 
     Route::get('/trainings/questions', [
         'middleware' => 'permission:admin',
@@ -104,9 +107,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     ]);
 
 
-    /**
-     * Answer Routes
-     */
+    // Answer Routes
 
     Route::get('/trainings/answers', [
         'middleware' => 'permission:admin',
@@ -118,7 +119,7 @@ Route::group(['middleware' => 'auth:api'], function() {
         'uses' => 'TrainingAnswerController@show',
     ]);
 
-    Route::post('/trainings/answers/{questionId}',[
+    Route::post('/trainings/answers/}',[
         'middleware' => 'permission:admin',
         'uses' => 'TrainingAnswerController@store',
     ]);

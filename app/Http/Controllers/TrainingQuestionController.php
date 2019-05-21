@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entities\TrainingQuestion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Entities\TrainingAnswer;
 use Illuminate\Support\Facades\Input;
@@ -48,7 +49,7 @@ class TrainingQuestionController extends Controller
 
         $validator = Validator::make($request->input('question'), [
             'name' => 'required',
-            'points' => 'required'
+            'points' => 'required',
         ]);
         if($validator->passes()) {
 
@@ -58,15 +59,9 @@ class TrainingQuestionController extends Controller
             $question->points = $request->input('question')['points'];
             $question->test_id = $testId;
 
-
-           $destinationPath = public_path() . '/fonix/images/questions/';
-
-           $imageName = str_random() . '.' .
-               $request->file('file')->getClientOriginalExtension();
-
-           $request->file('file')->move($destinationPath, $imageName);
-
-           $question->photo = $imageName;
+            if($request->hasFile('photo')){
+                $question->photo_url = Storage::url( Storage::put('public/images/questions', $request->file('photo')) );
+            }
 
             $question->save();
 
@@ -110,20 +105,12 @@ class TrainingQuestionController extends Controller
 
             $question->name = $request->input('question')['name'];
             $question->points = $request->input('question')['points'];
-            $question->photo = $request->input('question')['photo'];
             $question->test_id = $request->input('question')['test_id'];
 
-            if ($photoUpdate == "true"){
-
-                $destinationPath = public_path() . '/fonix/images/questions/';
-
-                $imageName = str_random() . '.' .
-                    $request->file('file')->getClientOriginalExtension();
-
-                $request->file('file')->move($destinationPath, $imageName);
-
-                $question->photo = $imageName;
+            if($request->hasFile('photo')){
+                $question->photo_url = Storage::url( Storage::put('public/images/questions', $request->file('photo')) );
             }
+
 
             $question->update();
 

@@ -19,7 +19,7 @@ class TngQuestion extends Migration
             $table->string('name', 2000);
             $table->integer('points');
             $table->integer('test_id');
-            $table->string('photo');
+            $table->string('photo_url')->nullable();
             $table->timestamps();
 
             $table->foreign('test_id')->references('id')->on('tng_test')->onDelete('cascade');
