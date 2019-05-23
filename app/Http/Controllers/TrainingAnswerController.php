@@ -71,8 +71,8 @@ class TrainingAnswerController extends Controller
     {
         $answer = TrainingAnswer::findOrfail($id);
 
-        $answer->name = $request->get('name');
-        $answer->solution = $request->get('solution');
+        $answer->name = $request->json('name');
+        $answer->solution = $request->json('solution');
         $answer->question_id = $request->json('question_id');
 
         $answer->update();

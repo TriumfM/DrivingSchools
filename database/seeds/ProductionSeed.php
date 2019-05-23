@@ -25,6 +25,14 @@ class ProductionSeed extends Seeder
      */
     public function run()
     {
+        $literature = new \App\Entities\Literature();
+
+        $literature->title = 'Literature Title 1';
+        $literature->description = 'Literature Description 1';
+        $literature->photo_url = null;
+        $literature->type = 'Type1';
+        $literature->save();
+
         /*
         * User
         */

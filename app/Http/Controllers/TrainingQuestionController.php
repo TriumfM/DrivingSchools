@@ -97,7 +97,7 @@ class TrainingQuestionController extends Controller
         $validator = Validator::make($request->input('question'),[
             'name' => 'required',
             'points' => 'required',
-            'photo' => 'required',
+            'photo_url' => 'required',
             'test_id' => 'required'
         ]);
 
