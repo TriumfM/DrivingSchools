@@ -75,6 +75,15 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/trainings/questions/{id}/{photoUpdate}', ['middleware' => 'permission:admin', 'uses' => 'TrainingQuestionController@update',]);
     Route::delete('/trainings/questions/{id}', ['middleware' => 'permission:admin', 'uses' => 'TrainingQuestionController@destroy',]);
 
+    /**
+     * Student Permission's Route
+     */
+
+    Route::get('/student/tests/all', [
+        'middleware' => 'permission:student',
+        'uses' => 'TrainingTestController@studentIndex',
+    ]);
+
 });
 
 

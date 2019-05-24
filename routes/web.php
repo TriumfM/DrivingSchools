@@ -620,14 +620,7 @@ Route::group(['middleware' => 'auth'], function () {
     ]);
 
 
-    /**
-     * Student Permission's Route
-     */
 
-    Route::get('/student/tests/all', [
-        'middleware' => 'permission:student',
-        'uses' => 'TrainingTestController@studentIndex',
-    ]);
 
     Route::get('/student/tests/{id}', [
         'middleware' => 'permission:student',
