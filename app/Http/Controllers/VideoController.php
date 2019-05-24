@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Video;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\VideoSaveRequest;
+use App\Http\Requests\VideoUpdateRequest;
 
 class VideoController extends Controller
 {
@@ -38,72 +38,41 @@ class VideoController extends Controller
     /**
      * Store Video
      *
-     * @param Request $request
+     * @param VideoSaveRequest $request
      * @return Video
      */
 
-    public function store(Request $request){
+    public function store(VideoSaveRequest $request){
 
-        $validator = Validator::make($request->all(),[
-            'title' => 'required',
-            'description' => 'required',
-            'path' => 'required'
-        ]);
+        $video = new Video();
 
-        if ($validator->passes()) {
+        $video->title = $request->get('title');
+        $video->description = $request->get('description');
+        $video->path = $request->get('path');
 
-            $video = new Video();
+        $video->save();
 
-            $video->title = $request->get('title');
-            $video->description = $request->get('description');
-            $video->path = $request->get('path');
-
-//            $destinationPath = public_path() . '/fonix/videos/';
-//
-//            $videoeName = str_random() . '.' . $request->file('path')->getClientOriginalExtension();
-//
-//            $request->file('path')->move($destinationPath, $videoeName);
-//
-//            $video->path = $videoeName;
-
-            $video->save();
-
-            return $video;
-        }
-
-        return response()->json(["errors" => $validator->messages()], 422);
+        return $video;
     }
 
     /**
      * Update Video
      *
-     * @param Request $request
+     * @param VideoUpdateRequest $request
      * @param $id
      * @return mixed
      */
 
-    public function update(Request $request, $id){
+    public function update(VideoUpdateRequest $request, $id){
+        $video = Video::find($id);
 
-        $validator = Validator::make($request->all(),[
-           'title' => 'required',
-            'description' => 'required',
-            'path' => 'required'
-        ]);
+        $video->title = $request->get('title');
+        $video->description = $request->get('description');
+        $video->path = $request->get('path');
 
-        if ($validator->passes()){
+        $video->update();
 
-            $video = Video::find($id);
-
-            $video->title = $request->get('title');
-            $video->description = $request->get('description');
-            $video->path = $request->get('path');
-
-            $video->update();
-
-            return $video;
-        }
-
-        return response()->json(["errors" => $validator->messages()], 422);
+        return $video;
     }
 
     /**

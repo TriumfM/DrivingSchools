@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TngQuestion extends Migration
+class CreateLiteraturesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class TngQuestion extends Migration
      */
     public function up()
     {
-        Schema::create('tng_question', function(Blueprint $table){
-
-            $table->integer('id', true);
-            $table->string('name', 2000);
-            $table->integer('points');
-            $table->integer('test_id');
+        Schema::create('literatures', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('title');
+            $table->text('description');
             $table->string('photo_url')->nullable();
+            $table->string('type'); // TODO: Enum or type_id
             $table->timestamps();
-
-            $table->foreign('test_id')->references('id')->on('tng_test')->onDelete('cascade');
         });
     }
 
@@ -33,6 +30,6 @@ class TngQuestion extends Migration
      */
     public function down()
     {
-        Schema::drop('tng_question');
+        Schema::dropIfExists('literatures');
     }
 }

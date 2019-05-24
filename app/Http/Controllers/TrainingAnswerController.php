@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Entities\TrainingAnswer;
+use App\Http\Requests\TrainingAnswerSaveRequest;
+use App\Http\Requests\TrainingAnswerUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,7 +18,6 @@ class TrainingAnswerController extends Controller
      */
     public function index()
     {
-
         $arrayFront = array('id' =>'1', 'solution' => 'Jo');
         $answers = array('id' =>'1', 'solution' => 'Po');
 
@@ -43,59 +44,41 @@ class TrainingAnswerController extends Controller
     /**
      * Store Answer
      *
-     * @param Request $request
-     * @return Answer
+     * @param TrainingAnswerSaveRequest $request
+     * @return TrainingAnswer
      */
-    public function store($questionId, Request $request)
+    public function store(TrainingAnswerSaveRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'solution' => 'in:Po,Jo|required',
-        
-        ]);
-        if($validator->passes()){
+        $answer = new TrainingAnswer();
 
-            $answer = new TrainingAnswer();
+        $answer->name = $request->json('name');
+        $answer->solution = $request->json('solution');
+        $answer->question_id = $request->json('question_id');
 
-            $answer->name = $request->json('name');
-            $answer->solution = $request->json('solution');
-            $answer->question_id = $questionId;
+        $answer->save();
 
-            $answer->save();
-
-            return $answer;
-        }
-
-        return response()->json(["errors" => $validator->messages()], 422);
+        return $answer;
     }
 
     /**
      * Update Answer
      *
-     * @param Request $request
+     * @param TrainingAnswerUpdateRequest $request
      * @param $id
      * @return mixed
      */
-    public function update(Request $request, $id)
+    public function update(TrainingAnswerUpdateRequest $request, $id)
     {
-        $validator = Validator::make($request->all(),[
-            'name' => 'required',
-            'solution' => 'in:Po,Jo|required'
-        ]);
+        $answer = TrainingAnswer::findOrfail($id);
 
-        if($validator->passes()){
+        $answer->name = $request->json('name');
+        $answer->solution = $request->json('solution');
+        $answer->question_id = $request->json('question_id');
 
-            $answer = TrainingAnswer::findOrfail($id);
+        $answer->update();
 
-            $answer->name = $request->get('name');
-            $answer->solution = $request->get('solution');
+        return $answer;
 
-            $answer->update();
-
-            return $answer;
-        }
-
-        return response()->json(["errors" => $validator->messages()], 422);
     }
 
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Entities\TrainingAnswer;
 use App\Entities\TrainingQuestion;
 use App\Entities\TrainingTest;
+use App\Http\Requests\TrainingTestSaveRequest;
+use App\Http\Requests\TrainingTestUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\Console\Question\Question;
@@ -46,54 +48,37 @@ class TrainingTestController extends Controller
     /**
      * Store Test
      *
-     * @param Request $request
-     * @return Test
+     * @param TrainingTestSaveRequest $request
+     * @return TrainingTest
      */
-    public function store(Request $request)
+    public function store(TrainingTestSaveRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required'
-        ]);
-        if ($validator->passes()) {
+        $test = new TrainingTest();
 
-            $test = new TrainingTest();
+        $test->name = $request->get('name');
 
-            $test->name = $request->get('name');
+        $test->save();
 
-            $test->save();
-
-            return $test;
-        }
-
-        return response()->json(["errors" => $validator->messages()], 422);
+        return $test;
     }
 
     /**
      * Update Test
      *
-     * @param Request $request
+     * @param TrainingTestUpdateRequest $request
      * @param $id
      * @return mixed
      */
-    public function update(Request $request, $id)
+    public function update(TrainingTestUpdateRequest $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required'
-        ]);
+        $test = TrainingTest::findOrfail($id);
 
-        if ($validator->passes()) {
+        $test->name = $request->json('name');
 
-            $test = TrainingTest::findOrfail($id);
+        $test->update();
 
-            $test->name = $request->json('name');
-
-            $test->update();
-
-            return $test;
-        }
-
-        return response()->json(["errors" => $validator->messages()], 422);
-    }
+        return $test;
+     }
 
 
     /**
@@ -113,9 +98,6 @@ class TrainingTestController extends Controller
         $test = TrainingTest::with('questions.stdAnswers')->findOrfail($testId);
 
         return $test;
-
-
-        
     }
 
     /**

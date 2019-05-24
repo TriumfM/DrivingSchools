@@ -49,7 +49,7 @@ class AuthController extends Controller
     }
     public function details()
     {
-        $user = Auth::user()->load('role');
+        $user = Auth::user();
         return $user;
     }
 }
