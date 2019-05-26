@@ -26,10 +26,6 @@
       background: transparent;
       outline: none;
 
-      &:focus {
-        outline: none;
-      }
-
       &.item-settings {
         padding: 22px 20px;
         img {
@@ -40,10 +36,16 @@
       &:focus{
         color: $active-link;
         font-family: OpenSansSemibold;
+        outline: none;
       }
 
       &:hover {
         color: $active-link;
+      }
+
+      &.active {
+        color: $active-link;
+        font-family: OpenSansSemibold;
       }
     }
   }

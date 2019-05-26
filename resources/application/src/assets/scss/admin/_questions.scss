@@ -1,0 +1,37 @@
+.answers {
+  width: 100%;
+  padding: 2px 2px !important;
+  margin-top: 6px;
+  float: left;
+
+  .sub-title {
+    width: 100%;
+    font-size: 14px;
+    font-family: OpenSansBold;
+    font-weight: 400;
+    color: $alphabet;
+    margin-bottom: 3px;
+  }
+
+  .answers__list {
+    width: 100%;
+    padding: 2px 2px !important;
+    float: left;
+
+    label {
+      width: 100%;
+      font-size: 12px;
+      font-family: OpenSansBold;
+      font-weight: 400;
+      color: $alphabet;
+      margin-bottom: 3px;
+    }
+
+  }
+
+  .answers__new {
+    width: 100%;
+    padding: 2px 2px !important;
+    float: left;
+  }
+}

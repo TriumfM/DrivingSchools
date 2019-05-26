@@ -9,6 +9,7 @@
 @import 'components/modal';
 @import 'components/left-menu';
 @import 'components/tables';
+@import 'components/inputs';
 
 // PAGES
 @import 'pages/user/login';
@@ -20,7 +21,8 @@
 @import 'pages/main/literature/literature';
 
 // ADMIN
-@import "admin/admin";
+@import 'admin/admin';
+@import 'admin/questions';
 
 body {
   padding: 0px;
@@ -42,4 +44,8 @@ body {
 }
 .no--padding {
   padding: 0px !important;
+}
+
+.no--margin {
+  margin: 0px !important;
 }

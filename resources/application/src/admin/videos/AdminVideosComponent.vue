@@ -6,7 +6,7 @@
         <button class="btn btn-primary" @click="modalAdd()">Add new</button>
       </div>
     </div>
-    <div class="table__main table_with-out--tags">
+    <div class="table__main table_classic">
       <div class="table__row" v-for="brand in 10">
         <div class='table__th--data'>
           <div class="table__th">Title: </div>
