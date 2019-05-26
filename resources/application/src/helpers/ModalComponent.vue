@@ -11,7 +11,7 @@
     props: ['show', 'position'],
     methods: {
       close: function () {
-
+        this.$emit('close')
       }
     }
   }

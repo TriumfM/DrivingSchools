@@ -6,11 +6,14 @@
         <button class="btn btn-primary" @click="modalAdd()">Add new</button>
       </div>
     </div>
-    <div class="table__main table_with-out--tags">
+    <div class="table__main table_buttons">
       <div class="table__row" v-for="brand in 10">
         <div class='table__th--data'>
           <div class="table__th">Name: </div>
           <div class='table__td table_td--click'>Test {{brand}}</div>
+        </div>
+        <div class="table__button">
+          <router-link class="btn btn__row" :to="{name: 'admin-questions'}">Questions</router-link>
         </div>
         <div class="table__td--action">
           <div class="dropdown">

@@ -67,6 +67,7 @@
       float: left;
       padding-right: 10px;
       text-align: right;
+      font-family: OpenSansBold;
 
       .btn__ {
         font-size: 12px !important;
@@ -84,9 +85,14 @@
         font-weight: 900;
         margin: 3px 0;
         opacity: 0.8;
+        outline: none;
 
         &:hover {
           opacity: 1;
+        }
+
+        &:focus {
+          box-shadow: none !important;
         }
       }
     }
@@ -104,9 +110,15 @@
   }
 }
 
-.table_with-out--tags {
+.table_classic {
   .table__th--data {
     width: calc(100% - 20px) !important;
+  }
+}
+
+.table_buttons {
+  .table__th--data {
+    width: calc( 100% - 200px - 20px) !important;
   }
 }
 

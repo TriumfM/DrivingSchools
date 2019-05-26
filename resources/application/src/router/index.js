@@ -15,7 +15,7 @@ import AdminUsersComponent from '@/admin/users/AdminUsersComponent'
 import AdminTestsComponent from '@/admin/tests/AdminTestsComponent'
 import AdminVideosComponent from '@/admin/videos/AdminVideosComponent'
 import AdminLiteratureComponent from '@/admin/literature/AdminLiteratureComponent'
-
+import AdminTestQuestionsComponent from '@/admin/tests/QuestionsTestComponent'
 
 Vue.use(Router)
 
@@ -74,6 +74,11 @@ export default new Router({
           component: AdminTestsComponent,
         },
         {
+          path: '/admin/questions',
+          name: 'admin-questions',
+          component: AdminTestQuestionsComponent,
+        },
+        {
           path: '/admin/videos',
           name: 'admin-videos',
           component: AdminVideosComponent,
@@ -82,7 +87,7 @@ export default new Router({
           path: '/admin/literature',
           name: 'admin-literature',
           component: AdminLiteratureComponent,
-        },
+        }
       ]
     },
     {
