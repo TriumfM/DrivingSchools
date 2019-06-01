@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('number')->unique();
             $table->string('password');
             $table->enum('role', array('admin', 'student'));
+            $table->date('expire')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
 

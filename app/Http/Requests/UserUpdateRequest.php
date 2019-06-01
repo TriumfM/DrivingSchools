@@ -25,11 +25,11 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'full_name' => 'required',
-            'number' => 'required|unique:users,number',
+            'number' => 'required|unique:users,number,'. $this->id,
             'role' =>'in:admin,student|required',
             'email' => 'required|email|unique:users,email,'. $this->id,
             'password' => 'sometimes|required',
-            'retype_password' => 'required_with:password|same:password',
+            'expire' => 'required_if:role,==,student',
         ];
     }
 }

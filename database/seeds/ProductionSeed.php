@@ -43,6 +43,7 @@ class ProductionSeed extends Seeder
         $user_1->email = "admin@admin.com";
         $user_1->password = bcrypt('admin');
         $user_1->role = "admin";
+        $user_1->expire = null;
 
         $user_1->save();
 
@@ -52,14 +53,10 @@ class ProductionSeed extends Seeder
         $user_2->email = "student@student.com";
         $user_2->password = bcrypt('student');
         $user_2->role = "student";
+        $user_2->expire = "2020-07-01";
 
         $user_2->save();
 
-        $expire = new UserToken();
-        $expire->user_id = $user_2->id;
-        $expire->expire = "2020-07-01";
-
-        $expire->save();
 
         // Video
         $videos = array(
@@ -75,16 +72,5 @@ class ProductionSeed extends Seeder
         );
 
         \DB::table('vid_video')->insert($videos);
-
-        // VideoNote
-
-        $note = new VideoNote();
-
-        $note->hour = "12:00";
-        $note->language = "Shqip";
-        $note->note = "Pune praktike";
-
-        $note->save();
-
     }
 }

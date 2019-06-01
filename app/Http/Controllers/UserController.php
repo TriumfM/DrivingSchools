@@ -36,6 +36,7 @@ class UserController extends Controller
         $user->full_name = $request->json('full_name');
         $user->number = $request->json('number');
         $user->role = $request->json('role');
+        $user->expire = $request->json('expire');
 
         return $this->service->save($user);
     }
@@ -48,6 +49,7 @@ class UserController extends Controller
         $user->full_name = $request->json('full_name');
         $user->number = $request->json('number');
         $user->role = $request->json('role');
+        $user->expire = $request->json('expire');
 
         if ($request->has('password')) {
             $user->password = bcrypt($request->json('password'));
