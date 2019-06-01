@@ -11,6 +11,7 @@ const state = {
     test: '',
     loginUser: '',
   },
+  user: {},
   errors: {
     email: '',
     password: ''
@@ -19,6 +20,7 @@ const state = {
 
 const getters = {
   getToken: state => state.token,
+  getUser: state => state.user,
   getErrors: state => state.errors
 }
 
@@ -29,8 +31,8 @@ const mutations = {
   setError (state, errors) {
     state.errors = errors
   },
-  setUser (state, loginUser) {
-    state.loginUser = loginUser
+  setUser (state, user) {
+    state.user = user
   }
 }
 
@@ -44,18 +46,22 @@ const actions = {
     AuthHttp.post('api/auth/login', formData)
       .then(response => {
         commit('setToken', response.data)
-        router.push({name: '/'})
+        AuthHttp.get(`api/auth/details`)
+          .then(responsee => {
+            commit('setUser', responsee.data)
+          })
       }).catch(e => {
       commit('setError', e.response.data.errors)
       localStorage.setItem('vuex', '')
     })
   },
-  user_ ({ commit }) {
+  userData ({ commit }) {
     AuthHttp.get(`auth/details`)
       .then(response => {
         commit('setUser', response.data)
         console.log(response.data)
       })
+    console.log(1)
   }
 }
 

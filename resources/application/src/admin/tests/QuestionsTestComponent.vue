@@ -52,37 +52,41 @@
           <input class="basic__input" type="text" v-model="service.price" :class="[errors.price ? 'error': '']">
           <span class="error__span" v-if="errors.price">{{ errors.price[0] }}</span>
         </div>
-        <div class="answers col-md-12">
-          <label class="sub-title">Answers</label>
-          <div class="answers__list col-md-3">
-            <ul>
-              <li>Po</li>
-              <li>Jo</li>
-              <li>Ndoshta</li>
-            </ul>
-          </div>
-          <div class="answers__new col-md-9">
-
-            <div class="cnf__input col-md-10">
-              <label>New answer</label>
-              <textarea class="basic__input textarea--input small--input" type="text" v-model="service.quantity" :class="[errors.quantity ? 'error': '']"></textarea>
-              <span class="error__span" v-if="errors.quantity">{{ errors.quantity[0] }}</span>
-            </div>
-            <div class="cnf__input col-md-2">
-              <label class="no--margin">E sakte</label>
-              <input class="checkbox" type="checkbox" v-model="service.quantity" :class="[errors.quantity ? 'error': '']">
-              <span class="error__span" v-if="errors.quantity">{{ errors.quantity[0] }}</span>
-            </div>
-            <div class="cnf__input col-md-2">
-              <label class="no--margin">E pa sakte</label>
-              <input class="checkbox" type="checkbox" v-model="service.quantity" :class="[errors.quantity ? 'error': '']">
-              <span class="error__span" v-if="errors.quantity">{{ errors.quantity[0] }}</span>
-            </div>
-            <div class="cnf__input col-md-12">
-              <button class="btn btn-primary">Save answers</button>
-            </div>
-          </div>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+          <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
         </div>
+        <!--<div class="answers col-md-12">-->
+          <!--<label class="sub-title">Answers</label>-->
+          <!--<div class="answers__list col-md-3">-->
+            <!--<ul>-->
+              <!--<li>Po</li>-->
+              <!--<li>Jo</li>-->
+              <!--<li>Ndoshta</li>-->
+            <!--</ul>-->
+          <!--</div>-->
+          <!--<div class="answers__new col-md-9">-->
+
+            <!--<div class="cnf__input col-md-10">-->
+              <!--<label>New answer</label>-->
+              <!--<textarea class="basic__input textarea&#45;&#45;input small&#45;&#45;input" type="text" v-model="service.quantity" :class="[errors.quantity ? 'error': '']"></textarea>-->
+              <!--<span class="error__span" v-if="errors.quantity">{{ errors.quantity[0] }}</span>-->
+            <!--</div>-->
+            <!--<div class="cnf__input col-md-2">-->
+              <!--<label class="no&#45;&#45;margin">E sakte</label>-->
+              <!--<input class="checkbox" type="checkbox" v-model="service.quantity" :class="[errors.quantity ? 'error': '']">-->
+              <!--<span class="error__span" v-if="errors.quantity">{{ errors.quantity[0] }}</span>-->
+            <!--</div>-->
+            <!--<div class="cnf__input col-md-2">-->
+              <!--<label class="no&#45;&#45;margin">E pa sakte</label>-->
+              <!--<input class="checkbox" type="checkbox" v-model="service.quantity" :class="[errors.quantity ? 'error': '']">-->
+              <!--<span class="error__span" v-if="errors.quantity">{{ errors.quantity[0] }}</span>-->
+            <!--</div>-->
+            <!--<div class="cnf__input col-md-12">-->
+              <!--<button class="btn btn-primary">Save answers</button>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
       </div>
       <div class="modal__footer border--top">
         <button class="button__style btn--footer_modal">Save question</button>

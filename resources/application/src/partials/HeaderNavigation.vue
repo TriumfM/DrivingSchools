@@ -17,8 +17,7 @@
     props: [],
     data () {
       return {
-        routes: [],
-        user: {}
+        routes: []
       }
     },
     filters: {
@@ -31,7 +30,6 @@
     watch: {
     },
     mounted: function () {
-      this.getUser()
     },
     methods: {
       logout: function () {
@@ -39,12 +37,6 @@
         this.$router.push({name: 'login'})
         Http.get(`/auth/logout`)
       },
-      getUser: function () {
-        Http.get(`auth/details`)
-          .then(response => {
-            this.user = response.data
-          })
-      }
     }
   }
 

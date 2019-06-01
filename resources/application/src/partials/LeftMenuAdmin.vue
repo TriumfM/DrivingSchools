@@ -2,10 +2,9 @@
   <div v-bind:class="{'menu':true, 'sidebar':true,}">
     <div class="logo">
       <div class="first__letters">
-        <p>BP{{user.username | firstLetter}}</p>
+        <p>{{user.full_name | firstLetter}}</p>
       </div>
-      <p class="user__name">Blend Parashumti{{user.username}}</p>
-      <p class="user__client-name" v-if="user.client_id != null">{{userClient[0].name}}</p>
+      <p class="user__name">{{user.full_name}}</p>
     </div>
     <div class="user__actions">
       <a @click="logout()"><i class="fa fa-power-off" aria-hidden="true"></i></a>
@@ -52,15 +51,14 @@
 </template>
 
 <script>
+
   import {Http} from '@/helpers/http-helper'
 
   export default {
     props: [],
     data () {
       return {
-        routes: [],
         user: {},
-        userClient: {}
       }
     },
     filters: {
@@ -76,47 +74,22 @@
       }
     },
     watch: {
-      // '$route': function () {
-      //   this.watchRoute()
-      // }
     },
     mounted: function () {
-      // this.getUser()
-      // this.getUserClient()
-      // this.watchRoute()
+      this.getUser()
     },
     methods: {
-      // watchRoute: function () {
-      //   this.routes = String(this.$route.path).split('/')
-      //   if (this.user.role_id == 2) {
-      //     if (this.routes[2] == undefined) {
-      //       this.routes[2] = 'brands'
-      //     }
-      //   }
-      //   else {
-      //     if (this.routes[2] == undefined) {
-      //       this.routes[2] = 'clients'
-      //     }
-      //   }
-      //
-      // },
-      // logout: function () {
-      //   localStorage.setItem('vuex', '')
-      //   this.$router.push({name: 'login'})
-      //   Http.get(`/auth/logout`)
-      // },
-      // getUserClient: function () {
-      //   Http.get(`auth/clients`)
-      //     .then(response => {
-      //       this.userClient = response.data
-      //     })
-      // },
-      // getUser: function () {
-      //   Http.get(`auth/details`)
-      //     .then(response => {
-      //       this.user = response.data
-      //     })
-      // }
+      logout: function () {
+        localStorage.setItem('vuex', '')
+        this.$router.push({name: 'login'})
+        Http.get(`/auth/logout`)
+      },
+      getUser: function () {
+        Http.get(`auth/details`)
+          .then(response => {
+            this.user = response.data
+          })
+      }
     }
   }
 </script>
