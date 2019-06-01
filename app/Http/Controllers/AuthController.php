@@ -13,12 +13,18 @@ class AuthController extends Controller
 {
     public function login(LoginRequest $request)
     {
-        $user = User::where('email', $request->input('email'))->first();
+        $user = User::where('number', $request->input('number'))->first();
 
-        $credentials = request(['email', 'password']);
+        $credentials = request(['number', 'password']);
 
         if ($user != null && \Auth::attempt($credentials))
         {
+            if($user->role != 'admin' && $user->expire < date("Y-m-d")) {
+                return response()->json([
+                    'message' => 'The given data was invalid.',
+                    'errors' => ['number' => [ 'Your account has expired!' ] ]
+                ], 403);
+            }
             $user = $request->user();
 
             $tokenResult = $user->createToken('Driving School Token');
@@ -29,14 +35,15 @@ class AuthController extends Controller
                 'token_type' => 'Bearer',
                 'expires_at' => Carbon::parse(
                     $tokenResult->token->expires_at
-                )->toDateTimeString()
+                )->toDateTimeString(),
+                'user' => $user,
             ]
             );
         }
 
         return response()->json([
             'message' => 'The given data was invalid.',
-            'errors' => ['email' => [ 'Email or password is invalid.' ] ]
+            'errors' => ['number' => [ 'Number or password is invalid.' ] ]
         ], 403);
     }
 
