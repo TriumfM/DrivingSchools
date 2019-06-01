@@ -59,7 +59,8 @@
     methods: {
       ...mapActions('authStore', [
         'login'
-      ])
+      ]),
+
     }
   }
 </script>

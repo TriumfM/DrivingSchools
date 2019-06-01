@@ -16,10 +16,28 @@
     .modal__body {
       top: 50%;
       left: 50%;
-      width: 85%;
+      width: 70%;
       height: 566px !important;
       transform: translate(-50%, -50%);
-      //pointer-events: inherit;
+      position: relative;
+
+      &.modal--form {
+        height: auto !important;
+        max-height: 566px !important;
+
+
+        .modal--form_header {
+          float: none !important;
+        }
+
+        .modal--form_content {
+          float: none !important;
+        }
+
+        .modal--form_footer {
+          position: relative !important;
+        }
+      }
     }
   }
 
@@ -50,7 +68,7 @@
       justify-content: space-between;
 
       &.border--bottom {
-        border-bottom: 1px solid $border-input;
+        border-bottom: 1px solid $border-text-box;
       }
 
       span {
@@ -119,9 +137,11 @@
       border-radius: 4px 4px 0px 0px;
       display: flex;
       text-align: right;
+      position: absolute;
+      bottom: 0px;
 
       &.border--top {
-        border-top: 1px solid $border-input;
+        border-top: 1px solid $border-text-box;
       }
 
       .btn--footer_modal {
@@ -175,4 +195,8 @@
       }
     }
   }
+}
+
+.sweetalert-sm {
+  font-size: 10px !important;
 }

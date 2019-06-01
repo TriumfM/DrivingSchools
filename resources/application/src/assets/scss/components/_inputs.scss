@@ -79,6 +79,16 @@
     margin: 0;
   }
 
+
+  .data--input::-webkit-inner-spin-button {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  .data--input {
+    padding-right: 10px;
+  }
+
   .error__span {
     float: left;
     margin-top: 3px;
@@ -108,3 +118,30 @@
   }
 }
 
+.vue-treeselect__input {
+  height: 33px !important;
+  background: transparent;
+  border: none !important;
+  position: absolute;
+  outline: none !important;
+  padding: 0px !important;
+  top: 0;
+
+  &:focus {
+    outline: none;
+    outline-offset: 0px;
+  }
+  &:active {
+    outline: none;
+  }
+}
+
+.vue-treeselect__control-arrow-container,.vue-treeselect__x-container {
+  display: none !important;
+}
+
+.vue-treeselect__single-value {
+  color: $alphabet !important;
+  font-size: 13px !important;
+  font-family: OpenSansBold !important;
+}

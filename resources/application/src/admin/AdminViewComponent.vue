@@ -8,6 +8,7 @@
 <script>
 
   import LeftMenu from '@/partials/LeftMenuAdmin'
+  import {Http} from '@/helpers/http-helper'
 
   export default {
     name: 'app',
@@ -19,6 +20,11 @@
     components: {
       LeftMenu
     },
+    mounted () {
+      this.$router.push({name: 'admin-users'})
+    },
+    methods: {
+    }
     // watch: {
     //   mounted: function () {
     //     if (localStorage.getItem('vuex') == '') {
