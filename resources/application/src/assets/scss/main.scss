@@ -7,6 +7,9 @@
 @import 'components/button';
 @import 'components/scrollbar';
 @import 'components/modal';
+@import 'components/left-menu';
+@import 'components/tables';
+@import 'components/inputs';
 
 // PAGES
 @import 'pages/user/login';
@@ -17,6 +20,10 @@
 @import 'pages/main/video/video';
 @import 'pages/main/literature/literature';
 
+// ADMIN
+@import 'admin/admin';
+@import 'admin/questions';
+
 body {
   padding: 0px;
   margin: 0px;
@@ -25,7 +32,7 @@ body {
   float: left;
   font-family: OpenSansRegular;
   color: $alphabet;
-  background-color: $body;
+  background-color: $body !important;
 }
 
 #app {
@@ -37,4 +44,8 @@ body {
 }
 .no--padding {
   padding: 0px !important;
+}
+
+.no--margin {
+  margin: 0px !important;
 }

@@ -10,8 +10,9 @@ $open-sans-semi-boal: "OpenSansSemibold";
 $header: #fff;
 $main-blue: #1673DB;
 $body: #F2F2F2;
+$lightGrey: #dee2e6;
 
-// Text
+  // Text
 $alphabet: #646A6D;
 $alphabet-input: #646A6D;
 $alphabet-description: #AAAAAA;
@@ -51,3 +52,13 @@ $secondBezier: cubic-bezier(0,.98,.53,.95);
 $login-box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.08);
 $header-box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.07);
 $test-box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.06);
+
+// ADMIN
+$borderMenu: rgba(0,0,0,.12);
+$lightGrey: #f1f2f6;
+$clouds: #ecf0f1;
+$actions-color: #162B4D;
+$alphabetMenu: rgba(0,0,0,.54);
+$activeItemMenuColor: #2548a6;
+$activeItemMenuHover: #e3e5e6;
+$secondShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);

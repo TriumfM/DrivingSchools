@@ -6,7 +6,9 @@
 </template>
 
 <script>
+
   import HeaderNavigation from '@/partials/HeaderNavigation'
+  import {Http} from '@/helpers/http-helper'
 
   export default {
     name: 'MainView',
@@ -18,8 +20,15 @@
       }
     },
     mounted: function () {
+      this.userData()
     },
     methods: {
+      userData () {
+        Http.get(`auth/details`)
+          .then(response => {
+            store.commit('authStore/setUser', response.data)
+          })
+      }
     }
   }
 </script>

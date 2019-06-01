@@ -1,0 +1,147 @@
+// Configuration modal inputs
+.cnf__input {
+  width: 100%;
+  padding: 2px 2px !important;
+  margin-top: 6px;
+  float: left;
+
+  &.flex--display {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    label {
+      width: 60px;
+      padding-right: 7px;
+    }
+
+    .datepicker {
+      float: left;
+      width: 100%;
+    }
+  }
+
+  label {
+    width: 100%;
+    font-size: 12px;
+    font-family: OpenSansBold;
+    font-weight: 400;
+    color: $alphabet;
+    margin-bottom: 3px;
+  }
+
+  .basic__input {
+    width: 100%;
+    font-size: 13px;
+    border-radius: 4px;
+    border-color: #e8e8e8 !important;
+    box-shadow: none !important;
+    border-width: 1px;
+    height: 35px;
+    border-style: solid;
+    padding-left: 10px;
+    background: #fcfcfc;
+    font-family: OpenSansBold;
+    color: $alphabet;
+
+    &:focus {
+      outline: none;
+    }
+
+    &.textarea--input {
+      resize: none;
+      padding-top: 5px;
+
+      &.small--input {
+        height: 75px;
+      }
+
+      &.medium--input {
+        height: 100px;
+      }
+    }
+
+    &.error {
+      border-color: $error;
+      transition: border .2s $firstBezier;
+    }
+
+    &.checkbox {
+
+    }
+  }
+
+  .number--input::-webkit-outer-spin-button,
+  .number--input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+
+
+  .data--input::-webkit-inner-spin-button {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  .data--input {
+    padding-right: 10px;
+  }
+
+  .error__span {
+    float: left;
+    margin-top: 3px;
+    color: $error;
+    font-size: 12px;
+  }
+
+  .checkbox__holder {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    padding: 4px 0px;
+
+    input {
+      margin: 0;
+    }
+
+    label {
+      cursor: pointer;
+      margin-bottom: 0;
+      display: block;
+      margin-left: 5px;
+      margin-top: 1px;
+      width: 100%;
+      float: left;
+    }
+  }
+}
+
+.vue-treeselect__input {
+  height: 33px !important;
+  background: transparent;
+  border: none !important;
+  position: absolute;
+  outline: none !important;
+  padding: 0px !important;
+  top: 0;
+
+  &:focus {
+    outline: none;
+    outline-offset: 0px;
+  }
+  &:active {
+    outline: none;
+  }
+}
+
+.vue-treeselect__control-arrow-container,.vue-treeselect__x-container {
+  display: none !important;
+}
+
+.vue-treeselect__single-value {
+  color: $alphabet !important;
+  font-size: 13px !important;
+  font-family: OpenSansBold !important;
+}

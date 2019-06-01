@@ -2,14 +2,42 @@
   <div class="header">
     <img class='logo' src="@/assets/img/logo.png"/>
     <div class="menu__items">
-      <router-link class="menu__item" :to="{name: 'test'}">Testohu</router-link>
-      <router-link class="menu__item" :to="{name: 'video'}">Video</router-link>
-      <router-link class="menu__item" :to="{name: 'literature'}">Literatura</router-link>
-      <router-link class="menu__item" :to="{name: 'login'}">Log Out</router-link>
+      <router-link :class="{'menu__item': true, 'active': ($route.name == 'test')}" :to="{name: 'test'}">Testohu</router-link>
+      <router-link :class="{'menu__item': true, 'active': ($route.name == 'video')}" :to="{name: 'video'}">Video</router-link>
+      <router-link :class="{'menu__item': true, 'active': ($route.name == 'literature')}" :to="{name: 'literature'}">Literatura</router-link>
+      <button class="menu__item" :to="{name: 'login'}" @click="logout()">Log Out</button>
     </div>
   </div>
 </template>
 
 <script>
+  import {Http} from '@/helpers/http-helper'
+
+  export default {
+    props: [],
+    data () {
+      return {
+        routes: []
+      }
+    },
+    filters: {
+      firstLetter: function (value) {
+        if (!value) return ''
+        value = value.toString()
+        return value.charAt(0)
+      }
+    },
+    watch: {
+    },
+    mounted: function () {
+    },
+    methods: {
+      logout: function () {
+        localStorage.setItem('vuex', '')
+        this.$router.push({name: 'login'})
+        Http.get(`/auth/logout`)
+      },
+    }
+  }
 
 </script>
