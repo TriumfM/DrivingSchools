@@ -3,18 +3,21 @@
     <div class="forms__container">
       <img src="@/assets/img/logo.png"/>
       <div class="form__input">
-        <label class="input__name">Emaili Juaj</label>
-        <input type="email" class="input__value" v-model="user.email"/>
-        <div :class="{'input__icon': true, 'error__case': errors.email}">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.5 21.69">
-            <path class="cls-1" d="M105.91,74.62H84.37a3.48,3.48,0,0,0-3.48,3.49V92.83a3.48,3.48,0,0,0,3.48,3.48h21.54a3.48,3.48,0,0,0,3.48-3.48V78.11A3.48,3.48,0,0,0,105.91,74.62Zm1.89,18.21a1.89,1.89,0,0,1-1.89,1.89H84.37a1.89,1.89,0,0,1-1.89-1.89V78.11a1.89,1.89,0,0,1,1.89-1.89h21.54a1.89,1.89,0,0,1,1.89,1.89V92.83Z" transform="translate(-80.89 -74.62)" />
-            <path class="cls-1" d="M98.86,85.28l7-6.25a.79.79,0,0,0-1.06-1.18l-9.62,8.62L93.28,84.8s0,0,0,0l-.13-.11L85.5,77.84a.79.79,0,0,0-1.12.07A.78.78,0,0,0,84.44,79l7.06,6.31-7,6.57a.8.8,0,0,0,0,1.13.83.83,0,0,0,.58.25.78.78,0,0,0,.54-.21l7.13-6.67,1.94,1.73a.81.81,0,0,0,.53.2.77.77,0,0,0,.53-.21l2-1.78,7.09,6.74a.81.81,0,0,0,.55.21.79.79,0,0,0,.54-1.37Z" transform="translate(-80.89 -74.62)" />
+        <label class="input__name">Numri Juaj</label>
+        <input type="email" class="input__value" v-model="user.number"/>
+        <div :class="{'input__icon': true, 'error__case': (errors.number && errors.number[0] != 'Your account has expired!')}">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290.13 512">
+            <path d="M298.67,25.6H213.33a8.54,8.54,0,0,0,0,17.07h85.34a8.54,8.54,0,0,0,0-17.07Z" transform="translate(-110.93)" />
+            <path d="M358.4,25.6h-8.53a8.54,8.54,0,1,0,0,17.07h8.53a8.54,8.54,0,0,0,0-17.07Z" transform="translate(-110.93)" />
+            <path d="M266.6,435.2H245.41a23.57,23.57,0,0,0-23.54,23.54v4.13A23.56,23.56,0,0,0,245.4,486.4h21.19a23.56,23.56,0,0,0,23.54-23.53v-4.13A23.56,23.56,0,0,0,266.6,435.2Zm6.47,27.66a6.47,6.47,0,0,1-6.47,6.47H245.41a6.48,6.48,0,0,1-6.48-6.47v-4.12a6.48,6.48,0,0,1,6.48-6.47h21.18a6.48,6.48,0,0,1,6.48,6.47Z" transform="translate(-110.93)" />
+            <path d="M370.23,0H141.78a30.89,30.89,0,0,0-30.85,30.85v450.3A30.89,30.89,0,0,0,141.78,512H370.22a30.88,30.88,0,0,0,30.85-30.84V30.85A30.88,30.88,0,0,0,370.23,0ZM384,481.15a13.79,13.79,0,0,1-13.77,13.78H141.78A13.79,13.79,0,0,1,128,481.16V30.85a13.79,13.79,0,0,1,13.78-13.78H370.22A13.79,13.79,0,0,1,384,30.85v450.3Z" transform="translate(-110.93)" />
+            <path d="M392.53,51.2H119.47a8.54,8.54,0,0,0-8.54,8.53v358.4a8.55,8.55,0,0,0,8.54,8.54H392.53a8.55,8.55,0,0,0,8.54-8.54V59.73A8.54,8.54,0,0,0,392.53,51.2ZM384,409.6H128V68.27H384Z" transform="translate(-110.93)" />
           </svg>
         </div>
       </div>
       <div class="form__input">
         <label class="input__name">Fjalëkalimi</label>
-        <input type="password" class="input__value" v-model="user.password"/>
+        <input type="password" class="input__value" v-model="user.password" @keyup.enter="login(user)"/>
         <div :class="{'input__icon': true, 'input_pass': true, 'error__case': errors.password }">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27.26 30.28">
             <path class="cls-1" d="M84.76,110.31H67.52a5,5,0,0,1-5-5V94.17a5,5,0,0,1,5-5H84.76a5,5,0,0,1,5,5v11.12A5,5,0,0,1,84.76,110.31Zm-17.24-19a2.84,2.84,0,0,0-2.83,2.84v11.12a2.84,2.84,0,0,0,2.83,2.84H84.76a2.84,2.84,0,0,0,2.83-2.84V94.17a2.84,2.84,0,0,0-2.83-2.84Z" transform="translate(-62.51 -80.03)" />
@@ -23,6 +26,7 @@
           </svg>
         </div>
       </div>
+      <span v-if="errors.number || errors.password" class="error__details">{{(errors.number) ? errors.number[0] : errors.password[0]}}</span>
       <button class="button__style login--button" @click="login(user)">Kyquni<img src="@/assets/img/arrow_right.svg"></button>
     </div>
   </div>
@@ -36,7 +40,7 @@
     data () {
       return {
         user: {
-          email: '',
+          number: '',
           password: ''
         },
         errors: {},

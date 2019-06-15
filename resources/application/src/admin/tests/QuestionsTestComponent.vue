@@ -29,6 +29,11 @@
             </ul>
           </div>
         </div>
+        <div class="table__answers" v-for="n in 3">
+          <div class="table__answers--content">Po!</div>
+          <div class="table__answers--status"><i class="fa fa-circle-o"></i> </div>
+          <div class="table__answers--actions"></div>
+        </div>
       </div>
     </div>
     <modal-component :show="show" position="center">
@@ -39,54 +44,23 @@
       <div class="modal__content">
         <div class="cnf__input col-md-12">
           <label>Question</label>
-          <textarea class="basic__input textarea--input medium--input" type="text" v-model="service.quantity" :class="[errors.quantity ? 'error': '']"></textarea>
-          <span class="error__span" v-if="errors.quantity">{{ errors.quantity[0] }}</span>
+          <textarea class="basic__input textarea--input medium--input" type="text" v-model="question.content" :class="[errors.content ? 'error': '']"></textarea>
+          <span class="error__span" v-if="errors.content">{{ errors.content[0] }}</span>
         </div>
         <div class="cnf__input col-md-1">
           <label>No. ordinal</label>
-          <input class="basic__input" type="text" v-model="service.price" :class="[errors.price ? 'error': '']">
-          <span class="error__span" v-if="errors.price">{{ errors.price[0] }}</span>
+          <input class="basic__input" type="text" v-model="question.nr_ordinal" :class="[errors.nr_ordinal ? 'error': '']">
+          <span class="error__span" v-if="errors.nr_ordinal">{{ errors.nr_ordinal[0] }}</span>
         </div>
-        <div class="cnf__input col-md-11">
+        <div class="custom-file cnf__input col-md-11">
           <label>Photo</label>
-          <input class="basic__input" type="text" v-model="service.price" :class="[errors.price ? 'error': '']">
-          <span class="error__span" v-if="errors.price">{{ errors.price[0] }}</span>
+          <div class="basic__input">
+            <input type="file" class="custom-file-input" v-on:change="question.photo">
+            <label class="custom-file-label">Choose file</label>
+          </div>
+          <span class="error__span" v-if="errors.photo">{{ errors.photo[0]}}</span>
         </div>
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-          <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-        </div>
-        <!--<div class="answers col-md-12">-->
-          <!--<label class="sub-title">Answers</label>-->
-          <!--<div class="answers__list col-md-3">-->
-            <!--<ul>-->
-              <!--<li>Po</li>-->
-              <!--<li>Jo</li>-->
-              <!--<li>Ndoshta</li>-->
-            <!--</ul>-->
-          <!--</div>-->
-          <!--<div class="answers__new col-md-9">-->
-
-            <!--<div class="cnf__input col-md-10">-->
-              <!--<label>New answer</label>-->
-              <!--<textarea class="basic__input textarea&#45;&#45;input small&#45;&#45;input" type="text" v-model="service.quantity" :class="[errors.quantity ? 'error': '']"></textarea>-->
-              <!--<span class="error__span" v-if="errors.quantity">{{ errors.quantity[0] }}</span>-->
-            <!--</div>-->
-            <!--<div class="cnf__input col-md-2">-->
-              <!--<label class="no&#45;&#45;margin">E sakte</label>-->
-              <!--<input class="checkbox" type="checkbox" v-model="service.quantity" :class="[errors.quantity ? 'error': '']">-->
-              <!--<span class="error__span" v-if="errors.quantity">{{ errors.quantity[0] }}</span>-->
-            <!--</div>-->
-            <!--<div class="cnf__input col-md-2">-->
-              <!--<label class="no&#45;&#45;margin">E pa sakte</label>-->
-              <!--<input class="checkbox" type="checkbox" v-model="service.quantity" :class="[errors.quantity ? 'error': '']">-->
-              <!--<span class="error__span" v-if="errors.quantity">{{ errors.quantity[0] }}</span>-->
-            <!--</div>-->
-            <!--<div class="cnf__input col-md-12">-->
-              <!--<button class="btn btn-primary">Save answers</button>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
+        <photo-file :gallery="details.images" v-on:drop-success="images" v-on:image-deleted="deleteImage" :identifier="details.id"></photo-file>
       </div>
       <div class="modal__footer border--top">
         <button class="button__style btn--footer_modal">Save question</button>
@@ -97,23 +71,32 @@
 
 <script>
   import ModalComponent from '@/helpers/ModalComponent.vue'
+  import PhotoFile from '@/helpers/PhotoFile'
 
   export default {
-    components: {ModalComponent},
-    component: {
-      ModalComponent
+    components: {
+      ModalComponent,
+      PhotoFile
     },
+
     data () {
       return {
         show: false,
-        service: {},
-        errors: {}
+        question: {},
+        errors: {},
+        details: {}
       }
     },
     methods: {
       showModal: function () {
         this.show = !this.show
-      }
+      },
+      images: function (param) {
+        this.details['image'] = param
+      },
+      deleteImage: function () {
+        this.fetchDatas()
+      },
     }
   }
 </script>

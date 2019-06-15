@@ -9,6 +9,7 @@
 
   import HeaderNavigation from '@/partials/HeaderNavigation'
   import {Http} from '@/helpers/http-helper'
+  import {store} from '../store'
 
   export default {
     name: 'MainView',
@@ -20,15 +21,13 @@
       }
     },
     mounted: function () {
-      this.userData()
+      if(store.state.authStore.token.user.role == 'admin') {
+        this.$router.push({name: 'admin-users'})
+      } else {
+        this.$router.push({name: 'test'})
+      }
     },
     methods: {
-      userData () {
-        Http.get(`auth/details`)
-          .then(response => {
-            store.commit('authStore/setUser', response.data)
-          })
-      }
     }
   }
 </script>

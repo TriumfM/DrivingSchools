@@ -9,6 +9,7 @@
 
   import LeftMenu from '@/partials/LeftMenuAdmin'
   import {Http} from '@/helpers/http-helper'
+  import {store} from '../store'
 
   export default {
     name: 'app',
@@ -21,27 +22,16 @@
       LeftMenu
     },
     mounted () {
-      this.$router.push({name: 'admin-users'})
+      console.log(store.state.authStore.token.user.role)
+      if(store.state.authStore.token.user.role == 'student') {
+        this.$router.push({name: 'test'})
+      } else {
+        this.$router.push({name: 'admin-users'})
+      }
     },
     methods: {
+    },
+    watch: {
     }
-    // watch: {
-    //   mounted: function () {
-    //     if (localStorage.getItem('vuex') == '') {
-    //       this.$router.push('login')
-    //     }
-    //     if (localStorage.getItem('vuex') == null) {
-    //       localStorage.setItem('vuex', '')
-    //       this.$router.push('login')
-    //     }
-    //   },
-    //   watch: {
-    //     route: function () {
-    //       if (this.$route.path == '/') {
-    //         this.$router.push('clients')
-    //       }
-    //     }
-    //   }
-    // }
   }
 </script>

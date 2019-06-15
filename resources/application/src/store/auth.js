@@ -10,10 +10,12 @@ const state = {
     jti: '',
     test: '',
     loginUser: '',
+    user: ''
+
   },
   user: {},
   errors: {
-    email: '',
+    number: '',
     password: ''
   },
 }
@@ -39,17 +41,20 @@ const mutations = {
 const actions = {
   login ({ commit }, user) {
     let formData = new FormData()
-    formData.set('email', user.email)
+    formData.set('number', user.number)
     formData.set('password', user.password)
     formData.set('grant_type', 'password')
 
     AuthHttp.post('api/auth/login', formData)
       .then(response => {
         commit('setToken', response.data)
-        AuthHttp.get(`api/auth/details`)
-          .then(responsee => {
-            commit('setUser', responsee.data)
-          })
+
+        if(response.data.user.role == 'admin') {
+          router.push({name: 'admin'})
+        }
+        if (response.data.user.role == 'student') {
+          router.push({name: 'main'})
+        }
       }).catch(e => {
       commit('setError', e.response.data.errors)
       localStorage.setItem('vuex', '')
