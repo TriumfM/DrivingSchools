@@ -32,11 +32,11 @@
       </div>
     </div>
     <modal-component :show="show" position="center" type="form">
-      <div class="modal__header border--bottom">
+      <div class="modal__header modal--form_header border--bottom">
         <h3>{{modal}}</h3>
         <span v-on:click="showModal()"></span>
       </div>
-      <div class="modal__content">
+      <div class="modal__content modal--form_content">
         <div class="cnf__input col-md-7">
           <label>Title</label>
           <input type="text" class="basic__input" v-model="video.title">
@@ -53,7 +53,7 @@
           <span class="error__span" v-if="errors.description">{{ errors.description[0] }}</span>
         </div>
       </div>
-      <div class="modal__footer border--top">
+      <div class="modal__footer modal--form_footer border--top">
         <button class="button__style btn--footer_modal" @click="save(video)">Save</button>
       </div>
     </modal-component>
