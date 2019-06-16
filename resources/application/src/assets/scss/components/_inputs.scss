@@ -4,6 +4,7 @@
   padding: 2px 2px !important;
   margin-top: 6px;
   float: left;
+  height: auto !important;
 
   &.flex--display {
     display: flex;
@@ -41,8 +42,9 @@
     border-style: solid;
     padding-left: 10px;
     background: #fcfcfc;
-    font-family: OpenSansBold;
+    font-family: OpenSansRegular;
     color: $alphabet;
+    position: relative;
 
     &:focus {
       outline: none;
@@ -67,7 +69,28 @@
     }
 
     &.checkbox {
+    }
 
+    .file__label {
+      outline: none !important;
+      background: transparent !important;
+      margin: 0px !important;
+      height: 33.5px;
+      border: none;
+
+      &::after {
+        height: 100%;
+      }
+
+      &:focus {
+        outline: 0 !important;
+        outline-offset: 0px !important;
+      }
+
+      &:active {
+        outline: 0 !important;
+        outline-offset: 0px !important;
+      }
     }
   }
 
@@ -144,4 +167,14 @@
   color: $alphabet !important;
   font-size: 13px !important;
   font-family: OpenSansBold !important;
+}
+
+.answers__inputs {
+  width: 100%;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

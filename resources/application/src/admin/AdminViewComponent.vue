@@ -22,7 +22,6 @@
       LeftMenu
     },
     mounted () {
-      console.log(store.state.authStore.token.user.role)
       if(store.state.authStore.token.user.role == 'student') {
         this.$router.push({name: 'test'})
       } else {
