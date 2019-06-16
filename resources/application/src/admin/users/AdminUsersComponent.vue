@@ -6,7 +6,7 @@
         <button class="btn btn-primary" @click="modalAdd()">Add new</button>
       </div>
     </div>
-    <div class="table_3td">
+    <div class="table_4td">
       <div class="table__row" v-for="user in users">
         <div class='table__th--data'>
           <div class="table__th">User: </div>
@@ -20,6 +20,10 @@
           <div class="table__th">Role: </div>
           <div class='table__td table_td--click'>{{user.role}}</div>
         </div>
+        <div class='table__th--data'>
+        <div class="table__th">Expire: </div>
+        <div class='table__td table_td--click'>{{user.expire}}</div>
+      </div>
         <div class="table__td--action">
           <div class="dropdown">
             <div class="icon__dropdown"  id="dropdownRowBuilding" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -71,12 +75,12 @@
         </div>
         <div class="cnf__input col-md-6">
           <label>Password</label>
-          <input type="text" class="basic__input" v-model="user.password">
+          <input type="password" class="basic__input" v-model="user.password">
           <span class="error__span" v-if="errors.password">{{ errors.password[0] }}</span>
         </div>
         <div class="cnf__input col-md-6">
           <label>Retype Password</label>
-          <input type="text" class="basic__input" v-model="user.retype_password">
+          <input type="password" class="basic__input" v-model="user.retype_password">
           <span class="error__span" v-if="errors.retype_password">{{ errors.retype_password[0] }}</span>
         </div>
         <div class="cnf__input col-md-6">

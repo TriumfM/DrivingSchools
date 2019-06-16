@@ -49,3 +49,14 @@ body {
 .no--margin {
   margin: 0px !important;
 }
+.false__color {
+  color: $error;
+}
+
+.true__color {
+  color: $success;
+}
+
+*{
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+}

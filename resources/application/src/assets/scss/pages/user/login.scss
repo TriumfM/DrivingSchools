@@ -67,6 +67,7 @@ $input-color: #949ba7;
           height: 20px;
           padding: 0px 5px;
           fill: #1673db;
+          width: 30px;
         }
 
         &.input_pass {
@@ -77,10 +78,15 @@ $input-color: #949ba7;
 
         &.error__case {
           svg {
-            fill: #f00 !important;
+            fill: $error !important;
           }
         }
       }
+    }
+
+    .error__details {
+      color: $error;
+      font-size: 14px;
     }
 
     .login--button {
