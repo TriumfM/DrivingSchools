@@ -32,10 +32,9 @@ class UserServiceImpl implements UserService
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
         return ApiRequest::applyQuery([],$this->allowIncludes,User::class)
             ->where('id',$id)
-            ->first();
+            ->firstOrFail();
     }
 
     /**

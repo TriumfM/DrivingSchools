@@ -18,15 +18,16 @@ class TrainingAnswerController extends Controller
      */
     public function index()
     {
-        $arrayFront = array('id' =>'1', 'solution' => 'Jo');
-        $answers = array('id' =>'1', 'solution' => 'Po');
-
-//        $answers = TrainingAnswer::all(array('id', 'solution'));
-//        $answers->makeVisible('solution')->toArray();
-
-        $diff = array_diff($answers, $arrayFront);
-
-        return $diff;
+        return TrainingAnswer::get();
+//        $arrayFront = array('id' =>'1', 'solution' => 'Jo');
+//        $answers = array('id' =>'1', 'solution' => 'Po');
+//
+////        $answers = TrainingAnswer::all(array('id', 'solution'));
+////        $answers->makeVisible('solution')->toArray();
+//
+//        $diff = array_diff($answers, $arrayFront);
+//
+//        return $diff;
     }
 
     /**
@@ -49,35 +50,46 @@ class TrainingAnswerController extends Controller
      */
     public function store(TrainingAnswerSaveRequest $request)
     {
-        $answer = new TrainingAnswer();
+        $response = null;
+        $answers = $request->json('answers');
 
-        $answer->name = $request->json('name');
-        $answer->solution = $request->json('solution');
-        $answer->question_id = $request->json('question_id');
+        foreach($answers as $data)
+        {
+            $answer = new TrainingAnswer();
 
-        $answer->save();
+            $answer->name = $data['name'];
+            $answer->solution = $data['solution'];
+            $answer->question_id = $data['question_id'];
 
-        return $answer;
+            $response[] = $answer->save();
+        }
+
+        return $response;
     }
 
     /**
      * Update Answer
      *
      * @param TrainingAnswerUpdateRequest $request
-     * @param $id
+     * @param $question_id
      * @return mixed
      */
-    public function update(TrainingAnswerUpdateRequest $request, $id)
+    public function update(TrainingAnswerUpdateRequest $request, $question_id)
     {
-        $answer = TrainingAnswer::findOrfail($id);
+        $response = null;
+        $answers = $request->json('answers');
 
-        $answer->name = $request->json('name');
-        $answer->solution = $request->json('solution');
-        $answer->question_id = $request->json('question_id');
+        foreach($answers as $data) {
+            $answer = TrainingAnswer::where('question_id', $question_id)->findOrfail($data['id']);
 
-        $answer->update();
+            $answer->name = $data['name'];
+            $answer->solution = $data['solution'];
 
-        return $answer;
+            $answer->update();
+            $response[] = $answer;
+        }
+
+        return $response;
 
     }
 
@@ -91,5 +103,10 @@ class TrainingAnswerController extends Controller
         $answer = TrainingAnswer::findOrfail($id);
 
         $answer->delete();
+    }
+
+    public function showByQuestionId($question_id)
+    {
+        return TrainingAnswer::where('question_id', $question_id)->get();
     }
 }

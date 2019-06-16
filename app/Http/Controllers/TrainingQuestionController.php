@@ -3,15 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Entities\TrainingQuestion;
-use Illuminate\Http\Request;
+use App\Http\Requests\TrainingQuestionSaveRequest;
+use App\Http\Requests\TrainingQuestionUpdateRequest;
+use App\Services\TrainingQuestionService;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 use App\Entities\TrainingAnswer;
 use Illuminate\Support\Facades\Input;
-use App\Entities\Image;
 
 class TrainingQuestionController extends Controller
 {
+    private $service;
+
+    public function __construct(TrainingQuestionService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * Find All
      *
@@ -19,105 +26,74 @@ class TrainingQuestionController extends Controller
      */
     public function index()
     {
-        $questions = TrainingQuestion::with( 'answers')->get();
-
-        return $questions;
+        return $this->service->findAll();
     }
 
     /**
      * Find by Id
      *
-     * @param $questionId
+     * @param $id
      * @return mixed
      */
-    public function show($questionId) {
-        $question = TrainingQuestion::with( 'answers')->findOrfail($questionId)->makeVisible([
-            'answer.solution'
-        ]);
-
-        return $question;
+    public function show($id)
+    {
+      return $this->service->findById($id);
     }
 
     /**
      * Store Question
      *
-     * @param Request $request
+     * @param TrainingQuestionSaveRequest $request
      * @return TrainingQuestion
      */
-    public function store($testId, Request $request)
+    public function store(TrainingQuestionSaveRequest $request)
     {
 
-        $validator = Validator::make($request->input('question'), [
-            'name' => 'required',
-            'points' => 'required',
-        ]);
-        if($validator->passes()) {
+        $question = new TrainingQuestion();
 
-            $question = new TrainingQuestion();
+        $question->name = $request->json('name');
+        $question->points = $request->json('points');
+        $question->test_id = $request->json('test_id');
+        $question->order_number = $request->json('order_number');
 
-            $question->name = $request->input('question')['name'];
-            $question->points = $request->input('question')['points'];
-            $question->test_id = $testId;
+        if($request->hasFile('photo')){
+            $question->photo_url = Storage::url( Storage::put('public/images/questions', $request->file('photo')) );
+        }
+        $question = $this->service->save($question);
 
-            if($request->hasFile('photo')){
-                $question->photo_url = Storage::url( Storage::put('public/images/questions', $request->file('photo')) );
-            }
-
-            $question->save();
-
-            foreach ($request->input('answers')as $answer){
-                $ans = new TrainingAnswer();
-
-                $ans->name = $answer['name'];
-                $ans->solution = $answer['solution'];
-                $ans->question_id = $question->id;
-
-                $ans->save();
-            }
-
-
-            return $question;
+        for($i = 0; $i < 3; $i++)
+        {
+            $answer = new TrainingAnswer();
+            $answer->name = '';
+            $answer->question_id =  $question->id;
+            $answer->solution = 'Jo';
+            $answer->save();
         }
 
-        return response()->json(["errors" => $validator->messages()], 422);
+        return $question;
     }
 
     /**
      * Update Question
      *
-     * @param Request $request
+     * @param TrainingQuestionUpdateRequest $request
      * @param $id
      * @return mixed
      */
-    public function update(Request $request, $id, $photoUpdate)
+    public function update(TrainingQuestionUpdateRequest $request, $id)
     {
-
         $question = TrainingQuestion::findOrfail($id);
 
-        $validator = Validator::make($request->input('question'),[
-            'name' => 'required',
-            'points' => 'required',
-            'photo_url' => 'required',
-            'test_id' => 'required'
-        ]);
+        $question->name = $request->json('name');
+        $question->points = $request->json('points');
+        $question->test_id = $request->json('test_id');
+        $question->order_number = $request->json('order_number');
 
-        if($validator->passes()){
-
-            $question->name = $request->input('question')['name'];
-            $question->points = $request->input('question')['points'];
-            $question->test_id = $request->input('question')['test_id'];
-
-            if($request->hasFile('photo')){
-                $question->photo_url = Storage::url( Storage::put('public/images/questions', $request->file('photo')) );
-            }
-
-
-            $question->update();
-
-            return $question;
+        if($request->hasFile('photo')){
+            $question->photo_url = Storage::url( Storage::put('public/images/questions', $request->file('photo')) );
         }
 
-        return response()->json(["errors" => $validator->messages()], 422);
+        return $this->service->update($question);
     }
 
 
@@ -126,11 +102,15 @@ class TrainingQuestionController extends Controller
      *
      * @param $id
      */
-    public function destroy($id) {
-        $question = TrainingQuestion::findOrfail($id);
-
-        $question->delete();
+    public function destroy($id)
+    {
+     $this->service->delete($id);
     }
 
+
+    public function showByTestId($test_id)
+    {
+        return TrainingQuestion::where('test_id', $test_id)->get();
+    }
 
 }
