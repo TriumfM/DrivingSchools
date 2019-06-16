@@ -13,13 +13,14 @@
     border-radius: 4px;
     box-shadow: $secondShadow;
     margin-bottom: 5px;
-    padding: 0 0 0 5px;
+    padding: 0px;
 
     .table__th--data {
       width: calc(100% - 20px - 200px - 300px);
       float: left;
       font-size: 14px;
       height: 100%;
+      padding-left: 3px;
 
       .table__th {
         display: inline;
@@ -105,6 +106,39 @@
 
       .icon__dropdown {
         padding: 8px;
+      }
+    }
+
+    .table__answers {
+      width: 100%;
+      float: left;
+      display: flex;
+      padding: 4px 0px;
+      height: auto;
+      border-top: 1px solid $grey;
+      font-size: 14px;
+
+      &--content {
+        width: calc(100% - 20px);
+        padding-left: 20px;
+
+        label {
+        }
+
+        span {
+          font-weight: 600;
+        }
+      }
+
+      &--status {
+        i {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      &--actions {
+
       }
     }
   }

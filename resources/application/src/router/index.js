@@ -74,7 +74,7 @@ export default new Router({
           component: AdminTestsComponent,
         },
         {
-          path: '/admin/questions',
+          path: '/admin/questions/:testId',
           name: 'admin-questions',
           component: AdminTestQuestionsComponent,
         },
