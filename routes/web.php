@@ -143,8 +143,5 @@ Route::get('/', function () {
 /**
  *  Website Routes
  */
-//Route::get('/api/students/trainings/tests/{id}', [
-//
-//    'uses' => 'TrainingTestController@showById',
-//]);
+
 

@@ -56,8 +56,9 @@ Route::group(['middleware' => 'auth:api'], function() {
         // Answer Admin Routes
         Route::get('/trainings/answers', 'TrainingAnswerController@index');
         Route::get('/trainings/answers/{id}', 'TrainingAnswerController@show');
-        Route::post('/trainings/answers/}','TrainingAnswerController@store');
-        Route::put('/trainings/answers/{id}', 'TrainingAnswerController@update');
+        Route::get('/trainings/answers/questions/{question_id}', 'TrainingAnswerController@showByQuestionId');
+        Route::post('/trainings/answers','TrainingAnswerController@store');
+        Route::put('/trainings/answers/{question_id}', 'TrainingAnswerController@update');
         Route::delete('/trainings/answers/{id}', 'TrainingAnswerController@destroy');
 
         // Test Routes
@@ -70,9 +71,10 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     //  Question Routes
     Route::get('/trainings/questions', ['middleware' => 'permission:admin', 'uses' => 'TrainingQuestionController@index',]);
+    Route::get('/trainings/questions/tests/{test_id}', ['middleware' => 'permission:admin', 'uses' => 'TrainingQuestionController@showByTestId',]);
     Route::get('/trainings/questions/{id}', ['middleware' => 'permission:student', 'uses' => 'TrainingQuestionController@show',]);
-    Route::post('/trainings/questions/{testId}', ['middleware' => 'permission:admin', 'uses' => 'TrainingQuestionController@store',]);
-    Route::post('/trainings/questions/{id}/{photoUpdate}', ['middleware' => 'permission:admin', 'uses' => 'TrainingQuestionController@update',]);
+    Route::post('/trainings/questions', ['middleware' => 'permission:admin', 'uses' => 'TrainingQuestionController@store',]);
+    Route::post('/trainings/questions/{id}', ['middleware' => 'permission:admin', 'uses' => 'TrainingQuestionController@update',]);
     Route::delete('/trainings/questions/{id}', ['middleware' => 'permission:admin', 'uses' => 'TrainingQuestionController@destroy',]);
 
     /**
@@ -83,7 +85,9 @@ Route::group(['middleware' => 'auth:api'], function() {
         'middleware' => 'permission:student',
         'uses' => 'TrainingTestController@studentIndex',
     ]);
-
+    Route::get('/api/students/trainings/tests/{id}', [
+        'uses' => 'TrainingTestController@showById',
+    ]);
 });
 
 

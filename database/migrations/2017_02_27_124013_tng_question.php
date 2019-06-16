@@ -17,6 +17,7 @@ class TngQuestion extends Migration
 
             $table->integer('id', true);
             $table->string('name', 2000);
+            $table->integer('order_number')->nullable();
             $table->integer('points');
             $table->integer('test_id');
             $table->string('photo_url')->nullable();

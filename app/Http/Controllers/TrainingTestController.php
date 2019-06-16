@@ -7,12 +7,20 @@ use App\Entities\TrainingQuestion;
 use App\Entities\TrainingTest;
 use App\Http\Requests\TrainingTestSaveRequest;
 use App\Http\Requests\TrainingTestUpdateRequest;
+use App\Services\TrainingTestService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\Console\Question\Question;
 
 class TrainingTestController extends Controller
 {
+
+    private $service;
+
+    public function __construct(TrainingTestService $service)
+    {
+        $this->service = $service;
+    }
 
     /**
      * Find All
@@ -21,28 +29,18 @@ class TrainingTestController extends Controller
      */
     public function index()
     {
-        $tests = TrainingTest::with('questions.answers')->get();
-
-        return $tests;
-    }
-
-    public function studentIndex() {
-        $tests = TrainingTest::get();
-
-        return $tests;
+        return $this->service->findAll();
     }
 
     /**
      * Find by Id
      *
-     * @param $testId
+     * @param $id
      * @return mixed
      */
-    public function show($testId)
+    public function show($id)
     {
-        $test = TrainingTest::with('questions.answers')->findOrfail($testId);
-
-        return $test;
+        return $this->service->findById($id);
     }
 
     /**
@@ -55,11 +53,9 @@ class TrainingTestController extends Controller
     {
         $test = new TrainingTest();
 
-        $test->name = $request->get('name');
+        $test->name = $request->json('name');
 
-        $test->save();
-
-        return $test;
+        return $this->service->save($test);
     }
 
     /**
@@ -75,9 +71,7 @@ class TrainingTestController extends Controller
 
         $test->name = $request->json('name');
 
-        $test->update();
-
-        return $test;
+        return $this->service->update($test);
      }
 
 
@@ -88,9 +82,14 @@ class TrainingTestController extends Controller
      */
     public function destroy($id)
     {
-        $test = TrainingTest::findOrfail($id);
+      $this->service->delete($id);
+    }
 
-        $test->delete();
+
+    public function studentIndex() {
+        $tests = TrainingTest::get();
+
+        return $tests;
     }
 
      public function showById($testId)

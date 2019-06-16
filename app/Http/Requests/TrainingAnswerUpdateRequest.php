@@ -24,9 +24,11 @@ class TrainingAnswerUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'solution' => 'in:Po,Jo|required',
-            'question_id' =>  'required|exists:tng_answer,id'
+            'answers' => 'required|array|min:3',
+            'answers.*.name' => 'required',
+            'answers.*.solution' => 'in:Po,Jo|required',
+            'answers.*.question_id' =>  'required|exists:tng_question,id',
+            'answers.*.id' =>  'required|exists:tng_answer,id'
         ];
     }
 }

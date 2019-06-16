@@ -16,7 +16,7 @@ class TngAnswer extends Migration
         Schema::create('tng_answer', function(Blueprint $table){
 
             $table->integer('id', true);
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->integer('question_id');
             $table->timestamps();
 

@@ -5,10 +5,17 @@ namespace App\Http\Controllers;
 use App\Entities\Literature;
 use App\Http\Requests\LiteratureSaveRequest;
 use App\Http\Requests\LiteratureUpdateRequest;
+use App\Services\LiteratureService;
 use Illuminate\Support\Facades\Storage;
 
 class LiteratureController extends Controller
 {
+    private $service;
+    public function __construct(LiteratureService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +23,7 @@ class LiteratureController extends Controller
      */
     public function index()
     {
-        return Literature::get();
+        return $this->service->findAll();
     }
 
     /**
@@ -36,9 +43,7 @@ class LiteratureController extends Controller
         if($request->hasFile('photo'))
             $literature->photo_url = Storage::url( Storage::put('public/images/literature', $request->file('photo')) );
 
-        $literature->save();
-
-        return $literature;
+        return $this->service->save($literature);
     }
 
     /**
@@ -49,7 +54,7 @@ class LiteratureController extends Controller
      */
     public function show($id)
     {
-        return Literature::findOrFail($id);
+        return $this->service->findById($id);
     }
 
     /**
@@ -70,9 +75,7 @@ class LiteratureController extends Controller
         if($request->hasFile('photo'))
             $literature->photo_url =  Storage::url( Storage::put('public/images/literature', $request->file('photo')) );
 
-        $literature->update();
-
-        return $literature;
+        return $this->service->update($literature);
     }
 
     /**
@@ -83,8 +86,6 @@ class LiteratureController extends Controller
      */
     public function destroy($id)
     {
-        $literature = Literature::findOrFail($id);
-
-        $literature->delete();
+       return $this->service->delete($id);
     }
 }

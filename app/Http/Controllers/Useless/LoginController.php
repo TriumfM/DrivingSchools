@@ -17,7 +17,6 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {
-        //TODO: Scrap and delete
         $validator = Validator::make($request->input(), [
             'number' => 'required',
             'password' => 'required'

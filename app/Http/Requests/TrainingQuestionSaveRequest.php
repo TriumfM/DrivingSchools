@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TrainingAnswerSaveRequest extends FormRequest
+class TrainingQuestionSaveRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,10 @@ class TrainingAnswerSaveRequest extends FormRequest
     public function rules()
     {
         return [
-            'answers' => 'required|array|min:3',
-            'answers.*.name' => 'required',
-            'answers.*.solution' => 'in:Po,Jo|required',
-            'answers.*.question_id' =>  'required|exists:tng_question,id'
+            'name' => 'required',
+            'points' => 'required',
+            'test_id' => 'required|exists:tng_question,id',
+            'order_number' => 'required',
         ];
     }
 }
