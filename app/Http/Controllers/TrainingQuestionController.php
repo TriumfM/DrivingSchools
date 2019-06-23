@@ -66,7 +66,7 @@ class TrainingQuestionController extends Controller
             $answer = new TrainingAnswer();
             $answer->name = '';
             $answer->question_id =  $question->id;
-            $answer->solution = 'Jo';
+            $answer->solution = false;
             $answer->save();
         }
 

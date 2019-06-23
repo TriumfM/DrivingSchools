@@ -19,8 +19,8 @@ class TngAnswer extends Migration
             $table->string('name')->nullable();
             $table->integer('question_id');
             $table->timestamps();
+            $table->boolean('solution')->default(false);
 
-            $table->enum('solution', ['Po','Jo']);
             $table->foreign('question_id')->references('id')->on('tng_question')->onDelete('cascade');
 
         });

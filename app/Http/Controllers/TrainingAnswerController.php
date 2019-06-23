@@ -77,9 +77,8 @@ class TrainingAnswerController extends Controller
     public function update(TrainingAnswerUpdateRequest $request, $question_id)
     {
         $response = null;
-        $answers = $request->json('answers');
 
-        foreach($answers as $data) {
+        foreach($request->all() as $data) {
             $answer = TrainingAnswer::where('question_id', $question_id)->findOrfail($data['id']);
 
             $answer->name = $data['name'];

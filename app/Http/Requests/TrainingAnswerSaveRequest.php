@@ -24,10 +24,10 @@ class TrainingAnswerSaveRequest extends FormRequest
     public function rules()
     {
         return [
-            'answers' => 'required|array|min:3',
-            'answers.*.name' => 'required',
-            'answers.*.solution' => 'in:Po,Jo|required',
-            'answers.*.question_id' =>  'required|exists:tng_question,id'
+
+            '*.name' => 'required',
+            '*.solution' => 'required',
+            '*.question_id' =>  'required|exists:tng_question,id'
         ];
     }
 }
