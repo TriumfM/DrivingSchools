@@ -85,7 +85,7 @@ Route::group(['middleware' => 'auth:api'], function() {
         'middleware' => 'permission:student',
         'uses' => 'TrainingTestController@studentIndex',
     ]);
-    Route::get('/api/students/trainings/tests/{id}', [
+    Route::get('/students/trainings/tests/{id}', [
         'uses' => 'TrainingTestController@showById',
     ]);
 });

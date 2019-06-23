@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="test__body">
-      <div class="test__box" v-for="n in 30">
+      <div class="test__box" v-for="test in tests">
         <div class="test__info">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 227.21 47.74">
             <path class="cls-1" d="M213.88,191.63c0-.39.09-.5.49-.5,7.06,0,13.95,0,21,0a16.77,16.77,0,0,1,6.72,1.15,9.91,9.91,0,0,1,6.36,8.67,11.18,11.18,0,0,1-.51,4.45,14.37,14.37,0,0,1-5.7,7.69,80.41,80.41,0,0,1-8.91,5.14c-3.29,1.7-6.64,3.29-10,4.81-2.93,1.31-5.88,2.58-8.9,3.65l-.28.1c-.17.06-.26,0-.25-.18a2.71,2.71,0,0,0,0-.29q0-5.88,0-11.76v-23Zm7.5,24.06.56-.25c1.43-.68,2.87-1.35,4.3-2A97.45,97.45,0,0,0,236.4,208a11,11,0,0,0,3.76-3.36,5.47,5.47,0,0,0,.85-2.16,3,3,0,0,0-2-3.37,9.3,9.3,0,0,0-3.22-.49c-4.7-.08-9.41,0-14.12,0-.29,0-.37.07-.37.36,0,1.54.05,3.07.06,4.6,0,3.46.05,6.93.06,10.39C221.39,214.54,221.38,215.08,221.38,215.69Z" transform="translate(-199.81 -191.13)" />
@@ -46,10 +46,10 @@
             <path class="cls-1" d="M366.29,197.92a.65.65,0,0,1-.66.65.66.66,0,0,1-.68-.64.67.67,0,0,1,.67-.65A.66.66,0,0,1,366.29,197.92Z" transform="translate(-199.81 -191.13)" />
             <path class="cls-1" d="M357.5,197.89a.66.66,0,0,1,.71-.6.64.64,0,0,1,.62.68.66.66,0,0,1-.7.6A.65.65,0,0,1,357.5,197.89Z" transform="translate(-199.81 -191.13)" />
           </svg>
-          <label>{{(n < 10)? '0'+n: n}}</label>
+          <label>{{test.name | onlyNumber}}</label>
         </div>
         <div class="text__button">
-          <router-link class="button__style button--test" :to="{name: 'test-details'}">Testohu
+          <router-link class="button__style button--test" :to="{name: 'test-details', params:{id: test.id}}">Testohu
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.54 13.26">
               <line class="cls-1" x1="1.5" y1="6.63" x2="15.68" y2="6.63" />
               <polyline class="cls-1" points="10.91 1.5 16.04 6.63 10.91 11.76" />
@@ -60,3 +60,108 @@
     </div>
   </div>
 </template>
+
+<script>
+  import {Http} from '@/helpers/http-helper'
+  import ModalComponent from '@/helpers/ModalComponent.vue'
+  import alert from '@/services/sweetAlert.js'
+
+  export default {
+    components: {
+      ModalComponent
+    },
+    data () {
+      return {
+        tests: {},
+        test: {},
+        errors: {},
+        modal: ''
+      }
+    },
+    filters: {
+      onlyNumber: function (value) {
+        if (!value) return ''
+        value = value.toString()
+        var test = value.slice(value.length - 2, value.length)
+        test = parseInt(test)
+        return test
+      }
+    },
+    mounted () {
+      this.fetchAll()
+    },
+    methods: {
+      showModal: function () {
+        this.show = !this.show
+      },
+      fetchAll: function () {
+        Http.get(`/trainings/tests`)
+          .then(response => {
+            this.tests = response.data
+          })
+      },
+      fetchById: function (idtest) {
+        Http.get(`/tests/` + idtest)
+          .then(response => {
+            this.test = response.data
+          })
+          .catch(e => {
+            this.errors = e.body
+          })
+      },
+      save: function (data) {
+        let vm = this
+        vm.errors = {}
+        if (data.id !== undefined) {
+          Http.put('/tests/' + data.id, vm.test)
+            .then(response => {
+              vm.fetchAll()
+              vm.errors = {}
+              alert.CaseInfo('success', 'Success!', '', 1000)
+            })
+            .catch(e => {
+              vm.errors = e.response.data.errors
+            })
+        } else {
+          Http.post(`/tests`, vm.test)
+            .then(response => {
+              vm.fetchAll()
+              vm.errors = {}
+              vm.test = {}
+              vm.show = false
+              alert.CaseInfo('success', 'Success!', '', 1000)
+            })
+            .catch(e => {
+              vm.errors = e.response.data.errors
+            })
+        }
+      },
+      destroy: function (idtest) {
+        let vm = this
+
+        alert.deletePopUp(function () {
+          Http.delete(`/tests/` + idtest)
+            .then(response => {
+              vm.fetchAll()
+              alert.CaseInfo('success', 'Success!', '', 1000)
+            })
+            .catch(e => {
+              alert.CaseInfo('error', 'Error!', '', 1500)
+            })
+        }, '')
+      },
+      modalAdd: function () {
+        this.modal = 'Add new'
+        this.test = {}
+        this.errors = {}
+        this.show = true
+      },
+      modalEdit: function () {
+        this.modal = 'Edit'
+        this.show = true
+        this.errors = {}
+      },
+
+    }
+  }
+</script>

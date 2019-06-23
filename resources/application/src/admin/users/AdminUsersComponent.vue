@@ -119,7 +119,7 @@
           {id:'student', name:'Student'}
         ],
         modal: '',
-        normalizerName (node) {
+        normalizerName  (node) {
           return {
             id: node.id,
             label: node.name

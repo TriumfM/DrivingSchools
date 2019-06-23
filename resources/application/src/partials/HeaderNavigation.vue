@@ -2,10 +2,7 @@
   <div class="header">
     <img class='logo' src="@/assets/img/logo.png"/>
     <div class="menu__items">
-      <router-link :class="{'menu__item': true, 'active': ($route.name == 'test')}" :to="{name: 'test'}">Testohu</router-link>
-      <router-link :class="{'menu__item': true, 'active': ($route.name == 'video')}" :to="{name: 'video'}">Video</router-link>
-      <router-link :class="{'menu__item': true, 'active': ($route.name == 'literature')}" :to="{name: 'literature'}">Literatura</router-link>
-      <button class="menu__item" :to="{name: 'login'}" @click="logout()">Log Out</button>
+      <slot></slot>
     </div>
   </div>
 </template>

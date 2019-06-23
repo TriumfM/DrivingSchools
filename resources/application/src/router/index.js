@@ -17,6 +17,8 @@ import AdminVideosComponent from '@/admin/videos/AdminVideosComponent'
 import AdminLiteratureComponent from '@/admin/literature/AdminLiteratureComponent'
 import AdminTestQuestionsComponent from '@/admin/tests/QuestionsTestComponent'
 
+import WebViewComponent from '@/web-site/WebViewComponent'
+
 Vue.use(Router)
 
 export default new Router({
@@ -37,7 +39,7 @@ export default new Router({
           component: TestComponent,
         },
         {
-          path: '/test/1',
+          path: '/test/:id',
           name: 'test-details',
           component: TestDetailsComponent,
         },
@@ -89,6 +91,11 @@ export default new Router({
           component: AdminLiteratureComponent,
         }
       ]
+    },
+    {
+      path: '/web',
+      name: 'web',
+      component: WebViewComponent,
     },
     {
       path: '/login',
