@@ -8,7 +8,6 @@ use App\Http\Requests\TrainingQuestionUpdateRequest;
 use App\Services\TrainingQuestionService;
 use Illuminate\Support\Facades\Storage;
 use App\Entities\TrainingAnswer;
-use Illuminate\Support\Facades\Input;
 
 class TrainingQuestionController extends Controller
 {
@@ -51,10 +50,10 @@ class TrainingQuestionController extends Controller
 
         $question = new TrainingQuestion();
 
-        $question->name = $request->json('name');
-        $question->points = $request->json('points');
-        $question->test_id = $request->json('test_id');
-        $question->order_number = $request->json('order_number');
+        $question->name = $request['name'];
+        $question->points = $request['points'];
+        $question->test_id = $request['test_id'];
+        $question->order_number = $request['order_number'];
 
         if($request->hasFile('photo')){
             $question->photo_url = Storage::url( Storage::put('public/images/questions', $request->file('photo')) );
@@ -66,7 +65,7 @@ class TrainingQuestionController extends Controller
             $answer = new TrainingAnswer();
             $answer->name = '';
             $answer->question_id =  $question->id;
-            $answer->solution = 'Jo';
+            $answer->solution = false;
             $answer->save();
         }
 
@@ -84,10 +83,10 @@ class TrainingQuestionController extends Controller
     {
         $question = TrainingQuestion::findOrfail($id);
 
-        $question->name = $request->json('name');
-        $question->points = $request->json('points');
-        $question->test_id = $request->json('test_id');
-        $question->order_number = $request->json('order_number');
+        $question->name = $request['name'];
+        $question->points = $request['points'];
+        $question->test_id = $request['test_id'];
+        $question->order_number = $request['order_number'];
 
         if($request->hasFile('photo')){
             $question->photo_url = Storage::url( Storage::put('public/images/questions', $request->file('photo')) );
