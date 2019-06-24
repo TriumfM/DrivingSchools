@@ -19,15 +19,6 @@ class TrainingAnswerController extends Controller
     public function index()
     {
         return TrainingAnswer::get();
-//        $arrayFront = array('id' =>'1', 'solution' => 'Jo');
-//        $answers = array('id' =>'1', 'solution' => 'Po');
-//
-////        $answers = TrainingAnswer::all(array('id', 'solution'));
-////        $answers->makeVisible('solution')->toArray();
-//
-//        $diff = array_diff($answers, $arrayFront);
-//
-//        return $diff;
     }
 
     /**

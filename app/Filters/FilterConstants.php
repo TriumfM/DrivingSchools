@@ -23,7 +23,7 @@ class FilterConstants
 
     // Training Questions
     const TRAINING_QUESTION_INCLUDES = ['answers', 'stdanswers', 'tests'];
-    const TRAINING_QUESTION_EXACT = ['id', 'test_id'];
+    const TRAINING_QUESTION_EXACT = ['id', 'test_id', 'order_number', 'points'];
     const TRAINING_QUESTION_PARTIAL = [
         'name',
     ];
@@ -32,8 +32,8 @@ class FilterConstants
     const LITERATURE_INCLUDES = [];
     const LITERATURE_EXACT = ['id'];
     const LITERATURE_PARTIAL = [
-        'name'
+        'name',
+        'type',
+        'description'
     ];
-
-
 }

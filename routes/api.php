@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     //  Literature Student Routes
     Route::get('/literature', 'LiteratureController@index');
     Route::get('/literature/{id}', 'LiteratureController@show');
+    Route::get('/literature/type/{type}', 'LiteratureController@getByType');
 
      //  Video Student Routes
     Route::get('/videos', 'VideoController@index');
