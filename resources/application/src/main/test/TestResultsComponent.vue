@@ -131,13 +131,17 @@
     },
     mounted () {
       this.fetchAll()
+      console.log(this.$route.params.id)
     },
     methods: {
       showModal: function () {
         this.show = !this.show
       },
       fetchAll: function () {
-
+        Http.get(`/trainings/results/tests/`+ this.$route.params.testId)
+          .then(response => {
+            this.questions = response.data
+          })
       },
       fetchById: function (idTest) {
       },

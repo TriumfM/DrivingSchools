@@ -86,7 +86,7 @@
                 <polyline class="cls-1" points="10.91 1.5 16.04 6.63 10.91 11.76" />
               </svg>
             </button>
-            <button class="button__style" v-if="indexQuestion == questions.length - 1">Testohu</button>
+            <button class="button__style" v-if="indexQuestion == questions.length - 1" @click="saveResults()">Testohu</button>
           </div>
         </div>
       </div>
@@ -117,7 +117,10 @@
         indexQuestion: 0,
         showPreview: false,
         showNext: true,
-        results: {},
+        results: {
+          55:[144],
+          56:[134]
+        },
         answers: [],
         surfQuestion: []
       }
@@ -179,7 +182,7 @@
 
         this.results += tempData;
         // this.request[] = this.answers.push(answer)
-        console.log(this.results)
+        console.log(this.results[0])
       },
       createResults: function (questions) {
         // var tempData = {};
@@ -193,7 +196,7 @@
         Http.post(`/trainings/results/tests/`,vm.results)
           .then(response => {
             console.log(response.data)
-            // this.$route.push({name:'test-results'})
+            this.$router.push({name:'test-results', params: {id: response.data}})
           })
           .catch(e => {
             // vm.errors = e.response.data.errors

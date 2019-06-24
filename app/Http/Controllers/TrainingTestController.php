@@ -117,21 +117,21 @@ class TrainingTestController extends Controller
     // Results
     public function results(Request $request)
     {
-       $studentAnswer = $request->get('results');
+       $studentAnswer = $request->all();
        $checkResults = array();
        $total = 0;
 
        foreach ($studentAnswer as $key => $value)
        {
-           $answers = TrainingAnswer::where('question_id', $value['key'])->where('solution', true)->pluck('id');
+           $answers = TrainingAnswer::where('question_id', $key)->where('solution', true)->pluck('id');
 
-           if($this->identical_values($value['value'], $answers->toArray()) ){
-               $question = TrainingQuestion::where('id', $value['key'])->first();
-               $checkResults[] = (object) array('id'=> $question->id, 'name' => $question->name, 'flag' => true, 'points' => $question->points, 'win_points' => $question->points);
+           if($this->identical_values($value, $answers->toArray()) ){
+               $question = TrainingQuestion::where('id', $key)->first();
+               $checkResults[] = (object) array('id'=> $question->id, 'name' => $question->name, 'flag' => true, 'points' => $question->points, 'win_points' => $question->points, 'student_answer' => $value, 'correct_answers' => $answers);
                $total += $question->points;
            }else{
-               $question = TrainingQuestion::where('id', $value['key'])->first();
-               $checkResults[] = (object) array('id'=> $question->id ,'name' => $question->name, 'flag' => false, 'points' => $question->points, 'win_points' => 0);
+               $question = TrainingQuestion::where('id', $key)->first();
+               $checkResults[] = (object) array('id'=> $question->id ,'name' => $question->name, 'flag' => false, 'points' => $question->points, 'win_points' => 0,  'student_answer' => $value, 'correct_answers' => $answers);
            }
        }
 
