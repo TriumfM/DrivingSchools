@@ -115,7 +115,7 @@ class TrainingTestController extends Controller
     }
 
     // Results
-    public function results(Request $request, $testId)
+    public function results(Request $request)
     {
        $studentAnswer = $request->get('results');
        $checkResults = array();

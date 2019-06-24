@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/trainings/tests','TrainingTestController@index');
 
     // Trainings Results Tests
-    Route::post('/trainings/results/tests/{id}', 'TrainingTestController@results');
+    Route::post('/trainings/results/tests', 'TrainingTestController@results');
 
     Route::group(['middleware' => 'permission:admin'],function () {
 
