@@ -5,20 +5,17 @@
       <span class="file-custom"></span>
     </label>
     <div class="box__images cnf__input col-md-4">
-      <!--<div class="box box&#45;&#45;relative col-md-12 no&#45;&#45;padding" v-if="gallery.length"-->
-           <!--v-for="image in gallery" :key="image.id" v-show="isImage(image.path)">-->
-
-
-        <!--<img :src="image.path">-->
-        <!--<div class="image__info">-->
-          <!--<a v-on:click="deleteImage(image.id)"><i class="fa fa-trash"></i></a>-->
-        <!--</div>-->
-      <!--</div>-->
+      <div class="box box--relative col-md-12 no--padding" v-if="photo_url && images.length == 0">
+        <img :src="photo_url">
+        <div class="image__info">
+          <a v-on:click="deleteImage(image.id)"><i class="fa fa-trash"></i></a>
+        </div>
+      </div>
       <div class="box box--relative col-md-12 no--padding" v-if="images.length" v-for="i in images">
           <img :src="i">
-          <div class="image__info">
-            <a v-on:click="deleteImage()"><i class="fa fa-trash"></i></a>
-          </div>
+          <!--<div class="image__info">-->
+            <!--<a v-on:click="deleteImage()"><i class="fa fa-trash"></i></a>-->
+          <!--</div>-->
 
       </div>
 
@@ -41,7 +38,7 @@
         fileCounter: []
       }
     },
-    props: ['photo','identifier'],
+    props: ['photo_url','identifier'],
     watch: {
       files: function () {
       },
@@ -80,6 +77,7 @@
         reader.onload = (e) => this.images.push(e.target.result)
 
         reader.readAsDataURL(file)
+        this.getUrl()
       },
       isImage: function (param) {
         alert('BOMMM-ISPHOTO')

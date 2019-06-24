@@ -1,20 +1,20 @@
 <template>
   <div class="col-md-12 admin__content">
     <div class="admin__header">
-      <h2 class="title_side">All Literatures</h2>
+      <h2 class="title_side">All Literature</h2>
       <div class="add_new-button">
         <button class="btn btn-primary" @click="modalAdd()">Add new</button>
       </div>
     </div>
     <div class="table_2td">
-      <div class="table__row" v-for="literature in 10">
+      <div class="table__row" v-for="literature in literatures">
         <div class='table__th--data'>
           <div class="table__th">Title: </div>
-          <div class='table__td table_td--click'>literature.title</div>
+          <div class='table__td table_td--click'>{{literature.title}}</div>
         </div>
         <div class='table__th--data'>
           <div class="table__th">Type: </div>
-          <div class='table__td table_td--click'>literature.type.name</div>
+          <div class='table__td table_td--click'>{{literature.type}}</div>
         </div>
         <div class="table__td--action">
           <div class="dropdown">
@@ -48,7 +48,7 @@
         </div>
         <div class="cnf__input col-md-6">
           <label>Type</label>
-          <treeselect :options="types" placeholder="Choose type" :normalizer="normalizerName" v-model="literature.type_id">
+          <treeselect :options="types" placeholder="Choose type" :normalizer="normalizerName" v-model="literature.type">
             <label slot="option-label" slot-scope="{ node }">
               {{ node.raw.name }}
             </label>
@@ -62,7 +62,7 @@
         </div>
         <div class="custom-file cnf__input col-md-12">
           <label>Photo</label>
-          <multiple-image-uploader v-model="question.photo" :gallery="literature.images" v-on:drop-success="images" v-on:image-deleted="deleteImage" :identifier="literature.id"></multiple-image-uploader>
+          <multiple-image-uploader :photo_url="literature.photo_url" @getURL="permitImage" ></multiple-image-uploader>
           <span class="error__span" v-if="errors.photo_url">{{ errors.photo_url[0]}}</span>
         </div>
       </div>
@@ -79,6 +79,7 @@
   import alert from '@/services/sweetAlert.js'
   import MultipleImageUploader from '@/helpers/MultipleImageUploader'
   import Treeselect from '@riophae/vue-treeselect'
+  import objectToFormData from '@/helpers/object-to-formdata'
 
   export default {
     components: {
@@ -90,7 +91,16 @@
       return {
         showImg: 1,
         show: false,
-        types: [],
+        types: [
+          {id:'notion', name: 'Nocionet'},
+          {id:'signaling_h', name: 'Sinjalizimi horizontal'},
+          {id:'signaling_v', name: 'Sinjalizimi vertikal'},
+          {id:'books', name: 'Librat'},
+          {id:'people_a', name: 'Personal e autorizuar'},
+          {id:'rules', name: 'Rregullat e trafikut'},
+          {id:'instrument', name: 'Instrumentet'},
+          {id:'eco', name: 'Eko ngasja'},
+        ],
         literatures: {},
         literature: {},
         details: {},
@@ -108,24 +118,23 @@
       this.fetchAll()
     },
     methods: {
+      permitImage: function (param) {
+        this.literature['photo'] = param[0]
+      },
       images: function (param) {
         this.details['image'] = param
       },
-      deleteImage: function () {
-        this.fetchDatas()
-      },
-
       showModal: function () {
         this.show = !this.show
       },
       fetchAll: function () {
-        Http.get(`literatures`)
+        Http.get(`/literature`)
           .then(response => {
             this.literatures = response.data
           })
       },
       fetchById: function (idliterature) {
-        Http.get(`/literatures/` + idliterature)
+        Http.get(`/literature/` + idliterature)
           .then(response => {
             this.literature = response.data
           })
@@ -137,7 +146,7 @@
         let vm = this
         vm.errors = {}
         if (data.id !== undefined) {
-          Http.put('/literatures/' + data.id, vm.literature)
+          Http.put('/literature/' + data.id, objectToFormData(vm.literature))
             .then(response => {
               vm.fetchAll()
               vm.errors = {}
@@ -147,7 +156,7 @@
               vm.errors = e.response.data.errors
             })
         } else {
-          Http.post(`/literatures`, vm.literature)
+          Http.post(`/literature`, objectToFormData(vm.literature))
             .then(response => {
               vm.fetchAll()
               vm.errors = {}
@@ -164,7 +173,7 @@
         let vm = this
 
         alert.deletePopUp(function () {
-          Http.delete(`/literatures/` + idliterature)
+          Http.delete(`/literature/` + idliterature)
             .then(response => {
               vm.fetchAll()
               alert.CaseInfo('success', 'Success!', '', 1000)

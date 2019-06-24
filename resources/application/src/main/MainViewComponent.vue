@@ -33,6 +33,12 @@
       }
     },
     methods: {
+      logout: function () {
+        Http.get(`/auth/logout`)
+          .then(response => {
+            this.$router.push({name: 'login'})
+          })
+      }
     }
   }
 </script>

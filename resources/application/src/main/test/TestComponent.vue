@@ -82,9 +82,10 @@
       onlyNumber: function (value) {
         if (!value) return ''
         value = value.toString()
-        var test = value.slice(value.length - 2, value.length)
-        test = parseInt(test)
-        return test
+        value = value.replace ( /[^\d.]/g, '' )
+        // var test = value.slice(value.length - 2, value.length)
+        // test = parseInt(test)
+        return value
       }
     },
     mounted () {

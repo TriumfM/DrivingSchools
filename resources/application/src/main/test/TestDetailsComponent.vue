@@ -3,7 +3,7 @@
     <div class="test__details">
       <div class="test__question">
         <div class="question__header">
-          <label class="question__info">Test 01 - Pyetja 12/30</label>
+          <label class="question__info">{{test.name}} - Pyetja {{question.order_number}}/{{questions.length}}</label>
           <div class="question__time">
             <label>25:18</label>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32.23 33.81">
@@ -13,9 +13,9 @@
         </div>
         <div class="question__content">
           <div class="question__photo height--100">
-            <img src="@/assets/img/test1_foto1.svg" class="photo__classic" v-if="showImg == 1"/>
-            <img src="@/assets/img/shenja1.svg" class="photo__signs" v-if="showImg == 2"/>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 227.21 47.74" v-if="(showImg != 1 && showImg != 2)">
+            <img :src="question.photo_url" class="photo__classic" v-if="question.photo_url"/>
+            <!--<img src="@/assets/img/shenja1.svg" class="photo__signs" v-if="showImg == 2"/>-->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 227.21 47.74" v-if="question.photo_url == null">
               <path class="cls-1" d="M213.88,191.63c0-.39.09-.5.49-.5,7.06,0,13.95,0,21,0a16.77,16.77,0,0,1,6.72,1.15,9.91,9.91,0,0,1,6.36,8.67,11.18,11.18,0,0,1-.51,4.45,14.37,14.37,0,0,1-5.7,7.69,80.41,80.41,0,0,1-8.91,5.14c-3.29,1.7-6.64,3.29-10,4.81-2.93,1.31-5.88,2.58-8.9,3.65l-.28.1c-.17.06-.26,0-.25-.18a2.71,2.71,0,0,0,0-.29q0-5.88,0-11.76v-23Zm7.5,24.06.56-.25c1.43-.68,2.87-1.35,4.3-2A97.45,97.45,0,0,0,236.4,208a11,11,0,0,0,3.76-3.36,5.47,5.47,0,0,0,.85-2.16,3,3,0,0,0-2-3.37,9.3,9.3,0,0,0-3.22-.49c-4.7-.08-9.41,0-14.12,0-.29,0-.37.07-.37.36,0,1.54.05,3.07.06,4.6,0,3.46.05,6.93.06,10.39C221.39,214.54,221.38,215.08,221.38,215.69Z" transform="translate(-199.81 -191.13)" />
               <path class="cls-2" d="M213.88,238.59c.91-.45,1.83-.89,2.74-1.35,3.61-1.82,7.13-3.8,10.67-5.75a1.39,1.39,0,0,1,.82-.19,46,46,0,0,0,5.38.18,14.89,14.89,0,0,0,2.9-.4,6.81,6.81,0,0,0,5.43-5.87,13.3,13.3,0,0,0,.2-2.89.76.76,0,0,1,.33-.69q1.93-1.56,3.85-3.14a11.59,11.59,0,0,0,1.64-1.57c.14-.18.22-.14.35,0a10.89,10.89,0,0,1,4.14,7.57c.46,5.2-1.88,9.07-6,12.07a11.14,11.14,0,0,1-6,2c-6.3.48-12.61.34-18.92.25l-7.41-.11h-.19Z" transform="translate(-199.81 -191.13)" />
               <path class="cls-2" d="M288,220.73a4.45,4.45,0,0,1,4.35,3.58,8.27,8.27,0,0,1-.05,3.25,4.41,4.41,0,0,1-4.37,3.32H267.23c-.84,0-1.68,0-2.53,0-.38,0-.48-.1-.48-.48,0-5.86,0-11.71,0-17.56,0-.6,0-1.19,0-1.79,0-.33.11-.4.42-.4H287.3a4.38,4.38,0,0,1,4.5,4.5,12.06,12.06,0,0,1-.05,1.9,4,4,0,0,1-2.43,3.13C288.89,220.42,288.43,220.55,288,220.73Zm-10.71,7.73h9.19a2.83,2.83,0,0,0,2.9-2.47,8.38,8.38,0,0,0,0-1.12,2.85,2.85,0,0,0-2.88-2.9H268c-.29,0-.37.09-.36.37,0,1.91,0,3.81,0,5.72,0,.35.11.42.44.42ZM277,219.6h8.95a2.71,2.71,0,0,0,2.7-2,4.78,4.78,0,0,0,.1-1.36,2.7,2.7,0,0,0-2.8-2.83H268c-.32,0-.39.1-.38.4,0,1.77,0,3.53,0,5.3,0,.37.08.48.47.48C271,219.59,274,219.6,277,219.6Z" transform="translate(-199.81 -191.13)" />
@@ -60,62 +60,145 @@
             </svg>
           </div>
           <div class="question__answers">
-            <span class="question__">Çka paraqet kjo shenjë e trafikut dhe në cilën grup të shenjave bën pjesë?</span>
+            <span class="question__">{{question.name}}</span>
             <div class="question__chooses">
-              <div class="question__choose">
-                <input class="choose__input" type="radio"/>
-                <span class="choose__text">Të Obligimit.</span>
-              </div>
-              <div class="question__choose">
-                <input class="choose__input" type="radio"/>
-                <span class="choose__text">Rrugën me përparësi kalimi.</span>
-              </div>
-              <div class="question__choose">
-                <input class="choose__input" type="radio"/>
-                <span class="choose__text">Të lajmërimit.</span>
+              <div class="question__choose" v-for="answer in question.std_answers">
+                <input class="choose__input" type="checkbox" @click="getResults(question.id,answer.id)"/>
+                <span class="choose__text">{{answer.name}}</span>
               </div>
             </div>
           </div>
         </div>
         <div class="question__footer">
-          <span class="point">4 Pikë</span>
+          <span class="point">{{question.points}} Pikë</span>
           <div class="control__buttons">
-            <button class="button__style button_next-preview">
+            <button class="button__style button_next-preview" @click="changeQuestion('preview', null)" v-if="showPreview">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.98 14.28">
                 <line class="cls-1" x1="17.48" y1="7.14" x2="1.89" y2="7.14" />
                 <polyline class="cls-1" points="7.14 12.78 1.5 7.14 7.14 1.5" />
               </svg>
               <span>Prapa</span>
             </button>
-            <button class="button__style button_next-preview">
+            <button class="button__style button_next-preview" @click="changeQuestion('next', null)" v-if="showNext">
               <span>Pyetja e rradhës</span>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.54 13.26">
                 <line class="cls-1" x1="1.5" y1="6.63" x2="15.68" y2="6.63" />
                 <polyline class="cls-1" points="10.91 1.5 16.04 6.63 10.91 11.76" />
               </svg>
             </button>
+            <button class="button__style" v-if="indexQuestion == questions.length - 1">Testohu</button>
           </div>
         </div>
       </div>
       <div class="test__paginated">
-        <button v-for="n in 9" :class="{'button__paginated-test':true, 'active__button': (showImg == n)}" @click="changePhoto(n)">{{n}}</button>
+        <button  :class="{
+                          'button__paginated-test':true,
+                          'active__button': (showImg == n)}"
+                 @click="changePhoto(n); changeQuestion('byIndex', index)"
+                 v-for="(n, index) in questions.length">
+          {{n}}
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import {Http} from '@/helpers/http-helper'
+  import alert from '@/services/sweetAlert.js'
+
   export default  {
     data () {
       return {
-        showImg: 1
+        showImg: 1,
+        test: {},
+        question: {},
+        questions: {},
+        indexQuestion: 0,
+        showPreview: false,
+        showNext: true,
+        results: {},
+        answers: [],
+        surfQuestion: []
       }
+    },
+    watch: {
+      indexQuestion: function () {
+        if(this.indexQuestion == 0) {
+          this.showPreview = false
+          this.showNext = true
+        } else if(this.indexQuestion == this.questions.length - 1) {
+          this.showPreview = true
+          this.showNext = false
+        } else {
+          this.showPreview = true
+          this.showNext = true
+        }
+      }
+    },
+    mounted () {
+      this.fetchAll()
+      this.getSurfQuestion()
     },
     methods: {
       changePhoto: function (value) {
-
         this.showImg = value
+      },
+      fetchAll: function () {
+        Http.get(`/students/trainings/tests/`+ this.$route.params.id)
+          .then(response => {
+            this.test = response.data
+            this.question = response.data.questions[this.indexQuestion]
+            this.createResults(response.data.questions)
+            this.questions = response.data.questions
+          })
+      },
+      changeQuestion: function (status, index) {
+        if(status == 'preview') {
+          this.indexQuestion--
+        }else if(status == 'next') {
+          this.indexQuestion++
+        }else if(status == 'byIndex') {
+          this.indexQuestion = index
+        }
+
+        this.question = this.questions[this.indexQuestion]
+      },
+      getSurfQuestion: function () {
+        for(var i = this.indexQuestion; i < this.indexQuestion+10; i++){
+          this.surfQuestion[i] = i
+        }
+      },
+      getResults: function (question, answer) {
+        console.log(question + '<->' +answer)
+        var tempData = {};
+        var answers = []
+
+        answers.push(answer)
+        tempData[question] = answers
+
+        this.results += tempData;
+        // this.request[] = this.answers.push(answer)
+        console.log(this.results)
+      },
+      createResults: function (questions) {
+        // var tempData = {};
+        // for ( var index in questions ) {
+        //     tempData[questions[index].id] = []
+        // }
+        // this.results = tempData;
+      },
+      saveResults: function () {
+        var vm = this
+        Http.post(`/trainings/results/tests/`,vm.results)
+          .then(response => {
+            console.log(response.data)
+            // this.$route.push({name:'test-results'})
+          })
+          .catch(e => {
+            // vm.errors = e.response.data.errors
+          })
       }
-    }
+    },
   }
 </script>

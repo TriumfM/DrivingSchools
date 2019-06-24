@@ -55,22 +55,22 @@
       <div class="modal__content modal--form_content">
         <div class="cnf__input col-md-12">
           <label>Question</label>
-          <textarea class="basic__input textarea--input medium--input" type="text" v-model="question.name" :class="[errors.name ? 'error': '']"></textarea>
+          <textarea class="basic__input textarea--input medium--input" type="text" v-model="question.name"></textarea>
           <span class="error__span" v-if="errors.name">{{ errors.name[0] }}</span>
         </div>
         <div class="cnf__input col-md-6">
           <label>Points</label>
-          <input class="basic__input" type="number" v-model="question.points" :class="[errors.points ? 'error': '']"  min=1>
+          <input class="basic__input" type="number" v-model="question.points" min=1>
           <span class="error__span" v-if="errors.points">{{ errors.points[0] }}</span>
         </div>
         <div class="cnf__input col-md-6">
           <label>No. ordinal</label>
-          <input class="basic__input" type="number" v-model="question.order_number" :class="[errors.order_number ? 'error': '']" min=1>
+          <input class="basic__input" type="number" v-model="question.order_number" min=1>
           <span class="error__span" v-if="errors.order_number">{{ errors.order_number[0] }}</span>
         </div>
         <div class="custom-file cnf__input col-md-12">
           <label>Photo</label>
-          <multiple-image-uploader @getURL="permitImage" ></multiple-image-uploader>
+          <multiple-image-uploader :photo_url="question.photo_url" @getURL="permitImage" ></multiple-image-uploader>
           <span class="error__span" v-if="errors.photo_url">{{ errors.photo_url[0]}}</span>
         </div>
       </div>
@@ -111,6 +111,7 @@
   import PhotoFile from '@/helpers/PhotoFile'
   import alert from '@/services/sweetAlert.js'
   import MultipleImageUploader from '@/helpers/MultipleImageUploader'
+  import objectToFormData from '@/helpers/object-to-formdata'
 
   export default {
     components: {
@@ -137,6 +138,7 @@
           {name: null, solution: null}
         ],
         details: {},
+        results: {},
         tests: {},
         test: {},
         rowIndex: -1,
@@ -147,16 +149,12 @@
       this.fetchAllQuestions()
     },
     methods: {
-      getPhoto: function (eventValue) {
-        // this.question['photo']= eventValue
-        alert(eventValue)
-      },
+
       deleteImage: function () {
         this.fetchDatas()
       },
       permitImage: function (param) {
         this.question['photo'] = param[0]
-        console.log(param[0])
       },
 
       showActions: function (indexRow) {
@@ -188,8 +186,9 @@
         let vm = this
         data.test_id = this.$route.params.testId
         vm.errors = {}
+
         if (data.id !== undefined) {
-          Http.post(`/trainings/questions/` + data.id, vm.question)
+          Http.post(`/trainings/questions/` + data.id, objectToFormData(vm.question))
             .then(response => {
               vm.fetchAllQuestions()
               vm.errors = {}
@@ -199,7 +198,7 @@
               vm.errors = e.response.data.errors
             })
         } else {
-          Http.post(`/trainings/questions`, vm.question)
+          Http.post(`/trainings/questions`,objectToFormData(vm.question))
             .then(response => {
               vm.fetchAllQuestions()
               vm.errors = {}
@@ -241,7 +240,6 @@
         vm.errors = {}
         Http.put(`/trainings/answers/` + data.id, vm.answers)
           .then(response => {
-            vm.fetchByIdAnswers(data.id)
             vm.errorsAnswers = {}
             alert.CaseInfo('success', 'Success!', '', 1000)
           })

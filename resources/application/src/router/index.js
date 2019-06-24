@@ -44,7 +44,7 @@ export default new Router({
           component: TestDetailsComponent,
         },
         {
-          path: '/test/1/results',
+          path: '/test/results',
           name: 'test-results',
           component: TestResultsComponent,
         },

@@ -114,6 +114,8 @@
 
 <script>
   import ModalComponent from '@/helpers/ModalComponent.vue'
+  import {Http} from '@/helpers/http-helper'
+  import alert from '@/services/sweetAlert.js'
 
   export default {
     components: {ModalComponent},
@@ -123,13 +125,24 @@
     data () {
       return {
         showImg: 1,
-        show:false
+        show:false,
+
       }
+    },
+    mounted () {
+      this.fetchAll()
     },
     methods: {
       showModal: function () {
         this.show = !this.show
-      }
+      },
+      fetchAll: function () {
+
+      },
+      fetchById: function (idTest) {
+      },
     }
   }
 </script>
+
+
