@@ -115,7 +115,7 @@ class TrainingTestController extends Controller
     }
 
     // Results
-    public function results(Request $request, $testId)
+    public function results(Request $request)
     {
        $studentAnswer = $request->get('results');
        $checkResults = array();
@@ -123,7 +123,7 @@ class TrainingTestController extends Controller
 
        foreach ($studentAnswer as $key => $value)
        {
-           $answers = TrainingAnswer::where('question_id', $value['key'])->where('solution', 'Po')->pluck('id');
+           $answers = TrainingAnswer::where('question_id', $value['key'])->where('solution', true)->pluck('id');
 
            if($this->identical_values($value['value'], $answers->toArray()) ){
                $question = TrainingQuestion::where('id', $value['key'])->first();
@@ -139,6 +139,4 @@ class TrainingTestController extends Controller
 
        return $resultFinal;
     }
-
-
 }
