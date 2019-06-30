@@ -31,9 +31,14 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     // Test Student Route
     Route::get('/trainings/tests','TrainingTestController@index');
+    Route::get('/trainings/tests/{id}', 'TrainingTestController@show');
 
     // Trainings Results Tests
     Route::post('/trainings/results/tests', 'TrainingTestController@results');
+    Route::post('/trainings/results/tests/{test_id}', 'TrainingTestController@resultsByTestId');
+
+    Route::get('/student/tests/all', 'TrainingTestController@studentIndex');
+    Route::get('/students/trainings/tests/{id}','TrainingTestController@showById');
 
     Route::group(['middleware' => 'permission:admin'],function () {
 
@@ -63,7 +68,6 @@ Route::group(['middleware' => 'auth:api'], function() {
         Route::delete('/trainings/answers/{id}', 'TrainingAnswerController@destroy');
 
         // Test Routes
-        Route::get('/trainings/tests/{id}', 'TrainingTestController@show');
         Route::post('/trainings/tests', 'TrainingTestController@store');
         Route::put('/trainings/tests/{id}','TrainingTestController@update');
         Route::delete('/trainings/tests/{id}', 'TrainingTestController@destroy');
@@ -78,17 +82,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/trainings/questions/{id}', ['middleware' => 'permission:admin', 'uses' => 'TrainingQuestionController@update',]);
     Route::delete('/trainings/questions/{id}', ['middleware' => 'permission:admin', 'uses' => 'TrainingQuestionController@destroy',]);
 
-    /**
-     * Student Permission's Route
-     */
 
-    Route::get('/student/tests/all', [
-        'middleware' => 'permission:student',
-        'uses' => 'TrainingTestController@studentIndex',
-    ]);
-    Route::get('/students/trainings/tests/{id}', [
-        'uses' => 'TrainingTestController@showById',
-    ]);
 });
 
 

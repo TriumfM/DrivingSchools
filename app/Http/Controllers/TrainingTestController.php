@@ -120,23 +120,56 @@ class TrainingTestController extends Controller
        $studentAnswer = $request->all();
        $checkResults = array();
        $total = 0;
+       $max = 0;
+       $trainingTest = null;
+       $question = null;
 
        foreach ($studentAnswer as $key => $value)
        {
            $answers = TrainingAnswer::where('question_id', $key)->where('solution', true)->pluck('id');
+           $question = TrainingQuestion::where('id', $key)->first();
+           $max += $question->points;
 
            if($this->identical_values($value, $answers->toArray()) ){
-               $question = TrainingQuestion::where('id', $key)->first();
                $checkResults[] = (object) array('id'=> $question->id, 'name' => $question->name, 'flag' => true, 'points' => $question->points, 'win_points' => $question->points, 'student_answer' => $value, 'correct_answers' => $answers);
                $total += $question->points;
            }else{
-               $question = TrainingQuestion::where('id', $key)->first();
                $checkResults[] = (object) array('id'=> $question->id ,'name' => $question->name, 'flag' => false, 'points' => $question->points, 'win_points' => 0,  'student_answer' => $value, 'correct_answers' => $answers);
            }
        }
 
-       $resultFinal = array('total' => $total, 'questions' => $checkResults);
+       if($question != null)
+           $trainingTest = TrainingTest::find($question->test_id);
+       $resultFinal = array('total' => $total, 'max' => $max, 'questions' => $checkResults, 'test' => $trainingTest);
 
        return $resultFinal;
+    }
+
+    // Results By Test Id
+    public function resultsByTestId(Request $request, $test_id)
+    {
+        $studentAnswer = $request->all();
+        $checkResults = array();
+        $total = 0;
+        $max = 0;
+        $trainingTest = TrainingTest::findOrFail($test_id);
+
+        foreach ($studentAnswer as $key => $value)
+        {
+            $answers = TrainingAnswer::where('question_id', $key)->where('solution', true)->pluck('id');
+            $question = TrainingQuestion::where('id', $key)->where('test_id', $test_id)->first();
+            $max += $question->points;
+
+            if($this->identical_values($value, $answers->toArray()) ){
+                $checkResults[] = (object) array('id'=> $question->id, 'name' => $question->name, 'flag' => true, 'points' => $question->points, 'win_points' => $question->points, 'student_answer' => $value, 'correct_answers' => $answers);
+                $total += $question->points;
+            }else{
+                $checkResults[] = (object) array('id'=> $question->id ,'name' => $question->name, 'flag' => false, 'points' => $question->points, 'win_points' => 0,  'student_answer' => $value, 'correct_answers' => $answers);
+            }
+        }
+
+        $resultFinal = array('total' => $total, 'max' => $max, 'questions' => $checkResults, 'test' => $trainingTest);
+
+        return $resultFinal;
     }
 }
