@@ -8,6 +8,7 @@ import TestDetailsComponent from '@/main/test/TestDetailsComponent'
 import TestResultsComponent from '@/main/test/TestResultsComponent'
 import VideoComponent from '@/main/video/VideoComponent'
 import LiteratureComponent from '@/main/literature/LiteratureComponent'
+import LiteratureDetailsComponent from '@/main/literature/LiteratureDetailsComponent'
 import LoginComponent from '@/user/LoginComponent'
 
 import AdminViewComponent from '@/admin/AdminViewComponent'
@@ -22,6 +23,8 @@ import WebViewComponent from '@/web-site/WebViewComponent'
 Vue.use(Router)
 
 export default new Router({
+  // mode: 'history',
+  // hash: false,
   routes: [
     {
       path: '/',
@@ -44,7 +47,7 @@ export default new Router({
           component: TestDetailsComponent,
         },
         {
-          path: '/test/results/:id',
+          path: '/test/results',
           name: 'test-results',
           component: TestResultsComponent,
         },
@@ -57,6 +60,11 @@ export default new Router({
           path: '/literature',
           name: 'literature',
           component: LiteratureComponent,
+        },
+        {
+          path: '/literature/:type',
+          name: 'literature-type',
+          component: LiteratureDetailsComponent,
         },
       ]
     },

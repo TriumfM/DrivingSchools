@@ -29,13 +29,10 @@
     },
     watch: {
       route: function () {
-        if (localStorage.getItem('vuex') === '') {
-          this.$router.push('login')
+        if (this.$route.path === '/') {
+          console.log('asdasd')
         }
-        if (localStorage.getItem('vuex') === null) {
-          localStorage.setItem('vuex', '')
-          this.$router.push('login')
-        }
+
       }
     },
     methods: {

@@ -5,10 +5,10 @@
         <div class="question__header">
           <label class="question__info">{{test.name}} - Pyetja {{question.order_number}}/{{questions.length}}</label>
           <div class="question__time">
-            <label>25:18</label>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32.23 33.81">
-              <path d="M578.8,1222.17a14.53,14.53,0,0,1-28.9,0h-1.43a1.13,1.13,0,0,1-1-1.7l3.19-5.53a1.13,1.13,0,0,1,2,0l3.19,5.53a1.13,1.13,0,0,1-1,1.7h-1.25a10.84,10.84,0,1,0,4.75-10.55,1.9,1.9,0,0,1-2.56-.35,1.83,1.83,0,0,1,.42-2.65,14.37,14.37,0,0,1,6.32-2.37v-2.1h-1.48a.92.92,0,0,1-.92-.92v-.93a.92.92,0,0,1,.92-.92h6.86a.93.93,0,0,1,.93.92v.93a.93.93,0,0,1-.93.92H566.3v2.12A14.54,14.54,0,0,1,578.8,1222.17Zm.47-14-2.78-2.57a.92.92,0,0,0-1.3,0l-.73.8a.91.91,0,0,0,0,1.3l2.78,2.57a.93.93,0,0,0,1.3,0l.74-.8A.92.92,0,0,0,579.27,1208.22Zm-15,3.53v9h8.93A8.76,8.76,0,0,0,564.3,1211.75Z" transform="translate(-547.34 -1201.41)" />
-            </svg>
+            <!--<label>25:18</label>-->
+            <!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32.23 33.81">-->
+              <!--<path d="M578.8,1222.17a14.53,14.53,0,0,1-28.9,0h-1.43a1.13,1.13,0,0,1-1-1.7l3.19-5.53a1.13,1.13,0,0,1,2,0l3.19,5.53a1.13,1.13,0,0,1-1,1.7h-1.25a10.84,10.84,0,1,0,4.75-10.55,1.9,1.9,0,0,1-2.56-.35,1.83,1.83,0,0,1,.42-2.65,14.37,14.37,0,0,1,6.32-2.37v-2.1h-1.48a.92.92,0,0,1-.92-.92v-.93a.92.92,0,0,1,.92-.92h6.86a.93.93,0,0,1,.93.92v.93a.93.93,0,0,1-.93.92H566.3v2.12A14.54,14.54,0,0,1,578.8,1222.17Zm.47-14-2.78-2.57a.92.92,0,0,0-1.3,0l-.73.8a.91.91,0,0,0,0,1.3l2.78,2.57a.93.93,0,0,0,1.3,0l.74-.8A.92.92,0,0,0,579.27,1208.22Zm-15,3.53v9h8.93A8.76,8.76,0,0,0,564.3,1211.75Z" transform="translate(-547.34 -1201.41)" />-->
+            <!--</svg>-->
           </div>
         </div>
         <div class="question__content">
@@ -63,7 +63,7 @@
             <span class="question__">{{question.name}}</span>
             <div class="question__chooses">
               <div class="question__choose" v-for="answer in question.std_answers">
-                <input class="choose__input" type="checkbox" @click="getResults(question.id,answer.id)"/>
+                <input class="choose__input" type="checkbox" v-model="checkAnswers[answer.id]" @click="getResults(question.id,answer.id)"/>
                 <span class="choose__text">{{answer.name}}</span>
               </div>
             </div>
@@ -110,6 +110,7 @@
   export default  {
     data () {
       return {
+        checkAnswers: [],
         showImg: 1,
         test: {},
         question: {},
@@ -117,10 +118,7 @@
         indexQuestion: 0,
         showPreview: false,
         showNext: true,
-        results: {
-          55:[144],
-          56:[134]
-        },
+        results: {},
         answers: [],
         surfQuestion: []
       }
@@ -157,6 +155,8 @@
           })
       },
       changeQuestion: function (status, index) {
+        this.checkAnswers = []
+
         if(status == 'preview') {
           this.indexQuestion--
         }else if(status == 'next') {
@@ -164,7 +164,6 @@
         }else if(status == 'byIndex') {
           this.indexQuestion = index
         }
-
         this.question = this.questions[this.indexQuestion]
       },
       getSurfQuestion: function () {
@@ -173,33 +172,39 @@
         }
       },
       getResults: function (question, answer) {
-        console.log(question + '<->' +answer)
-        var tempData = {};
-        var answers = []
+        var tempData = this.results;
+        var answers = this.results[question]
 
         answers.push(answer)
+        this.checkIfExists(answers)
         tempData[question] = answers
-
-        this.results += tempData;
-        // this.request[] = this.answers.push(answer)
-        console.log(this.results[0])
       },
       createResults: function (questions) {
-        // var tempData = {};
-        // for ( var index in questions ) {
-        //     tempData[questions[index].id] = []
-        // }
-        // this.results = tempData;
+        var tempData = {};
+        for ( var index in questions ) {
+            tempData[questions[index].id] = []
+        }
+        this.results = tempData;
+      },
+      checkIfExists: function (array) {
+        for (var i = 0; i < array.length; i++) {
+          for (var j = i + 1; j < array.length; j++) {
+            if (array[i] === array[j]) {
+              array.pop()
+              array.splice(i, 1)
+              break
+            }
+          }
+        }
       },
       saveResults: function () {
         var vm = this
         Http.post(`/trainings/results/tests/`,vm.results)
           .then(response => {
             console.log(response.data)
-            this.$router.push({name:'test-results', params: {id: response.data}})
+            this.$router.push({name:'test-results', params: {results: response.data, questions: this.questions, testId: this.question.test_id}})
           })
           .catch(e => {
-            // vm.errors = e.response.data.errors
           })
       }
     },

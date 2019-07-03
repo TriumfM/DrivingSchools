@@ -25,6 +25,14 @@
 @import 'admin/admin';
 @import 'admin/questions';
 
+//RESPONSIVE
+@import 'responsive/header';
+@import 'responsive/test';
+@import 'responsive/literature';
+@import 'responsive/video';
+@import 'responsive/mainView';
+
+
 body {
   padding: 0px;
   margin: 0px;

@@ -11,7 +11,7 @@
           </svg>
         </div>
         <div class="video__info">
-          <h3 class="video__label">{{video.title}}</h3>
+          <h5 class="video__label">{{video.title}}</h5>
           <p class="video__descriptions">{{video.description}}</p>
         </div>
         <div class="video__button">
