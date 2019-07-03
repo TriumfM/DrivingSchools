@@ -11,6 +11,10 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+// Messages Add route
+Route::post('/messages', 'HomepageMessagesController@store');
+
 Route::post('/auth/login', 'AuthController@login');
 
 // New Driving School Routes
@@ -24,6 +28,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/literature', 'LiteratureController@index');
     Route::get('/literature/{id}', 'LiteratureController@show');
     Route::get('/literature/type/{type}', 'LiteratureController@getByType');
+
 
      //  Video Student Routes
     Route::get('/videos', 'VideoController@index');
@@ -71,6 +76,12 @@ Route::group(['middleware' => 'auth:api'], function() {
         Route::post('/trainings/tests', 'TrainingTestController@store');
         Route::put('/trainings/tests/{id}','TrainingTestController@update');
         Route::delete('/trainings/tests/{id}', 'TrainingTestController@destroy');
+
+        // Messages Routes
+        Route::get('/messages', 'HomepageMessagesController@index');
+        Route::get('/messages/{id}', 'HomepageMessagesController@show');
+        Route::put('/messages/{id}','HomepageMessagesController@update');
+        Route::delete('/messages/{id}', 'HomepageMessagesController@destroy');
 
     });
 
