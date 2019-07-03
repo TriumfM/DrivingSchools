@@ -17,6 +17,7 @@ import AdminTestsComponent from '@/admin/tests/AdminTestsComponent'
 import AdminVideosComponent from '@/admin/videos/AdminVideosComponent'
 import AdminLiteratureComponent from '@/admin/literature/AdminLiteratureComponent'
 import AdminTestQuestionsComponent from '@/admin/tests/QuestionsTestComponent'
+import AdminMesagesComponent from '@/admin/messages/AdminMesagesComponent'
 
 import WebViewComponent from '@/web-site/WebViewComponent'
 
@@ -97,6 +98,11 @@ export default new Router({
           path: '/admin/literature',
           name: 'admin-literature',
           component: AdminLiteratureComponent,
+        },
+        {
+          path: '/admin/messages',
+          name: 'admin-messages',
+          component: AdminMesagesComponent,
         }
       ]
     },

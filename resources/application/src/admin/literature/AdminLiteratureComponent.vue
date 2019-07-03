@@ -146,7 +146,7 @@
         let vm = this
         vm.errors = {}
         if (data.id !== undefined) {
-          Http.put('/literature/' + data.id, objectToFormData(vm.literature))
+          Http.post('/literature/' + data.id, objectToFormData(vm.literature))
             .then(response => {
               vm.fetchAll()
               vm.errors = {}

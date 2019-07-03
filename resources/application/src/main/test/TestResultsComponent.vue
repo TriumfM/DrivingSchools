@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="results__body">
-      <span :class="{'results__point': true, 'success': true, 'error': false}">{{results.total}} Pikë, Urime keni kaluar</span>
+      <span :class="{'results__point': true, 'success': ( results.total >= results.max*0.9 ), 'error': ( results.total < results.max*0.9 )}">{{results.total}} Pikë, {{( results.total >= results.max*0.9 )?'Urime keni kaluar testin' : 'Nuk keni kaluar testin'}}</span>
       <div class="results__answers">
         <div :class="{'result__box': true, 'success': question.flag == true, 'error':  question.flag == false }" v-for="(question, index) in results.questions" @click="fetchQuestionById(question.id); fetchQuestionResult(question.id)">
           <span class="question__order">{{index + 1}}</span>
@@ -20,7 +20,7 @@
       <div class="test__details no--padding">
         <div class="test__question">
           <div class="question__header">
-            <label class="question__info">Test 01 - Pyetja {{question.order_number}}/{{questions.length}}</label>
+            <label class="question__info">{{test.name}} - Pyetja {{question.order_number}}/{{questions.length}}</label>
             <div class="question__time">
             </div>
           </div>
@@ -82,7 +82,7 @@
             </div>
           </div>
           <div class="question__footer">
-            <span class="point">{{question.points}} Pikë </span>
+            <span class="point" :class="{'error': questionResult.win_points == 0, 'success': questionResult.win_points != 0}">{{question.points}} Pikë </span>
             <div class="control__buttons">
               <button class="button__style button_next-preview" @click="showModal()">
                 <span>Në rregull</span>
@@ -140,7 +140,7 @@
       fetchAll: function () {
         this.results = this.$route.params.results
         this.questions = this.$route.params.questions
-        this.fetchTest(this.$route.params.testId)
+        this.test = this.$route.params.results.test
       },
       fetchQuestionById: function (idQuestion) {
         for(var i = 0; i < this.questions.length; i++) {
