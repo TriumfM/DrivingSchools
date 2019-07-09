@@ -1,0 +1,23 @@
+// max-width: 400px
+@media only screen and (max-width: $screen-xxs-min) {
+  .results {
+    .modal__container {
+      background: rgba(0, 0, 0, 0);
+
+      .modal__body {
+        width: 100%;
+        margin: 0px;
+        background: #f2f2f2;
+        overflow: auto;
+        min-height: 100% !important;
+        border-radius: 0px;
+
+        .test__details {
+          overflow: auto;
+          height: calc(100% - 70px);
+          margin-top: 70px;
+        }
+      }
+    }
+  }
+}

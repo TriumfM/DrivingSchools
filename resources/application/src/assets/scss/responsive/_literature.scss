@@ -55,6 +55,9 @@
             float: left;
             border-radius: 100px;
             background: #F7F7F7;
+            position: relative;
+            width: 35px;
+            height: 35px;
 
             span {
               display: none;
@@ -64,10 +67,14 @@
               padding-left: 0px;
               height: 15px;
               width: 15px;
+              position: absolute;
+              top: 9px;
+              left: 7px;
 
               line {
                 display: none;
               }
+
 
               .cls-1 {
                 stroke: #646a6d;
@@ -83,6 +90,21 @@
           .literature__button {
             .button--show_literature {
               svg {
+                padding-left: 0px;
+                height: 15px;
+                width: 15px;
+                position: absolute;
+                top: 9px;
+                left: 7px;
+
+                line {
+                  display: none;
+                }
+
+                polyline {
+                }
+
+
                 .cls-1 {
                   stroke: $main-blue;
                 }

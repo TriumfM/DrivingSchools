@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <div class="test__details">
+  <div class="test__details">
       <div class="test__question">
         <div class="question__header">
-          <label class="question__info">{{test.name}} - Pyetja {{question.order_number}}/{{questions.length}}</label>
+          <label class="question__info"><name>{{test.name}} - </name> Pyetja {{question.order_number}}/{{questions.length}}</label>
+          <span class="point">{{question.points}} Pikë</span>
           <div class="question__time">
             <!--<label>25:18</label>-->
             <!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32.23 33.81">-->
@@ -62,9 +62,14 @@
           <div class="question__answers">
             <span class="question__">{{question.name}}</span>
             <div class="question__chooses">
-              <div class="question__choose" v-for="answer in question.std_answers">
-                <input class="choose__input" type="checkbox" v-model="checkAnswers[answer.id]" @click="getResults(question.id,answer.id)"/>
-                <span class="choose__text">{{answer.name}}</span>
+              <div class="question__choose" v-for="(answer, index) in question.std_answers">
+                <!--<input class="choose__input" type="checkbox" v-model="checkAnswers[answer.id]" />-->
+                <label class="address-check checkbox cur" v-if="a">
+                  <input type="checkbox" v-model="selected" :value="answer.id">
+                  <span class="checkmark" @click="getResults(question.id,answer.id)"></span>
+                  <span></span>
+                </label>
+                <span class="choose__text" :class="{'main__blue': checkAnswers[index]}">{{answer.name}}</span>
               </div>
             </div>
           </div>
@@ -72,14 +77,14 @@
         <div class="question__footer">
           <span class="point">{{question.points}} Pikë</span>
           <div class="control__buttons">
-            <button class="button__style button_next-preview" @click="changeQuestion('preview', null)" v-if="showPreview">
+            <button class="button__style button_next-preview" @click="changeQuestion('preview', null, question.id)" v-if="showPreview">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.98 14.28">
                 <line class="cls-1" x1="17.48" y1="7.14" x2="1.89" y2="7.14" />
                 <polyline class="cls-1" points="7.14 12.78 1.5 7.14 7.14 1.5" />
               </svg>
               <span>Prapa</span>
             </button>
-            <button class="button__style button_next-preview" @click="changeQuestion('next', null)" v-if="showNext">
+            <button class="button__style button_next-preview" @click="changeQuestion('next', null, question.id)" v-if="showNext">
               <span>Pyetja e rradhës</span>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.54 13.26">
                 <line class="cls-1" x1="1.5" y1="6.63" x2="15.68" y2="6.63" />
@@ -94,25 +99,30 @@
         <button  :class="{
                           'button__paginated-test':true,
                           'active__button': (showImg == n)}"
-                 @click="changePhoto(n); changeQuestion('byIndex', index)"
-                 v-for="(n, index) in questions.length">
-          {{n}}
+                 @click="changePhoto(n); changeQuestion('byIndex', index, n.id)"
+                 v-for="(n, index) in questions">
+          {{index + 1}}
         </button>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
   import {Http} from '@/helpers/http-helper'
+  import PrettyCheck from 'pretty-checkbox-vue/check';
   import alert from '@/services/sweetAlert.js'
 
   export default  {
+    components: {
+      PrettyCheck
+    },
     data () {
       return {
+        a: true,
         checkAnswers: [],
         showImg: 1,
         test: {},
+        selected: [],
         question: {},
         questions: {},
         indexQuestion: 0,
@@ -121,6 +131,11 @@
         results: {},
         answers: [],
         surfQuestion: []
+      }
+    },
+    component: {
+      a: function () {
+        return this.selected[0]
       }
     },
     watch: {
@@ -135,6 +150,29 @@
           this.showPreview = true
           this.showNext = true
         }
+      },
+      results: function () {
+        console.log(this.results)
+      },
+      selected: function () {
+        // var r = 0
+        // if(this.selected.length == 0) {
+        //   this.checkAnswers = []
+        // }
+        // for(var k = 0; k < 3; k++) {
+        //   for(var e = 0; e < this.selected.length; e++) {
+        //     console.log(this.question.std_answers[k].id +"<-"+k +'--'+e +"----->" +this.selected[e])
+        //     if(this.question.std_answers[k].id == this.selected[e]) {
+        //       this.checkAnswers[r] = this.selected[e]
+        //       r++
+        //       k++
+        //     }
+        //     else {
+        //       this.checkAnswers[r] =undefined
+        //       r++
+        //     }
+        //   }
+        // }
       }
     },
     mounted () {
@@ -154,9 +192,7 @@
             this.questions = response.data.questions
           })
       },
-      changeQuestion: function (status, index) {
-        this.checkAnswers = []
-
+      changeQuestion: function (status, index, QuestionId) {
         if(status == 'preview') {
           this.indexQuestion--
         }else if(status == 'next') {
@@ -164,7 +200,16 @@
         }else if(status == 'byIndex') {
           this.indexQuestion = index
         }
+
         this.question = this.questions[this.indexQuestion]
+        if(this.results[this.question.id].length != 0) {
+          for(var i =0; i < this.results[this.question.id].length; i++) {
+            this.selected.push(this.results[this.question.id][i])
+          }
+        } else {
+          this.selected = []
+        }
+
       },
       getSurfQuestion: function () {
         for(var i = this.indexQuestion; i < this.indexQuestion+10; i++){

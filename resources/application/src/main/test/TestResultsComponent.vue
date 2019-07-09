@@ -1,14 +1,17 @@
 <template>
-  <div>
+  <div class="results">
     <div class="results__body">
       <span :class="{'results__point': true, 'success': ( results.total >= results.max*0.9 ), 'error': ( results.total < results.max*0.9 )}">{{results.total}} Pikë, {{( results.total >= results.max*0.9 )?'Urime keni kaluar testin' : 'Nuk keni kaluar testin'}}</span>
       <div class="results__answers">
-        <div :class="{'result__box': true, 'success': question.flag == true, 'error':  question.flag == false }" v-for="(question, index) in results.questions" @click="fetchQuestionById(question.id); fetchQuestionResult(question.id)">
+        <div :class="{'result__box': true, 'success': question.flag == true, 'error':  question.flag == false }"
+             v-for="(question, index) in results.questions"
+             @click="fetchQuestionById(question.id); fetchQuestionResult(question.id)">
+
           <span class="question__order">{{index + 1}}</span>
           <span class="question__result">{{( question.flag == false)? 'Gabim': 'Saktë'}}</span>
         </div>
       </div>
-      <button class="button__style button--again">
+      <button class="button__style button--again" @click="$router.push({name: 'test'})">
         <span>Testohu Përsëri</span>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.54 13.26">
           <line class="cls-1" x1="1.5" y1="6.63" x2="15.68" y2="6.63" />
@@ -20,7 +23,8 @@
       <div class="test__details no--padding">
         <div class="test__question">
           <div class="question__header">
-            <label class="question__info">{{test.name}} - Pyetja {{question.order_number}}/{{questions.length}}</label>
+            <label class="question__info"><name>{{test.name}} - </name> Pyetja {{question.order_number}}/{{questions.length}}</label>
+            <span class="point" :class="{'error': questionResult.win_points == 0, 'success': questionResult.win_points != 0}" >{{question.points}} Pikë</span>
             <div class="question__time">
             </div>
           </div>
@@ -75,8 +79,16 @@
               <span class="question__">{{question.name}}</span>
               <div class="question__chooses">
                 <div class="question__choose" v-for="answer in question.std_answers">
-                  <input class="choose__input" type="checkbox" v-model="selectedOptions[answer.id]" disabled/>
-                  <span class="choose__text error" :class="{'success': correctOption[answer.id]}">{{answer.name}}</span>
+                  <label class="address-check checkbox cursor__default">
+                    <input type="checkbox" v-model="selectedOptions" :value="answer.id" disabled>
+                    <span class="checkmark checkmark_grey"></span>
+                    <span></span>
+                  </label>
+                  <span class="choose__text error" :class="{'success': correctOption[answer.id]}">
+                    {{answer.name}}
+                    <i class="fa fa-times-circle" v-if="!correctOption[answer.id]"></i>
+                    <i class="fa fa-check-circle" v-if="correctOption[answer.id]"></i>
+                  </span>
                 </div>
               </div>
             </div>
@@ -131,9 +143,7 @@
     watch: {
     },
     methods: {
-      a: function () {
 
-      },
       showModal: function () {
         this.show = !this.show
       },
@@ -156,7 +166,7 @@
             this.questionResult = this.results.questions[i]
 
             for(var j = 0; j < this.questionResult.student_answer.length; j++){
-              this.selectedOptions[this.questionResult.student_answer[j]] = true
+              this.selectedOptions.push(this.questionResult.student_answer[j])
 
             }
             for(var i = 0; i < this.questionResult.correct_answers.length; i++) {
