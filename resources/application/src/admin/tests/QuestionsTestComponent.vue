@@ -42,7 +42,7 @@
             <label>Answer {{indexA + 1}}: </label>
             <span>{{answer.name}}</span>
           </div>
-          <div class="table__answers--status"><i class="fa fa-circle" :class="[answer.solution == 'Po' ? 'true__color': 'false__color']"></i> </div>
+          <div class="table__answers--status"><i class="fa fa-circle" :class="[answer.solution == true ? 'true__color': 'false__color']"></i> </div>
           <div class="table__answers--actions"></div>
         </div>
       </div>

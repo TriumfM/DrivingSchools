@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <modal-component :show="show" position="center">
+    <modal-component :show="show" position="center" @close-modal="false">
       <div class="modal__header">
         <h3>{{video.title}}</h3>
         <span v-on:click="showModal()"></span>
