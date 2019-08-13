@@ -1,6 +1,6 @@
 <template>
   <div class="video__body">
-    <h2 class="video__title">Literature</h2>
+    <router-link class="literature__title" :to="{name: 'literature'}">Literature</router-link>
     <div class="videos">
       <div class="video__box" v-for="literatur in literature">
         <div class="video__photo">

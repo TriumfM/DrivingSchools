@@ -6,38 +6,39 @@
       <a :class="{'menu__item': true, 'active': false}" >Kontakti</a>
       <router-link class="menu__item" :to="{name: 'login'}">Kyqu për testim</router-link>
     </header-navigation>
-    <section class="slide__show" v-if="false">
+    <section class="slide__show" v-if="true">
       <slider-component class="slide__show--images"></slider-component>
       <div class="slide__show--content">
         <span class="content__title">Autoshkolla / Driving School</span>
         <span class="content__details">BLENDI</span>
       </div>
     </section>
-    <section class="about__as" v-if="false">
-      <div class="row__app">
-        <div class="about__as--info">
-          <h3 class="info__title">Rreth Nesh</h3>
-          <span class="info__content">
+    <div class="background-gradient">
+      <section class="about__as" v-if="true">
+        <div class="row__app">
+          <div class="about__as--info">
+            <h3 class="info__title">Rreth Nesh</h3>
+            <span class="info__content">
             Auto Shkolla “Blendi” e cila është e licencuar dhe kontrollohet nga Ministria e Infrastruktures, trajnon, edukon dhe aftëson kandidatët e rinj që t’i bëjë ata përherë “vozitës të vetëdijshëm”. Ndryshe nga kurset klasike, Auto Shkolla “Blendi” ofron mundësitë më të fundit të teknologjisë, duke përfshirë programet kompjuterike dhe projektorët që shpjegojnë saktësisht situatat, njohuritë rreth trafikut dhe informatat e rëndësishme dhe të nevojshme për një kandidat..          </span>
-          <!--<div class="info__buttons">-->
+            <!--<div class="info__buttons">-->
             <!--<button></button>-->
-          <!--</div>-->
+            <!--</div>-->
+          </div>
+          <div class="about__as--image">
+            <img class="image__photo" src="@/assets/img/web_img_1.png"/>
+            <span class="image__details">Shenjat e trafikut</span>
+          </div>
         </div>
-        <div class="about__as--image">
-          <img class="image__photo" src="@/assets/img/web_img_1.png"/>
-          <span class="image__details">Shenjat e trafikut</span>
-        </div>
-      </div>
-    </section>
-    <section class="about__as-second" v-if="false">
-      <div class="offer">
+      </section>
+      <section class="about__as-second" v-if="true">
+        <div class="offer">
           <h3 class="offer__title">Çfarë Ofrojm Ne?</h3>
           <span class="offer__info">????</span>
         </div>
-      <!--777-->
-      <div class="bottom__line"></div>
-      <!---->
-      <div class="about__as-boxes">
+        <!--777-->
+        <div class="bottom__line"></div>
+        <!---->
+        <div class="about__as-boxes">
           <div class="info__boxes">
             <div class="box__logo">
               <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65.45 49.83">
@@ -79,262 +80,263 @@
             <sapn class="box__details">Instruktoret e licencuar nga Ministria e Infrastruktures te cilet aftesojne kandidatet nga pjesa praktike jane me nje pervoj shume vjeqare ne kete lami dhe kryejne punen e tyre me plot pergjegjesi morale dhe profesionale.</sapn>
           </div>
         </div>
-    </section>
-    <section class="category" v-if="false">
-      <div class="row__app">
-        <div class="category__image">
-          <img class="category__image-button" src="@/assets/img/test.png"/>
-        </div>
-        <div class="category__info">
-          <div class="category__info_entry">
-            <h4 class="info__title">Kategoritë që Ofrojm</h4>
-            <span class="info__text">???</span>
+      </section>
+      <section class="category" v-if="true">
+        <div class="row__app">
+          <div class="category__image">
+            <img class="category__image-button" src="@/assets/img/test.png"/>
           </div>
-          <div class="row__app info__boxes">
-            <div class="box">
-              <div class="box__logo">A</div>
-              <h6 class="box__name">Kategoria A</h6>
-              <div class="box__details">
-                <ul>
-                  <li>???</li>
-                  <li>???</li>
-                  <li>???</li>
-                  <li>???</li>
-                </ul>
-              </div><!--<button class="box__box"></button>-->
+          <div class="category__info">
+            <div class="category__info_entry">
+              <h4 class="info__title">Kategoritë që Ofrojm</h4>
+              <span class="info__text">???</span>
             </div>
-            <div class="box">
-              <div class="box__logo">B</div>
-              <h6 class="box__name">Kategoria B</h6>
-              <div class="box__details">
-                <ul>
-                  <li>???</li>
-                  <li>???</li>
-                  <li>???</li>
-                  <li>???</li>
-                </ul>
-              </div><!--<button class="box__box"></button>-->
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="gallery" v-if="false">
-      <div class="gallery__header">
-        <span>Galeria</span>
-        <div class="gallery__icons">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
-      <div class="gallery__body">
-        <i></i>
-        <div class="gallery__body-images">
-          <img src=""/>
-          <img src=""/>
-          <img src=""/>
-          <img src=""/>
-          <img src=""/>
-        </div>
-        <i></i>
-      </div>
-    </section>
-    <section class="team" v-if="false">
-      <div class="team__header">
-        <h4 class="team__header--title">Ekipi Jonë Profesional</h4>
-        <span class="team__header--details">???</span>
-      </div>
-      <!---->
-      <div class="bottom__line"></div>
-      <!---->
-      <div class="team__members">
-        <div class="box_member">
-          <img class="box__photo" src="@/assets/img/mehdi1.jpg"/>
-          <div class="box_details">
-            <span class="box__name">Muhamedi Parashumti</span>
-            <span class="box__occupation">pozita???</span>
-            <div class="box__links">
-              <i class="box_icon fa fa-facebook-square"></i>
-              <i class="box_icon fa fa-twitter"></i>
-              <i class="box_icon fa fa-linkedin-square"></i>
+            <div class="row__app info__boxes">
+              <div class="box">
+                <div class="box__logo">A</div>
+                <h6 class="box__name">Kategoria A</h6>
+                <div class="box__details">
+                  <ul>
+                    <li>???</li>
+                    <li>???</li>
+                    <li>???</li>
+                    <li>???</li>
+                  </ul>
+                </div><!--<button class="box__box"></button>-->
+              </div>
+              <div class="box">
+                <div class="box__logo">B</div>
+                <h6 class="box__name">Kategoria B</h6>
+                <div class="box__details">
+                  <ul>
+                    <li>???</li>
+                    <li>???</li>
+                    <li>???</li>
+                    <li>???</li>
+                  </ul>
+                </div><!--<button class="box__box"></button>-->
+              </div>
             </div>
           </div>
         </div>
-        <div class="box_member">
-          <img class="box__photo" src="@/assets/img/blendi1.jpg"/>
-          <div class="box_details">
-            <span class="box__name">Blendi Parashumti</span>
-            <span class="box__occupation">pozita???</span>
-            <div class="box__links">
-              <i class="box_icon fa fa-facebook-square"></i>
-              <i class="box_icon fa fa-twitter"></i>
-              <i class="box_icon fa fa-linkedin-square"></i>
+      </section>
+      <section class="gallery" v-if="false">
+        <div class="gallery__header">
+          <span>Galeria</span>
+          <div class="gallery__icons">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+        <div class="gallery__body">
+          <i></i>
+          <div class="gallery__body-images">
+            <img src=""/>
+            <img src=""/>
+            <img src=""/>
+            <img src=""/>
+            <img src=""/>
+          </div>
+          <i></i>
+        </div>
+      </section>
+      <section class="team" v-if="true">
+        <div class="team__header">
+          <h4 class="team__header--title">Ekipi Jonë Profesional</h4>
+          <span class="team__header--details">???</span>
+        </div>
+        <!---->
+        <div class="bottom__line"></div>
+        <!---->
+        <div class="team__members">
+          <div class="box_member">
+            <img class="box__photo" src="@/assets/img/mehdi1.jpg"/>
+            <div class="box_details">
+              <span class="box__name">Muhamedi Parashumti</span>
+              <span class="box__occupation">pozita???</span>
+              <div class="box__links">
+                <i class="box_icon fa fa-facebook-square"></i>
+                <i class="box_icon fa fa-twitter"></i>
+                <i class="box_icon fa fa-linkedin-square"></i>
+              </div>
+            </div>
+          </div>
+          <div class="box_member">
+            <img class="box__photo" src="@/assets/img/blendi1.jpg"/>
+            <div class="box_details">
+              <span class="box__name">Blendi Parashumti</span>
+              <span class="box__occupation">pozita???</span>
+              <div class="box__links">
+                <i class="box_icon fa fa-facebook-square"></i>
+                <i class="box_icon fa fa-twitter"></i>
+                <i class="box_icon fa fa-linkedin-square"></i>
+              </div>
+            </div>
+          </div>
+          <div class="box_member">
+            <img class="box__photo" src="@/assets/img/albesa1.jpg"/>
+            <div class="box_details">
+              <span class="box__name">Albesa Parashumti</span>
+              <span class="box__occupation">pozita???</span>
+              <div class="box__links">
+                <i class="box_icon fa fa-facebook-square"></i>
+                <i class="box_icon fa fa-twitter"></i>
+                <i class="box_icon fa fa-linkedin-square"></i>
+              </div>
+            </div>
+          </div>
+          <div class="box_member">
+            <img class="box__photo" src="@/assets/img/bashkim1.jpg"/>
+            <div class="box_details">
+              <span class="box__name">Bashkim Radogoshi</span>
+              <span class="box__occupation">pozita???</span>
+              <div class="box__links">
+                <i class="box_icon fa fa-facebook-square"></i>
+                <i class="box_icon fa fa-twitter"></i>
+                <i class="box_icon fa fa-linkedin-square"></i>
+              </div>
+            </div>
+          </div>
+          <div class="box_member">
+            <img class="box__photo" src="@/assets/img/lindita1.jpg"/>
+            <div class="box_details">
+              <span class="box__name">Lindita Thaqi</span>
+              <span class="box__occupation">pozita???</span>
+              <div class="box__links">
+                <i class="box_icon fa fa-facebook-square"></i>
+                <i class="box_icon fa fa-twitter"></i>
+                <i class="box_icon fa fa-linkedin-square"></i>
+              </div>
+            </div>
+          </div>
+          <div class="box_member">
+            <img class="box__photo" src="@/assets/img/adrian1.jpg"/>
+            <div class="box_details">
+              <span class="box__name">Adrian Bunjaku</span>
+              <span class="box__occupation">pozita???</span>
+              <div class="box__links">
+                <i class="box_icon fa fa-facebook-square"></i>
+                <i class="box_icon fa fa-twitter"></i>
+                <i class="box_icon fa fa-linkedin-square"></i>
+              </div>
+            </div>
+          </div>
+          <div class="box_member">
+            <img class="box__photo" src="@/assets/img/blerina1.jpg"/>
+            <div class="box_details">
+              <span class="box__name">Blerina Zefaj</span>
+              <span class="box__occupation">pozita???</span>
+              <div class="box__links">
+                <i class="box_icon fa fa-facebook-square"></i>
+                <i class="box_icon fa fa-twitter"></i>
+                <i class="box_icon fa fa-linkedin-square"></i>
+              </div>
+            </div>
+          </div>
+          <div class="box_member">
+            <img class="box__photo" src="@/assets/img/besart1.jpg"/>
+            <div class="box_details">
+              <span class="box__name">Besart Pruthi</span>
+              <span class="box__occupation">pozita???</span>
+              <div class="box__links">
+                <i class="box_icon fa fa-facebook-square"></i>
+                <i class="box_icon fa fa-twitter"></i>
+                <i class="box_icon fa fa-linkedin-square"></i>
+              </div>
+            </div>
+          </div>
+          <div class="box_member">
+            <img class="box__photo" src="@/assets/img/burim1.jpg"/>
+            <div class="box_details">
+              <span class="box__name">Burim Kepuska</span>
+              <span class="box__occupation">pozita???</span>
+              <div class="box__links">
+                <i class="box_icon fa fa-facebook-square"></i>
+                <i class="box_icon fa fa-twitter"></i>
+                <i class="box_icon fa fa-linkedin-square"></i>
+              </div>
+            </div>
+          </div>
+          <div class="box_member">
+            <img class="box__photo" src="@/assets/img/vesa1.jpg"/>
+            <div class="box_details">
+              <span class="box__name">Vesa Lajqi</span>
+              <span class="box__occupation">pozita???</span>
+              <div class="box__links">
+                <i class="box_icon fa fa-facebook-square"></i>
+                <i class="box_icon fa fa-twitter"></i>
+                <i class="box_icon fa fa-linkedin-square"></i>
+              </div>
             </div>
           </div>
         </div>
-        <div class="box_member">
-          <img class="box__photo" src="@/assets/img/albesa1.jpg"/>
-          <div class="box_details">
-            <span class="box__name">Albesa Parashumti</span>
-            <span class="box__occupation">pozita???</span>
-            <div class="box__links">
-              <i class="box_icon fa fa-facebook-square"></i>
-              <i class="box_icon fa fa-twitter"></i>
-              <i class="box_icon fa fa-linkedin-square"></i>
+      </section>
+      <section class="contact" v-if="true">
+        <div class="row__app">
+          <div class="contact__info">
+            <h3 class="info__title">Na Kontaktoni</h3>
+            <div class="info__form">
+              <div class="input">
+                <label class="input__name">Emri</label>
+                <input class="input__value" v-model="message.name"/>
+                <span class="input__error" v-if="errors.name">{{ errors.name[0] }}</span>
+              </div>
+              <div class="input">
+                <label class="input__name">Emaili</label>
+                <input class="input__value" v-model="message.email"/>
+                <span class="input__error" v-if="errors.email">{{ errors.email[0] }}</span>
+              </div>
+              <div class="input">
+                <label class="input__name">Mesazhi</label>
+                <textarea class="input__value textarea--input" v-model="message.message_text"></textarea>
+                <span class="input__error" v-if="errors.message_text">{{ errors.message_text[0] }}</span>
+              </div>
+            </div>
+            <button class="button__style button-send" @click="save()">Dergoje<img src="@/assets/img/arrow_right.svg"/></button>
+          </div>
+          <div class="map">
+            <div class="map__view">
+              <GmapMap style=" width: 500px; height: 350px;" :zoom="15" :center="center" :options="mapOptions">
+                <GmapMarker :position="{lat: 42.3724984, lng:20.4387721}"/>
+              </GmapMap>
+            </div>
+            <div class="map__addresses">
+              <div class="map__address">
+                <svg class="map__address--logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.28 25.42">
+                  <path class="cls-1" d="M61.93,53.11a8.6,8.6,0,0,0-8.65,8.55v.06c0,1.92,1.11,4.82,3.54,9.17,1.64,2.94,3.28,5.43,3.37,5.56l1.2,1.79a.61.61,0,0,0,.54.28.56.56,0,0,0,.53-.28l1.2-1.79c.07-.13,1.71-2.59,3.37-5.56,2.4-4.35,3.54-7.25,3.54-9.17A8.63,8.63,0,0,0,61.93,53.11Zm0,12a3.49,3.49,0,1,1,3.48-3.48,3.48,3.48,0,0,1-3.48,3.48Z" transform="translate(-53.28 -53.11)" />
+                </svg>
+                <span class="map__address--value">Rruga Migjeni/Gjakovë/Kosovë</span>
+              </div>
+              <div class="map__address">
+                <svg class="map__address--logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.19 24.21">
+                  <path class="cls-1" d="M303.84,424.82a1.73,1.73,0,0,0-2.45-.15.71.71,0,0,0-.15.15l-1.79,1.79a.35.35,0,0,1-.49.09c-.4-.21-.81-.38-1.18-.62A18.32,18.32,0,0,1,293.3,422a10.56,10.56,0,0,1-1.61-2.6.38.38,0,0,1,.09-.48c.6-.57,1.18-1.17,1.74-1.73a1.74,1.74,0,0,0,.15-2.45l-.15-.15-1.34-1.43c-.48-.47-.95-1-1.45-1.45a1.74,1.74,0,0,0-2.45-.1l-.1.1c-.61.6-1.19,1.22-1.81,1.83a3,3,0,0,0-.91,2,8.47,8.47,0,0,0,.64,3.59,21.81,21.81,0,0,0,3.88,6.46,24,24,0,0,0,7.93,6.2,11.52,11.52,0,0,0,4.4,1.25,3.28,3.28,0,0,0,2.77-1.05c.51-.58,1.09-1.1,1.64-1.65a1.74,1.74,0,0,0,.15-2.45l-.15-.15c-.94-1-1.92-1.93-2.88-2.89" transform="translate(-285.45 -408.82)" />
+                  <path class="cls-1" d="M302.87,420.81l1.87-.33a8.36,8.36,0,0,0-7.06-6.84l-.26,1.87a6.41,6.41,0,0,1,5.45,5.29" transform="translate(-285.45 -408.82)" />
+                  <path class="cls-1" d="M305.78,412.73a13.74,13.74,0,0,0-7.8-3.91l-.32,1.86a11.94,11.94,0,0,1,10.12,9.8l1.86-.32a13.89,13.89,0,0,0-3.86-7.43" transform="translate(-285.45 -408.82)" />
+                </svg>
+                <span class="map__address--value">+383 49-503-503 & +383 45-503-503</span>
+              </div>
+              <div class="map__address">
+                <svg class="map__address--logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.24 18.44">
+                  <title>Untitled-1</title>
+                  <path class="cls-1" d="M70.07,49.81H51.77a3,3,0,0,0-3,3h0V65.29a3,3,0,0,0,3,3h18.3a3,3,0,0,0,3-3h0V52.78a3,3,0,0,0-3-3Zm1.61,15.48a1.61,1.61,0,0,1-1.61,1.61H51.77a1.61,1.61,0,0,1-1.61-1.61V52.78a1.61,1.61,0,0,1,1.61-1.61h18.3a1.61,1.61,0,0,1,1.61,1.61Z" transform="translate(-48.8 -49.81)" />
+                  <path class="cls-1" d="M64.08,58.88,70,53.57a.68.68,0,0,0,.06-1h0a.69.69,0,0,0-1,0l-8.17,7.33-1.6-1.44h0l-.1-.1-6.51-5.84a.68.68,0,0,0-.9,1l6,5.36-6,5.58a.7.7,0,0,0,0,1,.74.74,0,0,0,.51.2.66.66,0,0,0,.46-.17l6.06-5.68,1.64,1.48a.7.7,0,0,0,.46.16.66.66,0,0,0,.44-.17l1.69-1.51,6,5.72a.7.7,0,0,0,.47.19.69.69,0,0,0,.5-1.17Z" transform="translate(-48.8 -49.81)" />
+                </svg>
+                <span class="map__address--value">blendiautoshkolla@gmail.com</span>
+              </div>
             </div>
           </div>
         </div>
-        <div class="box_member">
-          <img class="box__photo" src="@/assets/img/bashkim1.jpg"/>
-          <div class="box_details">
-            <span class="box__name">Bashkim Radogoshi</span>
-            <span class="box__occupation">pozita???</span>
-            <div class="box__links">
-              <i class="box_icon fa fa-facebook-square"></i>
-              <i class="box_icon fa fa-twitter"></i>
-              <i class="box_icon fa fa-linkedin-square"></i>
-            </div>
-          </div>
-        </div>
-        <div class="box_member">
-          <img class="box__photo" src="@/assets/img/lindita1.jpg"/>
-          <div class="box_details">
-            <span class="box__name">Lindita Thaqi</span>
-            <span class="box__occupation">pozita???</span>
-            <div class="box__links">
-              <i class="box_icon fa fa-facebook-square"></i>
-              <i class="box_icon fa fa-twitter"></i>
-              <i class="box_icon fa fa-linkedin-square"></i>
-            </div>
-          </div>
-        </div>
-        <div class="box_member">
-          <img class="box__photo" src="@/assets/img/adrian1.jpg"/>
-          <div class="box_details">
-            <span class="box__name">Adrian Bunjaku</span>
-            <span class="box__occupation">pozita???</span>
-            <div class="box__links">
-              <i class="box_icon fa fa-facebook-square"></i>
-              <i class="box_icon fa fa-twitter"></i>
-              <i class="box_icon fa fa-linkedin-square"></i>
-            </div>
-          </div>
-        </div>
-        <div class="box_member">
-          <img class="box__photo" src="@/assets/img/blerina1.jpg"/>
-          <div class="box_details">
-            <span class="box__name">Blerina Zefaj</span>
-            <span class="box__occupation">pozita???</span>
-            <div class="box__links">
-              <i class="box_icon fa fa-facebook-square"></i>
-              <i class="box_icon fa fa-twitter"></i>
-              <i class="box_icon fa fa-linkedin-square"></i>
-            </div>
-          </div>
-        </div>
-        <div class="box_member">
-          <img class="box__photo" src="@/assets/img/besart1.jpg"/>
-          <div class="box_details">
-            <span class="box__name">Besart Pruthi</span>
-            <span class="box__occupation">pozita???</span>
-            <div class="box__links">
-              <i class="box_icon fa fa-facebook-square"></i>
-              <i class="box_icon fa fa-twitter"></i>
-              <i class="box_icon fa fa-linkedin-square"></i>
-            </div>
-          </div>
-        </div>
-        <div class="box_member">
-          <img class="box__photo" src="@/assets/img/burim1.jpg"/>
-          <div class="box_details">
-            <span class="box__name">Burim Kepuska</span>
-            <span class="box__occupation">pozita???</span>
-            <div class="box__links">
-              <i class="box_icon fa fa-facebook-square"></i>
-              <i class="box_icon fa fa-twitter"></i>
-              <i class="box_icon fa fa-linkedin-square"></i>
-            </div>
-          </div>
-        </div>
-        <div class="box_member">
-          <img class="box__photo" src="@/assets/img/vesa1.jpg"/>
-          <div class="box_details">
-            <span class="box__name">Vesa Lajqi</span>
-            <span class="box__occupation">pozita???</span>
-            <div class="box__links">
-              <i class="box_icon fa fa-facebook-square"></i>
-              <i class="box_icon fa fa-twitter"></i>
-              <i class="box_icon fa fa-linkedin-square"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="contact" v-if="true">
-      <div class="row__app">
-        <div class="contact__info">
-          <h3 class="info__title">Na Kontaktoni</h3>
-          <div class="info__form">
-            <div class="input">
-              <label class="input__name">Emri</label>
-              <input class="input__value" v-model="message.name"/>
-              <span class="input__error" v-if="errors.name">{{ errors.name[0] }}</span>
-            </div>
-            <div class="input">
-              <label class="input__name">Emaili</label>
-              <input class="input__value" v-model="message.email"/>
-              <span class="input__error" v-if="errors.email">{{ errors.email[0] }}</span>
-            </div>
-            <div class="input">
-              <label class="input__name">Mesazhi</label>
-              <textarea class="input__value textarea--input" v-model="message.message_text"></textarea>
-              <span class="input__error" v-if="errors.message_text">{{ errors.message_text[0] }}</span>
-            </div>
-          </div>
-          <button class="button__style button-send" @click="save()">Dergoje<img src="@/assets/img/arrow_right.svg"/></button>
-        </div>
-        <div class="map">
-          <div class="map__view">
-            <GmapMap style=" width: 500px; height: 350px;" :zoom="15" :center="center">
-              <GmapMarker :position="{lat: 42.3724984, lng:20.4387721}"/>
-            </GmapMap>
-          </div>
-          <div class="map__addresses">
-            <div class="map__address">
-              <svg class="map__address--logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.28 25.42">
-                <path class="cls-1" d="M61.93,53.11a8.6,8.6,0,0,0-8.65,8.55v.06c0,1.92,1.11,4.82,3.54,9.17,1.64,2.94,3.28,5.43,3.37,5.56l1.2,1.79a.61.61,0,0,0,.54.28.56.56,0,0,0,.53-.28l1.2-1.79c.07-.13,1.71-2.59,3.37-5.56,2.4-4.35,3.54-7.25,3.54-9.17A8.63,8.63,0,0,0,61.93,53.11Zm0,12a3.49,3.49,0,1,1,3.48-3.48,3.48,3.48,0,0,1-3.48,3.48Z" transform="translate(-53.28 -53.11)" />
-              </svg>
-              <span class="map__address--value">Rruga Migjeni/Gjakovë/Kosovë</span>
-            </div>
-            <div class="map__address">
-              <svg class="map__address--logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.19 24.21">
-                <path class="cls-1" d="M303.84,424.82a1.73,1.73,0,0,0-2.45-.15.71.71,0,0,0-.15.15l-1.79,1.79a.35.35,0,0,1-.49.09c-.4-.21-.81-.38-1.18-.62A18.32,18.32,0,0,1,293.3,422a10.56,10.56,0,0,1-1.61-2.6.38.38,0,0,1,.09-.48c.6-.57,1.18-1.17,1.74-1.73a1.74,1.74,0,0,0,.15-2.45l-.15-.15-1.34-1.43c-.48-.47-.95-1-1.45-1.45a1.74,1.74,0,0,0-2.45-.1l-.1.1c-.61.6-1.19,1.22-1.81,1.83a3,3,0,0,0-.91,2,8.47,8.47,0,0,0,.64,3.59,21.81,21.81,0,0,0,3.88,6.46,24,24,0,0,0,7.93,6.2,11.52,11.52,0,0,0,4.4,1.25,3.28,3.28,0,0,0,2.77-1.05c.51-.58,1.09-1.1,1.64-1.65a1.74,1.74,0,0,0,.15-2.45l-.15-.15c-.94-1-1.92-1.93-2.88-2.89" transform="translate(-285.45 -408.82)" />
-                <path class="cls-1" d="M302.87,420.81l1.87-.33a8.36,8.36,0,0,0-7.06-6.84l-.26,1.87a6.41,6.41,0,0,1,5.45,5.29" transform="translate(-285.45 -408.82)" />
-                <path class="cls-1" d="M305.78,412.73a13.74,13.74,0,0,0-7.8-3.91l-.32,1.86a11.94,11.94,0,0,1,10.12,9.8l1.86-.32a13.89,13.89,0,0,0-3.86-7.43" transform="translate(-285.45 -408.82)" />
-              </svg>
-              <span class="map__address--value">+383 49-503-503 & +383 45-503-503</span>
-            </div>
-            <div class="map__address">
-              <svg class="map__address--logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.24 18.44">
-                <title>Untitled-1</title>
-                <path class="cls-1" d="M70.07,49.81H51.77a3,3,0,0,0-3,3h0V65.29a3,3,0,0,0,3,3h18.3a3,3,0,0,0,3-3h0V52.78a3,3,0,0,0-3-3Zm1.61,15.48a1.61,1.61,0,0,1-1.61,1.61H51.77a1.61,1.61,0,0,1-1.61-1.61V52.78a1.61,1.61,0,0,1,1.61-1.61h18.3a1.61,1.61,0,0,1,1.61,1.61Z" transform="translate(-48.8 -49.81)" />
-                <path class="cls-1" d="M64.08,58.88,70,53.57a.68.68,0,0,0,.06-1h0a.69.69,0,0,0-1,0l-8.17,7.33-1.6-1.44h0l-.1-.1-6.51-5.84a.68.68,0,0,0-.9,1l6,5.36-6,5.58a.7.7,0,0,0,0,1,.74.74,0,0,0,.51.2.66.66,0,0,0,.46-.17l6.06-5.68,1.64,1.48a.7.7,0,0,0,.46.16.66.66,0,0,0,.44-.17l1.69-1.51,6,5.72a.7.7,0,0,0,.47.19.69.69,0,0,0,.5-1.17Z" transform="translate(-48.8 -49.81)" />
-              </svg>
-              <span class="map__address--value">blendiautoshkolla@gmail.com</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="marketing" v-if="false">
-      <h1>Marketing</h1>
-    </section>
+      </section>
+      <section class="marketing" v-if="false">
+        <h1>Marketing</h1>
+      </section>
+    </div>
     <section class="footer">
       <div class="company">
         <img class="company__logo" src=""/>
-        <span class="box__copy"></span>
+        <span class="box__copy">Copyrights © 2019 ASH BLENDI</span>
         <span class="box__content"></span>
         <div class="box__links">
           <div></div>
@@ -365,6 +367,9 @@ export default {
       center:{
         lat: 42.3724984,
         lng:20.4387721
+      },
+      mapOptions: {
+        disableDefaultUI: true
       },
       message: {},
       errors: {}

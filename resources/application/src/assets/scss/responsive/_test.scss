@@ -1,11 +1,11 @@
-// max-width: 400px
-@media only screen and (max-width: $screen-xxs-min) {
+// max-width: 1024px
+@media only screen and (max-width: $screen-md) {
   .test__body {
     padding: 0px;
 
     .test__box {
-      width: calc(50% - 16px);
-      height: 200px;
+      width: calc(33% - 16px);
+      height: 220px;
 
       .test__info {
         padding: 20px 5px 0px;
@@ -22,3 +22,14 @@
     }
   }
 }
+
+// max-width: 600px
+@media only screen and (max-width: $screen-xxs-min) {
+  .test__body {
+
+    .test__box {
+      width: calc(50% - 16px);
+    }
+  }
+}
+

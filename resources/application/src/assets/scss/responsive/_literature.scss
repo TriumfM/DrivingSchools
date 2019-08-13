@@ -1,5 +1,5 @@
-// max-width: 400px
-@media only screen and (max-width: $screen-xxs-min) {
+// max-width: 1024px
+@media only screen and (max-width: $screen-md) {
   .literature__body {
     .literature {
       padding: 0px;
@@ -17,6 +17,7 @@
           margin: 0px;
           border-bottom: none;
           display: flex;
+          height: auto;
 
           .literature__photo {
             margin-left: 10px;
@@ -116,6 +117,13 @@
     }
   }
 }
+
+@media only screen and (max-width: $screen-xxs-min) {
+  .literature__title {
+    margin-top: 10px;
+  }
+}
+
 
 
 

@@ -8,6 +8,10 @@
     position: relative;
     color: white;
 
+    .slide__show--images {
+      height: 600px;
+    }
+
     .slide__show--content {
       position: absolute;
       top: 300px;
@@ -461,6 +465,22 @@
     height: 150px;
     background-color: $main-blue;
   }
+
+  .footer {
+    height: 80px;
+    float: left;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+  }
+}
+
+.background-gradient {
+  background-image: linear-gradient(rgb(244, 248, 255), white, rgb(244, 248, 255));
+  float: left;
+  width: 100%;
 }
 
 .bottom__line {
