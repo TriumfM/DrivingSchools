@@ -47,7 +47,7 @@
         this.getUrl()
         const files = e.dataTransfer.files
         Array.from(files).forEach(file => this.addImage(file))
-        if (val.length === 0) {
+        if (val.length == 0) {
           this.fileCounter = []
         }
       }
@@ -110,7 +110,7 @@
         }
       },
       deleteImage: function (param) {
-        if (param !== undefined) {
+        if (param != undefined) {
           if (confirm("A jeni i/e sigurte qe doni ta fshini kete foto")) {
             Http.delete('/images/' + param).then((response) => {
               this.$emit('image-deleted');

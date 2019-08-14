@@ -113,7 +113,7 @@
       save: function (data) {
         let vm = this
         vm.errors = {}
-        if (data.id !== undefined) {
+        if (data.id != undefined) {
           Http.put('/tests/' + data.id, vm.test)
             .then(response => {
               vm.fetchAll()

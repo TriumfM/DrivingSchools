@@ -145,7 +145,7 @@
       save: function (data) {
         let vm = this
         vm.errors = {}
-        if (data.id !== undefined) {
+        if (data.id != undefined) {
           Http.post('/literature/' + data.id, objectToFormData(vm.literature))
             .then(response => {
               vm.fetchAll()

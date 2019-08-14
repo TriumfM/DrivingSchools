@@ -9,7 +9,7 @@
     <div class="table__main table_classic">
       <div class="table__row" v-for="(question, index) in questions">
         <div class='table__th--data'>
-          <div class="table__th">Question {{index + 1}}: </div>
+          <div class="table__th">Question {{question.order_number}}: </div>
           <div class='table__td table_td--click'>{{question.name}}</div>
         </div>
         <div class="table__td--action">
@@ -158,7 +158,7 @@
       },
 
       showActions: function (indexRow) {
-        if (this.rowIndex === indexRow) {
+        if (this.rowIndex == indexRow) {
           this.rowIndex = -1
         } else {
           this.rowIndex = indexRow
@@ -187,7 +187,7 @@
         data.test_id = this.$route.params.testId
         vm.errors = {}
 
-        if (data.id !== undefined) {
+        if (data.id != undefined) {
           Http.post(`/trainings/questions/` + data.id, objectToFormData(vm.question))
             .then(response => {
               vm.fetchAllQuestions()
@@ -242,6 +242,7 @@
           .then(response => {
             vm.errorsAnswers = {}
             alert.CaseInfo('success', 'Success!', '', 1000)
+            vm.showAnswers = false
           })
           .catch(e => {
             vm.errorsAnswers = e.response.data.errors

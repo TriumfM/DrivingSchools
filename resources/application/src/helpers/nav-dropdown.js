@@ -27,7 +27,7 @@ export default {
 
     $(document).on('click', function(event){
       var $trigger = $('.nav_icon');
-      if($trigger !== event.target && !$trigger.has(event.target).length){
+      if($trigger != event.target && !$trigger.has(event.target).length){
         if($(window).width()<400){
           $('.menu__items').slideUp("");
         }

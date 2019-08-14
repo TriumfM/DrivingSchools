@@ -39,12 +39,12 @@
     watch: {
       gallery: function (val) {
 //        console.log('From Gallery ' + this.uploadFlag)
-        if (this.uploadFlag === false) {
+        if (this.uploadFlag == false) {
           this.medias = [];
         }
       },
       medias: function (val) {
-        if (val.length === 0) {
+        if (val.length == 0) {
           this.fileCounter = []
         }
       }
@@ -96,7 +96,7 @@
         }
       },
       deleteImage: function (param) {
-        if (param !== undefined) {
+        if (param != undefined) {
           if (confirm("A jeni i/e sigurte qe doni ta fshini kete foto")) {
             Http.delete('/images/' + param).then((response) => {
               this.$emit('image-deleted');

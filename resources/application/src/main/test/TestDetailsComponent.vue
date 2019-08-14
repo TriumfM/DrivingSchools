@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="question__content">
-          <div class="question__photo height--100">
+          <div class="question__photo">
             <img :src="question.photo_url" class="photo__classic" v-if="question.photo_url"/>
             <!--<img src="@/assets/img/shenja1.svg" class="photo__signs" v-if="showImg == 2"/>-->
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 227.21 47.74" v-if="question.photo_url == null">
@@ -234,7 +234,7 @@
       checkIfExists: function (array) {
         for (var i = 0; i < array.length; i++) {
           for (var j = i + 1; j < array.length; j++) {
-            if (array[i] === array[j]) {
+            if (array[i] == array[j]) {
               array.pop()
               array.splice(i, 1)
               break

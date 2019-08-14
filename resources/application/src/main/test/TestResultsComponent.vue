@@ -169,8 +169,8 @@
               this.selectedOptions.push(this.questionResult.student_answer[j])
 
             }
-            for(var i = 0; i < this.questionResult.correct_answers.length; i++) {
-              this.correctOption[this.questionResult.correct_answers[i]] = true
+            for(var k = 0; k < this.questionResult.correct_answers.length; k++) {
+              this.correctOption[this.questionResult.correct_answers[k]] = true
             }
           }
         }

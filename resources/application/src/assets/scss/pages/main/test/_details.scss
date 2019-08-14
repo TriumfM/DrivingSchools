@@ -3,9 +3,11 @@
   width: 100%;
   padding: 50px 0px;
   float: left;
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
+  height: calc(100% - 90px) !important;
+
 
   .test__question {
     background-color: #fff;
@@ -13,6 +15,7 @@
     border-radius: 20px;
     float: left;
     width: 100%;
+    margin-bottom: 20px;
 
     .question__header {
       float: left;
@@ -100,28 +103,31 @@
       .question__answers {
         width: calc(100% - 440px);
         float: left;
-        height: 350px;
+        min-height: 350px;
         padding: 10px 0px;
+        min-height: 350px;
 
         .question__ {
           font-size: 21px;
           font-family: OpenSansBold;
           float: left;
-          height: 150px;
+          min-height: 150px;
           min-width: 100%;
+          padding-bottom: 10px;
         }
 
         .question__chooses {
           width: 100%;
           float: left;
-          height: calc(100% - 150px);
+          min-height: 200px;
           font-family: OpenSansSemibold;
 
           .question__choose {
             word-wrap: break-word;
+            padding-bottom: 10px;
             width: 100%;
             float: left;
-            height: 33.3%;
+            min-height: 66.66px;
 
             .choose__input {
               label {

@@ -1,15 +1,15 @@
 'use strict';
 
 function isUndefined(value) {
-  return value === undefined;
+  return value == undefined;
 }
 
 function isNull(value) {
-  return value === null;
+  return value == null;
 }
 
 function isObject(value) {
-  return value === Object(value);
+  return value == Object(value);
 }
 
 function isArray(value) {
@@ -23,18 +23,18 @@ function isDate(value) {
 function isBlob(value) {
   return (
     value &&
-    typeof value.size === 'number' &&
-    typeof value.type === 'string' &&
-    typeof value.slice === 'function'
+    typeof value.size == 'number' &&
+    typeof value.type == 'string' &&
+    typeof value.slice == 'function'
   );
 }
 
 function isFile(value) {
   return (
     isBlob(value) &&
-    (typeof value.lastModifiedDate === 'object' ||
-      typeof value.lastModified === 'number') &&
-    typeof value.name === 'string'
+    (typeof value.lastModifiedDate == 'object' ||
+      typeof value.lastModified == 'number') &&
+    typeof value.name == 'string'
   );
 }
 
@@ -79,7 +79,7 @@ export default function objectToFormData(obj, cfg, fd, pre) {
       var value = obj[prop];
 
       if (isArray(value)) {
-        while (prop.length > 2 && prop.lastIndexOf('[]') === prop.length - 2) {
+        while (prop.length > 2 && prop.lastIndexOf('[]') == prop.length - 2) {
           prop = prop.substring(0, prop.length - 2);
         }
       }
