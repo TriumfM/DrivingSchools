@@ -20,7 +20,6 @@ import AdminTestQuestionsComponent from '@/admin/tests/QuestionsTestComponent'
 import AdminMesagesComponent from '@/admin/messages/AdminMesagesComponent'
 
 import WebViewComponent from '@/web-site/WebViewComponent'
-import Table from '@/main/table'
 
 Vue.use(Router)
 
