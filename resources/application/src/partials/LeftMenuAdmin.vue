@@ -46,6 +46,15 @@
           <span>Literature</span>
         </div>
       </router-link>
+      <!--<router-link :to="{ name: 'admin-messages'}" :class="{'list__tile&#45;&#45;link' : true, 'list__tile&#45;&#45;link-active' : ($route.name == 'admin-messages')}">-->
+        <!--<span class="active__span"></span>-->
+        <!--<div :class="{'list__tile__icon':true, 'active__icon': true}">-->
+          <!--<i class="fa fa-comments"></i>-->
+        <!--</div>-->
+        <!--<div :class="{'list__tile__title':true}">-->
+          <!--<span>Messages</span>-->
+        <!--</div>-->
+      <!--</router-link>-->
     </div>
   </div>
 </template>

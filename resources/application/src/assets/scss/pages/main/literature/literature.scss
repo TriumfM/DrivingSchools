@@ -8,7 +8,6 @@
     padding: 41px 0px;
 
     .literature__box {
-      height: 215px;
       width: calc(25% - 20px);
       float: left;
       border-radius: 10px;
@@ -17,12 +16,12 @@
 
       .literature__info {
         float: left;
+        height: 200px;
         width: calc(100% - 30px);
         text-align: center;
         padding: 30px 0px;
         margin: 0px 15px;
         border-bottom: 1px solid $border-text-box;
-
 
         .literature__photo {
           float: left;
@@ -55,7 +54,7 @@
           float: left;
           color: $main-blue;
           font-family: OpenSansSemibold;
-          padding-top: 10px;
+          padding-top: 20px;
         }
       }
 
@@ -69,6 +68,7 @@
           font-size: 18px;
           padding: 8px 20px;
           color: $main-blue;
+          border: 1px solid transparent;
           background: transparent;
           text-decoration: none;
           display: inline-block;
@@ -130,5 +130,18 @@
         }
       }
     }
+  }
+}
+
+.literature__title {
+  float: left;
+  font-size: 30px;
+  font-family: OpenSansBold;
+  margin-bottom: 5px !important;
+  color: #1673DB !important;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
   }
 }

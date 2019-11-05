@@ -104,7 +104,7 @@
       save: function (data) {
         let vm = this
         vm.errors = {}
-        if (data.id !== undefined) {
+        if (data.id != undefined) {
           Http.put('/videos/' + data.id, vm.video)
             .then(response => {
               vm.fetchAll()

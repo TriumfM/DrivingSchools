@@ -1,9 +1,13 @@
 .test__details {
-  justify-content: center;
-  display: inline-block;
+  //display: inline-block;
   width: 100%;
   padding: 50px 0px;
   float: left;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: calc(100% - 90px) !important;
+
 
   .test__question {
     background-color: #fff;
@@ -11,6 +15,7 @@
     border-radius: 20px;
     float: left;
     width: 100%;
+    margin-bottom: 20px;
 
     .question__header {
       float: left;
@@ -26,6 +31,10 @@
         float: left;
         width: auto;
         margin: 0px;
+      }
+
+      .point {
+        display: none;
       }
 
       .question__time {
@@ -47,7 +56,6 @@
     }
 
     .question__content {
-      //height: 350px;
       width: calc(100% - 32px);
       padding: 19px 20px;
       margin: 0px 16px;
@@ -58,7 +66,7 @@
       overflow: hidden;
 
       .question__photo {
-        width: 500px;
+        width: 400px;
         float: left;
         margin-right: 40px;
         background-color: $grey;
@@ -70,7 +78,7 @@
         }
 
         svg {
-          width: 500px;
+          width: 100%;
           height: 350px;
           fill: #C6C6C6;
           padding: 0px 15%;
@@ -80,7 +88,7 @@
         .photo__classic{
           border-radius: 30px;
           border: 10px solid $grey;
-          width: 500px;
+          width: 400px;
           height: 350px;
         }
 
@@ -93,28 +101,42 @@
       }
       
       .question__answers {
-        width: calc(100% - 540px);
+        width: calc(100% - 440px);
         float: left;
-        height: 350px;
+        min-height: 350px;
         padding: 10px 0px;
+        min-height: 350px;
 
         .question__ {
           font-size: 21px;
-          font-family: OpenSansSemibold;
+          font-family: OpenSansBold;
           float: left;
-          height: 150px;
+          min-height: 150px;
           min-width: 100%;
+          padding-bottom: 10px;
         }
 
         .question__chooses {
           width: 100%;
           float: left;
-          height: calc(100% - 150px);
+          min-height: 200px;
+          font-family: OpenSansSemibold;
 
           .question__choose {
+            word-wrap: break-word;
+            padding-bottom: 10px;
             width: 100%;
             float: left;
-            height: 33.3%;
+            min-height: 66.66px;
+
+            .choose__input {
+              label {
+
+                &::before {
+                  border-color: #bdc3c7 !important;
+                }
+              }
+            }
 
             .choose__text {
               font-size: 18px;
@@ -132,7 +154,7 @@
       width: calc(100% - 32px);
       padding: 20px 20px;
       float: left;
-      border-top: 1px solid $border-input;
+      border-top: 1px solid $border-text-box;
 
       .point {
         float: left;
@@ -171,6 +193,7 @@
   }
 
   .test__paginated {
+    display: none;
     width: 100%;
     float: left;
     text-align: center;

@@ -1,17 +1,22 @@
 <template>
   <div class="header">
-    <img class='logo' src="@/assets/img/logo.png"/>
+    <img class='logo' src="@/assets/img/logo.png" @click=""/>
     <div class="menu__items">
-      <router-link :class="{'menu__item': true, 'active': ($route.name == 'test')}" :to="{name: 'test'}">Testohu</router-link>
-      <router-link :class="{'menu__item': true, 'active': ($route.name == 'video')}" :to="{name: 'video'}">Video</router-link>
-      <router-link :class="{'menu__item': true, 'active': ($route.name == 'literature')}" :to="{name: 'literature'}">Literatura</router-link>
-      <button class="menu__item" :to="{name: 'login'}" @click="logout()">Log Out</button>
+      <slot></slot>
+    </div>
+    <div class="nav_icon">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.13 15.48">
+        <line class="cls-1" x1="6.91" y1="7.74" x2="22.88" y2="7.74" />
+        <line class="cls-1" x1="1.25" y1="1.25" x2="22.88" y2="1.25" />
+        <line class="cls-1" x1="1.25" y1="14.23" x2="22.88" y2="14.23" />
+      </svg>
     </div>
   </div>
 </template>
 
 <script>
   import {Http} from '@/helpers/http-helper'
+  import dropdownNav from '@/helpers/nav-dropdown.js'
 
   export default {
     props: [],
@@ -30,6 +35,7 @@
     watch: {
     },
     mounted: function () {
+      dropdownNav.dropdown_nav()
     },
     methods: {
       logout: function () {

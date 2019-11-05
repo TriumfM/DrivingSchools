@@ -18,13 +18,14 @@
 
     .menu__item {
       float: left;
-      font-size: 19px;
+      font-size: 14px;
       padding: 22px 30px;
       text-decoration: none;
       color: $alphabet;
       border: none;
       background: transparent;
       outline: none;
+      cursor: pointer;
 
       &.item-settings {
         padding: 22px 20px;
@@ -48,5 +49,9 @@
         font-family: OpenSansSemibold;
       }
     }
+  }
+
+  .nav_icon {
+    display: none;
   }
 }

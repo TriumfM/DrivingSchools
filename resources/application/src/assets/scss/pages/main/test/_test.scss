@@ -19,7 +19,7 @@
 
     .test__info {
       float: left;
-      width: calc(100% - 30px);
+      width: calc(100% - 20px);
       text-align: center;
       padding: 30px 0px 0px;
       margin: 0px 10px;
@@ -27,6 +27,7 @@
 
       svg {
         height: 30px;
+        width: 100%;
 
         .cls-1 {
           fill: #97999b;

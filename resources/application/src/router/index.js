@@ -8,6 +8,7 @@ import TestDetailsComponent from '@/main/test/TestDetailsComponent'
 import TestResultsComponent from '@/main/test/TestResultsComponent'
 import VideoComponent from '@/main/video/VideoComponent'
 import LiteratureComponent from '@/main/literature/LiteratureComponent'
+import LiteratureDetailsComponent from '@/main/literature/LiteratureDetailsComponent'
 import LoginComponent from '@/user/LoginComponent'
 
 import AdminViewComponent from '@/admin/AdminViewComponent'
@@ -16,10 +17,15 @@ import AdminTestsComponent from '@/admin/tests/AdminTestsComponent'
 import AdminVideosComponent from '@/admin/videos/AdminVideosComponent'
 import AdminLiteratureComponent from '@/admin/literature/AdminLiteratureComponent'
 import AdminTestQuestionsComponent from '@/admin/tests/QuestionsTestComponent'
+import AdminMesagesComponent from '@/admin/messages/AdminMesagesComponent'
+
+import WebViewComponent from '@/web-site/WebViewComponent'
 
 Vue.use(Router)
 
 export default new Router({
+  // mode: 'history',
+  // hash: false,
   routes: [
     {
       path: '/',
@@ -37,12 +43,12 @@ export default new Router({
           component: TestComponent,
         },
         {
-          path: '/test/1',
+          path: '/test/:id',
           name: 'test-details',
           component: TestDetailsComponent,
         },
         {
-          path: '/test/1/results',
+          path: '/test/results',
           name: 'test-results',
           component: TestResultsComponent,
         },
@@ -55,6 +61,11 @@ export default new Router({
           path: '/literature',
           name: 'literature',
           component: LiteratureComponent,
+        },
+        {
+          path: '/literature/:type',
+          name: 'literature-type',
+          component: LiteratureDetailsComponent,
         },
       ]
     },
@@ -87,13 +98,23 @@ export default new Router({
           path: '/admin/literature',
           name: 'admin-literature',
           component: AdminLiteratureComponent,
+        },
+        {
+          path: '/admin/messages',
+          name: 'admin-messages',
+          component: AdminMesagesComponent,
         }
       ]
+    },
+    {
+      path: '/web',
+      name: 'web',
+      component: WebViewComponent,
     },
     {
       path: '/login',
       name: 'login',
       component: LoginComponent
-    }
+    },
   ]
 })

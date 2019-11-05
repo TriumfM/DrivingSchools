@@ -88,4 +88,9 @@ class LiteratureController extends Controller
     {
        return $this->service->delete($id);
     }
+
+    public function getByType($type)
+    {
+        return Literature::where('type', $type)->get();
+    }
 }

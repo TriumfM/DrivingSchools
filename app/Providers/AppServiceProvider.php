@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 
+use App\Services\HomepageMessagesService;
+use App\Services\Impl\HomepageMessagesServiceImpl;
 use App\Services\Impl\LiteratureServiceImpl;
 use App\Services\Impl\TrainingQuestionServiceImpl;
 use App\Services\Impl\TrainingTestServiceImpl;
@@ -27,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(TrainingTestService::class,TrainingTestServiceImpl::class);
         $this->app->bind(TrainingQuestionService::class,TrainingQuestionServiceImpl::class);
         $this->app->bind(LiteratureService::class,LiteratureServiceImpl::class);
+        $this->app->bind(HomepageMessagesService::class,HomepageMessagesServiceImpl::class);
     }
 
     /**

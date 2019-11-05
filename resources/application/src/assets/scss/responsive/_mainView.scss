@@ -1,0 +1,16 @@
+// max-width: 400px
+@media only screen and (max-width: $screen-xxs-min) {
+  .main__container {
+
+    .main__body {
+      padding: 10px 20px ;
+      margin: 0px;
+      height: calc(100% - 70px);
+    }
+  }
+
+  .button__style {
+    font-size: 15px;
+    padding: 12px 20px;
+  }
+}

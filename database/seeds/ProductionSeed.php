@@ -39,7 +39,7 @@ class ProductionSeed extends Seeder
 
         $user_1 = new User();
         $user_1->full_name = "Admin Sylejmani";
-        $user_1->number = "045900638";
+        $user_1->number = "123";
         $user_1->email = "admin@admin.com";
         $user_1->password = bcrypt('admin');
         $user_1->role = "admin";
@@ -49,9 +49,9 @@ class ProductionSeed extends Seeder
 
         $user_2 = new User();
         $user_2->full_name = "Student Llapashtica";
-        $user_2->number = "049191801";
+        $user_2->number = "333";
         $user_2->email = "student@student.com";
-        $user_2->password = bcrypt('student');
+        $user_2->password = bcrypt('333');
         $user_2->role = "student";
         $user_2->expire = "2020-07-01";
 

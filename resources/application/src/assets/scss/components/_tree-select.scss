@@ -1,0 +1,101 @@
+.vue-treeselect__control {
+  width: 100%;
+  font-size: 13px;
+  border-radius: 4px;
+  border-color: #e8e8e8 !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  border-width: 1px;
+  height: 35px;
+  border-style: solid;
+  background: #fcfcfc !important;
+  font-family: OpenSansRegular;
+  color: #646A6D;
+  position: relative;
+
+  .vue-treeselect__input-container {
+    height: 33px !important;
+    padding-left: 10px !important;
+  }
+}
+
+.vue-treeselect__menu {
+
+  position: absolute;
+  width: 100%;
+  left: 0;
+  min-height: auto;
+  max-height: 200px !important;
+  background: #fff;
+  border-radius : 0px 0px 10px 10px;
+  box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.15) !important;
+  list-style: none;
+  padding-left: 10px;
+  padding-top: 0px;
+  z-index: 2;
+
+
+  div {
+    width: 100%;
+    text-align: left;
+    padding: 1px 0px;
+    font-size: 13px;
+    font-family: OpenSansRegular;
+    color: #85868A;
+
+    //@include placeholder-color(#85868A);
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.vue-treeselect__input-container {
+  height: 33px;
+  padding: 0px;
+  outline: none;
+
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    outline: none;
+  }
+}
+
+.vue-treeselect__placeholder {
+  padding-left: 10px !important;
+}
+
+.vue-treeselect__input {
+  height: 33px !important;
+  background: transparent;
+  border: none !important;
+  position: absolute;
+  outline: none !important;
+  padding: 0px !important;
+  top: 0;
+
+  &:focus {
+    outline: none;
+    outline-offset: 0px;
+  }
+  &:active {
+    outline: none;
+  }
+}
+
+.vue-treeselect__single-value {
+  color: #646A6D !important;
+  font-size: 13px !important;
+  font-family: OpenSansRegular !important;
+
+}
+
+
+.hour__only {
+  .minutes {
+    display: none !important;
+  }
+}

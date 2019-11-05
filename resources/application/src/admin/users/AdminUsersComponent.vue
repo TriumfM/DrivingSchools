@@ -6,8 +6,11 @@
         <button class="btn btn-primary" @click="modalAdd()">Add new</button>
       </div>
     </div>
+    <div class="cnf__input col-md-5 cnf__input--search">
+      <input type="text" class="basic__input" v-model="search" placeholder="Search by user name..."/>
+    </div>
     <div class="table_4td">
-      <div class="table__row" v-for="user in users">
+      <div class="table__row" v-for="user in filteredList">
         <div class='table__th--data'>
           <div class="table__th">User: </div>
           <div class='table__td table_td--click'>{{user.full_name}}</div>
@@ -107,19 +110,27 @@
       ModalComponent,
       Treeselect
     },
+    computed: {
+      filteredList() {
+        return this.users.filter(post => {
+          return post.full_name.toLowerCase().includes(this.search.toLowerCase())
+        })
+      }
+    },
     data () {
       return {
         showImg: 1,
         show: false,
-        users: {},
+        users: [],
         user: {},
         errors: {},
+        search: '',
         roles: [
           {id:'admin', name:'Admin'},
           {id:'student', name:'Student'}
         ],
         modal: '',
-        normalizerName (node) {
+        normalizerName  (node) {
           return {
             id: node.id,
             label: node.name
@@ -152,7 +163,7 @@
       save: function (data) {
         let vm = this
         vm.errors = {}
-        if (data.id !== undefined) {
+        if (data.id != undefined) {
           Http.put('/users/' + data.id, vm.user)
             .then(response => {
               vm.fetchAll()

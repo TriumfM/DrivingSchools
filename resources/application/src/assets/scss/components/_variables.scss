@@ -5,14 +5,13 @@ $open-sans-light: "OpenSansLight";
 $open-sans-italic: "OpenSansItalic";
 $open-sans-semi-boal: "OpenSansSemibold";
 
-
 // Main COLORS
 $header: #fff;
 $main-blue: #1673DB;
 $body: #F2F2F2;
 $lightGrey: #dee2e6;
 
-  // Text
+// Text
 $alphabet: #646A6D;
 $alphabet-input: #646A6D;
 $alphabet-description: #AAAAAA;
@@ -28,7 +27,6 @@ $border-text-box: #E8E8E8;
 // Hover
 $hoverRowLink: rgba(0,0,0,.07);
 $hoverItemSubMenu: rgba(0,0,0,.04);
-
 
 // Colors
 $grey: #EFEFEF;
@@ -62,3 +60,13 @@ $alphabetMenu: rgba(0,0,0,.54);
 $activeItemMenuColor: #2548a6;
 $activeItemMenuHover: #e3e5e6;
 $secondShadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+// PIXELS
+$screen-xxs-min: 600px;
+$screen-xxs: 601px;
+$screen-xs-min: 600px;
+$screen-xs: 601px;
+$screen-sm-min: 766px;
+$screen-sm: 767px;
+$screen-md-min: 1223px;
+$screen-md: 1024px;

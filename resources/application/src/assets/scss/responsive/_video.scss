@@ -1,0 +1,120 @@
+// max-width: 1024px
+@media only screen and (max-width: $screen-md) {
+  .video__body {
+    padding: 0px 20px !important;
+
+    .videos {
+      padding-bottom: 0px;
+
+      .video__box {
+
+        .video__photo {
+        }
+
+        .video__info {
+            width: calc(100% - 180px - 150px - 20px);
+        }
+
+        .video__button {
+          width: 150px;
+
+          button {
+            font-size: 15px;
+          }
+        }
+      }
+    }
+
+    .modal__container {
+      background-color: rgb(0, 0, 0);
+      z-index: 10;
+
+      .modal__body {
+        width: 100% !important;
+        height: 100vh !important;
+        border-radius: 0px;
+        border: none;
+        position: relative;
+        background: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .modal__header {
+          background: white;
+          position: absolute;
+          z-index: 1;
+          top: 0;
+          width: calc(100% + 2px);
+          margin-top: 0px;
+          margin: -1;
+
+          spam {
+            position: absolute;
+            top: 0px;
+            right: 10px;
+          }
+        }
+
+        .modal__content {
+          height: 300px;
+          border-radius: 0px;
+          border-color: transparent;
+        }
+      }
+    }
+
+  }
+}
+
+
+// max-width: 600px
+@media only screen and (max-width: $screen-xxs-min) {
+  .video__body {
+
+    .video__title {
+      display: none;
+    }
+
+    .videos {
+      padding-bottom: 0px;
+
+      .video__box {
+        border: 1px solid $border-text-box;
+        min-height: 350px;
+        position: relative;
+
+        .video__photo {
+          width: 100%;
+          padding-top: 10px;
+          height: 150px;
+          position: relative;
+          display: flex;
+          justify-content: center;
+        }
+
+        .video__info {
+          width: 100%;
+          min-height: calc(100% - 230px);
+          text-align: center;
+        }
+
+        .video__descriptions {
+          margin-bottom: 80px;
+
+          &--full {
+            margin-bottom: 0px !important;
+          }
+        }
+
+        .video__button {
+          width: 100%;
+          padding: 0px;
+          position: absolute;
+          bottom: 20px;
+
+        }
+      }
+    }
+  }
+}

@@ -14,8 +14,12 @@ Http.interceptors.request.use(function (request) {
 Http.interceptors.response.use(response => {
   return response
 }, error => {
-  if (error.response.status === 409) {
+  if (error.response.status == 409) {
     store.dispatch('errorsStore/addError', {title: error.response.data.error, body: error.response.data.message, status: error.response.status})
+  }
+  if (error.response.status == 401) {
+    localStorage.setItem('vuex', '')
+    window.location.href = '/login';
   }
 
   return Promise.reject(error)

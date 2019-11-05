@@ -8,13 +8,19 @@
   border: none;
   outline: none;
   cursor: pointer;
+  text-decoration: none;
+  font-family: OpenSansSemibold;
 
   &:focus {
     outline: none;
+    color: #fff;;
+    text-decoration: none;
   }
 
   &:hover {
     background-color: #0881C4;
+    color: #fff;
+    text-decoration: none;
   }
 }
 

@@ -1,0 +1,129 @@
+// max-width: 1024px
+@media only screen and (max-width: $screen-md) {
+  .literature__body {
+    .literature {
+      padding: 0px;
+
+      .literature__box {
+        height: 80px;
+        width: 100% ;
+        border: 1px solid $border-text-box;
+        margin: 10px 0px 10px;
+
+        .literature__info {
+          width: calc(100% - 60px);
+          text-align: left;
+          padding: 13px 0px;
+          margin: 0px;
+          border-bottom: none;
+          display: flex;
+          height: auto;
+
+          .literature__photo {
+            margin-left: 10px;
+            position: relative;
+
+            svg {
+              .cls-1 {
+                fill: #646a6d;
+              }
+            }
+          }
+
+          label {
+            font-size: 16px;
+            text-align: left;
+            color: #646a6d;
+            padding: 0px 0px 0px 8px;
+            margin: 0px;
+            display: flex;
+            align-items: center;
+          }
+        }
+
+        .literature__button {
+          width: 60px;
+          margin: 13.5px 0px;
+          height: 53px;
+          border-left: 1px solid $border-text-box;
+
+          .button--show_literature {
+            margin: 9px 10px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            float: left;
+            border-radius: 100px;
+            background: #F7F7F7;
+            position: relative;
+            width: 35px;
+            height: 35px;
+
+            span {
+              display: none;
+            }
+
+            svg {
+              padding-left: 0px;
+              height: 15px;
+              width: 15px;
+              position: absolute;
+              top: 9px;
+              left: 7px;
+
+              line {
+                display: none;
+              }
+
+
+              .cls-1 {
+                stroke: #646a6d;
+              }
+            }
+
+          }
+        }
+
+        &:hover {
+          background-color: $main-blue;
+
+          .literature__button {
+            .button--show_literature {
+              svg {
+                padding-left: 0px;
+                height: 15px;
+                width: 15px;
+                position: absolute;
+                top: 9px;
+                left: 7px;
+
+                line {
+                  display: none;
+                }
+
+                polyline {
+                }
+
+
+                .cls-1 {
+                  stroke: $main-blue;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $screen-xxs-min) {
+  .literature__title {
+    margin-top: 10px;
+  }
+}
+
+
+
+

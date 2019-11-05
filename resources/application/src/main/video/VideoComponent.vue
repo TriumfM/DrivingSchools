@@ -11,7 +11,7 @@
           </svg>
         </div>
         <div class="video__info">
-          <h3 class="video__label">{{video.title}}</h3>
+          <h5 class="video__label">{{video.title}}</h5>
           <p class="video__descriptions">{{video.description}}</p>
         </div>
         <div class="video__button">
@@ -25,13 +25,13 @@
         </div>
       </div>
     </div>
-    <modal-component :show="show" position="center">
+    <modal-component :show="show" position="center" @close-modal="false">
       <div class="modal__header">
         <h3>{{video.title}}</h3>
         <span v-on:click="showModal()"></span>
       </div>
-      <div class="modal__content modal__video no--padding">
-        <iframe :src="'https://www.youtube.com/embed/' + video.path" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div id="modal__content" class="modal__content modal__video no--padding">
+        <iframe id="video" :src="'https://www.youtube.com/embed/' + video.path" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </modal-component>
   </div>
@@ -56,10 +56,12 @@
     },
     mounted () {
       this.fetchAll()
+
     },
     methods: {
       showModal: function () {
         this.show = !this.show
+
       },
       fetchAll: function () {
         Http.get(`videos`)
@@ -73,11 +75,20 @@
         Http.get(`/videos/` + idVideo)
           .then(response => {
             this.video = response.data
+            if(window.devicePixelRatio < 1024) {
+              this.fullVideo()
+              console.log(window.screen.width)
+            }
           })
           .catch(e => {
             this.errors = e.body
           })
       },
+      fullVideo: function () {
+        var video = document.getElementById('video');
+        video.setSize(width=100, height=400);
+        video.requestFullscreen();
+      }
     }
   }
 </script>

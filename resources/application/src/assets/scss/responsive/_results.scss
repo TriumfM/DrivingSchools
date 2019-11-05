@@ -1,0 +1,27 @@
+// max-width: 400px
+@media only screen and (max-width: $screen-xxs-min) {
+  .results__body {
+    .results__point {
+      font-size: 22px;
+    }
+
+    .results__answers {
+      padding: 0px;
+      margin: 30px 0px;
+
+      .result__box {
+        width: calc(20% - 20px);
+        margin: 5px;
+
+        .question__order {
+          font-size: 30px;
+        }
+
+        .question__result {
+          font-size: 12px;
+        }
+
+      }
+    }
+  }
+}

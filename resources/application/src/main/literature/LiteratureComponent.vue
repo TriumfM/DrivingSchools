@@ -21,13 +21,13 @@
           <label>Nocionet</label>
         </div>
         <div class="literature__button">
-          <button class="button__style button--show_literature" @click="showModal()">
+          <router-link :to="{name: 'literature-type', params:{type: 'notion'}}" class="button__style button--show_literature" >
             <span>Shiko me shume</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.54 13.26">
               <line class="cls-1" x1="1.5" y1="6.63" x2="15.68" y2="6.63" />
               <polyline class="cls-1" points="10.91 1.5 16.04 6.63 10.91 11.76" />
             </svg>
-          </button>
+          </router-link>
         </div>
       </div>
       <div class="literature__box">
@@ -42,13 +42,13 @@
           <label>Sinjalizimi Horizontal</label>
         </div>
         <div class="literature__button">
-          <button class="button__style button--show_literature" @click="showModal()">
+          <router-link :to="{name: 'literature-type', params:{type: 'signaling_h'}}" class="button__style button--show_literature" >
             <span>Shiko me shume</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.54 13.26">
               <line class="cls-1" x1="1.5" y1="6.63" x2="15.68" y2="6.63" />
               <polyline class="cls-1" points="10.91 1.5 16.04 6.63 10.91 11.76" />
             </svg>
-          </button>
+          </router-link>
         </div>
       </div>
       <div class="literature__box">
@@ -62,13 +62,13 @@
           <label>Sinjalizimi Vertikal</label>
         </div>
         <div class="literature__button">
-          <button class="button__style button--show_literature" @click="showModal()">
+          <router-link :to="{name: 'literature-type', params:{type: 'signaling_v'}}" class="button__style button--show_literature" >
             <span>Shiko me shume</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.54 13.26">
               <line class="cls-1" x1="1.5" y1="6.63" x2="15.68" y2="6.63" />
               <polyline class="cls-1" points="10.91 1.5 16.04 6.63 10.91 11.76" />
             </svg>
-          </button>
+          </router-link>
         </div>
       </div>
       <div class="literature__box">
@@ -89,13 +89,13 @@
           <label>Libri</label>
         </div>
         <div class="literature__button">
-          <button class="button__style button--show_literature" @click="showModal()">
+          <router-link :to="{name: 'literature-type', params:{type: 'books'}}" class="button__style button--show_literature" >
             <span>Shiko me shume</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.54 13.26">
               <line class="cls-1" x1="1.5" y1="6.63" x2="15.68" y2="6.63" />
               <polyline class="cls-1" points="10.91 1.5 16.04 6.63 10.91 11.76" />
             </svg>
-          </button>
+          </router-link>
         </div>
       </div>
       <div class="literature__box">
@@ -110,13 +110,13 @@
           <label>Personat e autorizuar</label>
         </div>
         <div class="literature__button">
-          <button class="button__style button--show_literature" @click="showModal()">
+          <router-link :to="{name: 'literature-type', params:{type: 'people_a'}}" class="button__style button--show_literature" >
             <span>Shiko me shume</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.54 13.26">
               <line class="cls-1" x1="1.5" y1="6.63" x2="15.68" y2="6.63" />
               <polyline class="cls-1" points="10.91 1.5 16.04 6.63 10.91 11.76" />
             </svg>
-          </button>
+          </router-link>
         </div>
       </div>
       <div class="literature__box">
@@ -132,13 +132,13 @@
           <label>Rregullat e trefikut</label>
         </div>
         <div class="literature__button">
-          <button class="button__style button--show_literature" @click="showModal()">
+          <router-link :to="{name: 'literature-type', params:{type: 'rules'}}" class="button__style button--show_literature" >
             <span>Shiko me shume</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.54 13.26">
               <line class="cls-1" x1="1.5" y1="6.63" x2="15.68" y2="6.63" />
               <polyline class="cls-1" points="10.91 1.5 16.04 6.63 10.91 11.76" />
             </svg>
-          </button>
+          </router-link>
         </div>
       </div>
       <div class="literature__box">
@@ -155,13 +155,13 @@
           <label>Instrumentet</label>
         </div>
         <div class="literature__button">
-          <button class="button__style button--show_literature" @click="showModal()">
+          <router-link :to="{name: 'literature-type', params:{type: 'instrument'}}" class="button__style button--show_literature" >
             <span>Shiko me shume</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.54 13.26">
               <line class="cls-1" x1="1.5" y1="6.63" x2="15.68" y2="6.63" />
               <polyline class="cls-1" points="10.91 1.5 16.04 6.63 10.91 11.76" />
             </svg>
-          </button>
+          </router-link>
         </div>
       </div>
       <div class="literature__box">
@@ -180,13 +180,13 @@
           <label>Eko Ngasja</label>
         </div>
         <div class="literature__button">
-          <button class="button__style button--show_literature" @click="showModal()">
+          <router-link :to="{name: 'literature-type', params:{type: 'eco'}}" class="button__style button--show_literature" >
             <span>Shiko me shume</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.54 13.26">
               <line class="cls-1" x1="1.5" y1="6.63" x2="15.68" y2="6.63" />
               <polyline class="cls-1" points="10.91 1.5 16.04 6.63 10.91 11.76" />
             </svg>
-          </button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -208,9 +208,6 @@
       }
     },
     methods: {
-      showModal: function () {
-        this.show = !this.show
-      }
     }
   }
 </script>

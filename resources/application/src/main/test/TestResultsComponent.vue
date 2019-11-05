@@ -1,14 +1,17 @@
 <template>
-  <div>
+  <div class="results">
     <div class="results__body">
-      <span :class="{'results__point': true, 'success': true, 'error': false}">86 Pikë, Urime keni kaluar</span>
+      <span :class="{'results__point': true, 'success': ( results.total >= results.max*0.9 ), 'error': ( results.total < results.max*0.9 )}">{{results.total}} Pikë, {{( results.total >= results.max*0.9 )?'Urime keni kaluar testin' : 'Nuk keni kaluar testin'}}</span>
       <div class="results__answers">
-        <div :class="{'result__box': true, 'success': (n < 22), 'error': (n >= 22) }" v-for="n in 30" @click="showModal()">
-          <span class="question__order">{{(n < 10)? '0'+n: n}}</span>
-          <sapn class="question__result">{{(n > 21)? 'Gabim': 'Saktë'}}</sapn>
+        <div :class="{'result__box': true, 'success': question.flag == true, 'error':  question.flag == false }"
+             v-for="(question, index) in results.questions"
+             @click="fetchQuestionById(question.id); fetchQuestionResult(question.id)">
+
+          <span class="question__order">{{index + 1}}</span>
+          <span class="question__result">{{( question.flag == false)? 'Gabim': 'Saktë'}}</span>
         </div>
       </div>
-      <button class="button__style button--again">
+      <button class="button__style button--again" @click="$router.push({name: 'test'})">
         <span>Testohu Përsëri</span>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.54 13.26">
           <line class="cls-1" x1="1.5" y1="6.63" x2="15.68" y2="6.63" />
@@ -20,19 +23,15 @@
       <div class="test__details no--padding">
         <div class="test__question">
           <div class="question__header">
-            <label class="question__info">Test 01 - Pyetja 12/30</label>
+            <label class="question__info"><name>{{test.name}} - </name> Pyetja {{question.order_number}}/{{questions.length}}</label>
+            <span class="point" :class="{'error': questionResult.win_points == 0, 'success': questionResult.win_points != 0}" >{{question.points}} Pikë</span>
             <div class="question__time">
-              <label>25:18</label>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32.23 33.81">
-                <path d="M578.8,1222.17a14.53,14.53,0,0,1-28.9,0h-1.43a1.13,1.13,0,0,1-1-1.7l3.19-5.53a1.13,1.13,0,0,1,2,0l3.19,5.53a1.13,1.13,0,0,1-1,1.7h-1.25a10.84,10.84,0,1,0,4.75-10.55,1.9,1.9,0,0,1-2.56-.35,1.83,1.83,0,0,1,.42-2.65,14.37,14.37,0,0,1,6.32-2.37v-2.1h-1.48a.92.92,0,0,1-.92-.92v-.93a.92.92,0,0,1,.92-.92h6.86a.93.93,0,0,1,.93.92v.93a.93.93,0,0,1-.93.92H566.3v2.12A14.54,14.54,0,0,1,578.8,1222.17Zm.47-14-2.78-2.57a.92.92,0,0,0-1.3,0l-.73.8a.91.91,0,0,0,0,1.3l2.78,2.57a.93.93,0,0,0,1.3,0l.74-.8A.92.92,0,0,0,579.27,1208.22Zm-15,3.53v9h8.93A8.76,8.76,0,0,0,564.3,1211.75Z" transform="translate(-547.34 -1201.41)" />
-              </svg>
             </div>
           </div>
           <div class="question__content">
             <div class="question__photo">
-              <img src="@/assets/img/test1_foto1.svg" class="photo__classic" v-if="showImg == 1"/>
-              <img src="@/assets/img/shenja1.svg" class="photo__signs" v-if="showImg == 2"/>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 227.21 47.74" v-if="(showImg != 1 && showImg != 2)">
+              <img :src="question.photo_url" class="photo__classic" v-if="question.photo_url"/>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 227.21 47.74" v-if="question.photo_url == null">
                 <path class="cls-1" d="M213.88,191.63c0-.39.09-.5.49-.5,7.06,0,13.95,0,21,0a16.77,16.77,0,0,1,6.72,1.15,9.91,9.91,0,0,1,6.36,8.67,11.18,11.18,0,0,1-.51,4.45,14.37,14.37,0,0,1-5.7,7.69,80.41,80.41,0,0,1-8.91,5.14c-3.29,1.7-6.64,3.29-10,4.81-2.93,1.31-5.88,2.58-8.9,3.65l-.28.1c-.17.06-.26,0-.25-.18a2.71,2.71,0,0,0,0-.29q0-5.88,0-11.76v-23Zm7.5,24.06.56-.25c1.43-.68,2.87-1.35,4.3-2A97.45,97.45,0,0,0,236.4,208a11,11,0,0,0,3.76-3.36,5.47,5.47,0,0,0,.85-2.16,3,3,0,0,0-2-3.37,9.3,9.3,0,0,0-3.22-.49c-4.7-.08-9.41,0-14.12,0-.29,0-.37.07-.37.36,0,1.54.05,3.07.06,4.6,0,3.46.05,6.93.06,10.39C221.39,214.54,221.38,215.08,221.38,215.69Z" transform="translate(-199.81 -191.13)" />
                 <path class="cls-2" d="M213.88,238.59c.91-.45,1.83-.89,2.74-1.35,3.61-1.82,7.13-3.8,10.67-5.75a1.39,1.39,0,0,1,.82-.19,46,46,0,0,0,5.38.18,14.89,14.89,0,0,0,2.9-.4,6.81,6.81,0,0,0,5.43-5.87,13.3,13.3,0,0,0,.2-2.89.76.76,0,0,1,.33-.69q1.93-1.56,3.85-3.14a11.59,11.59,0,0,0,1.64-1.57c.14-.18.22-.14.35,0a10.89,10.89,0,0,1,4.14,7.57c.46,5.2-1.88,9.07-6,12.07a11.14,11.14,0,0,1-6,2c-6.3.48-12.61.34-18.92.25l-7.41-.11h-.19Z" transform="translate(-199.81 -191.13)" />
                 <path class="cls-2" d="M288,220.73a4.45,4.45,0,0,1,4.35,3.58,8.27,8.27,0,0,1-.05,3.25,4.41,4.41,0,0,1-4.37,3.32H267.23c-.84,0-1.68,0-2.53,0-.38,0-.48-.1-.48-.48,0-5.86,0-11.71,0-17.56,0-.6,0-1.19,0-1.79,0-.33.11-.4.42-.4H287.3a4.38,4.38,0,0,1,4.5,4.5,12.06,12.06,0,0,1-.05,1.9,4,4,0,0,1-2.43,3.13C288.89,220.42,288.43,220.55,288,220.73Zm-10.71,7.73h9.19a2.83,2.83,0,0,0,2.9-2.47,8.38,8.38,0,0,0,0-1.12,2.85,2.85,0,0,0-2.88-2.9H268c-.29,0-.37.09-.36.37,0,1.91,0,3.81,0,5.72,0,.35.11.42.44.42ZM277,219.6h8.95a2.71,2.71,0,0,0,2.7-2,4.78,4.78,0,0,0,.1-1.36,2.7,2.7,0,0,0-2.8-2.83H268c-.32,0-.39.1-.38.4,0,1.77,0,3.53,0,5.3,0,.37.08.48.47.48C271,219.59,274,219.6,277,219.6Z" transform="translate(-199.81 -191.13)" />
@@ -77,25 +76,25 @@
               </svg>
             </div>
             <div class="question__answers">
-              <span class="question__">Çka paraqet kjo shenjë e trafikut dhe në cilën grup të shenjave bën pjesë?</span>
+              <span class="question__">{{question.name}}</span>
               <div class="question__chooses">
-                <div class="question__choose">
-                  <input class="choose__input" type="radio"/>
-                  <span class="choose__text">Të Obligimit.</span>
-                </div>
-                <div class="question__choose">
-                  <input class="choose__input" type="radio"/>
-                  <span class="choose__text">Rrugën me përparësi kalimi.</span>
-                </div>
-                <div class="question__choose">
-                  <input class="choose__input" type="radio"/>
-                  <span class="choose__text">Të lajmërimit.</span>
+                <div class="question__choose" v-for="answer in question.std_answers">
+                  <label class="address-check checkbox cursor__default">
+                    <input type="checkbox" v-model="selectedOptions" :value="answer.id" disabled>
+                    <span class="checkmark checkmark_grey"></span>
+                    <span></span>
+                  </label>
+                  <span class="choose__text error" :class="{'success': correctOption[answer.id]}">
+                    {{answer.name}}
+                    <i class="fa fa-times-circle" v-if="!correctOption[answer.id]"></i>
+                    <i class="fa fa-check-circle" v-if="correctOption[answer.id]"></i>
+                  </span>
                 </div>
               </div>
             </div>
           </div>
           <div class="question__footer">
-            <span class="point">4 Pikë</span>
+            <span class="point" :class="{'error': questionResult.win_points == 0, 'success': questionResult.win_points != 0}">{{question.points}} Pikë </span>
             <div class="control__buttons">
               <button class="button__style button_next-preview" @click="showModal()">
                 <span>Në rregull</span>
@@ -114,6 +113,8 @@
 
 <script>
   import ModalComponent from '@/helpers/ModalComponent.vue'
+  import {Http} from '@/helpers/http-helper'
+  import alert from '@/services/sweetAlert.js'
 
   export default {
     components: {ModalComponent},
@@ -123,13 +124,67 @@
     data () {
       return {
         showImg: 1,
-        show:false
+        selectedOptions: [],
+        correctOption: [],
+        show:false,
+        results: {},
+        photo_url: null,
+        questionResult: {},
+        questionsResults: [],
+        question: {},
+        questions: {},
+        test_id: null,
+        test: {}
       }
     },
+    mounted () {
+      this.fetchAll()
+    },
+    watch: {
+    },
     methods: {
+
       showModal: function () {
         this.show = !this.show
+      },
+      fetchAll: function () {
+        this.results = this.$route.params.results
+        this.questions = this.$route.params.questions
+        this.test = this.$route.params.results.test
+      },
+      fetchQuestionById: function (idQuestion) {
+        for(var i = 0; i < this.questions.length; i++) {
+          if (this.questions[i].id == idQuestion) {
+            this.question = this.questions[i]
+          }
+        }
+        this.showModal()
+      },
+      fetchQuestionResult: function (idQuestion) {
+        for(var i = 0; i < this.results.questions.length; i++) {
+          if (this.results.questions[i].id == idQuestion) {
+            this.questionResult = this.results.questions[i]
+
+            for(var j = 0; j < this.questionResult.student_answer.length; j++){
+              this.selectedOptions.push(this.questionResult.student_answer[j])
+
+            }
+            for(var k = 0; k < this.questionResult.correct_answers.length; k++) {
+              this.correctOption[this.questionResult.correct_answers[k]] = true
+            }
+          }
+        }
+      },
+      fetchTest: function (idTest) {
+        Http.get(`/trainings/tests/` + idTest)
+          .then(response => {
+            this.test = response.data
+          })
+          .catch(e => {
+          })
       }
     }
   }
 </script>
+
+

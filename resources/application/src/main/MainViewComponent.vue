@@ -1,6 +1,11 @@
 <template>
   <div class="main__container">
-    <header-navigation></header-navigation>
+    <header-navigation>
+      <router-link :class="{'menu__item': true, 'active': ($route.name == 'test')}" :to="{name: 'test'}">Testohu</router-link>
+      <router-link :class="{'menu__item': true, 'active': ($route.name == 'video')}" :to="{name: 'video'}">Video</router-link>
+      <router-link :class="{'menu__item': true, 'active': ($route.name == 'literature')}" :to="{name: 'literature'}">Literatura</router-link>
+      <button class="menu__item" :to="{name: 'login'}" @click="logout()">Log Out</button>
+    </header-navigation>
     <router-view class="main__body"></router-view>
   </div>
 </template>
@@ -28,6 +33,12 @@
       }
     },
     methods: {
+      logout: function () {
+        Http.get(`/auth/logout`)
+          .then(response => {
+            this.$router.push({name: 'login'})
+          })
+      }
     }
   }
 </script>

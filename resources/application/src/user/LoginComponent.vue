@@ -48,7 +48,7 @@
       }
     },
     mounted: function () {
-      if (localStorage.getItem('vuex') !== '' || localStorage.getItem('vuex') === undefined) {
+      if (localStorage.getItem('vuex') != '' || localStorage.getItem('vuex') == undefined) {
         this.$router.push('login')
       }
       this.$store.watch(
